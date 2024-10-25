@@ -29,15 +29,16 @@
     enable = true;
     extraConfig = ''
       [Resolve]
-      DNS=45.90.28.0#73c4d4.dns.nextdns.io
-      DNS=2a07:a8c0::#73c4d4.dns.nextdns.io
-      DNS=45.90.30.0#73c4d4.dns.nextdns.io
-      DNS=2a07:a8c1::#73c4d4.dns.nextdns.io
+      DNS=45.90.28.0#nixos-73c4d4.dns.nextdns.io
+      DNS=2a07:a8c0::#nixos-73c4d4.dns.nextdns.io
+      DNS=45.90.30.0#nixos-73c4d4.dns.nextdns.io
+      DNS=2a07:a8c1::#nixos-73c4d4.dns.nextdns.io
       DNSOverTLS=yes
     '';
   };
 
   networking.hostName = "seattle"; # Define your hostname.
+  networking.firewall.allowedTCPPorts = [2283 8000 3000 5173];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

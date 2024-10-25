@@ -18,6 +18,7 @@
     btop
     ouch
     podman-compose
+    localsend
     pkgs-unstable.podman-desktop
   ];
 
@@ -32,18 +33,6 @@
       init.defaultBranch = "main";
     };
   };
-
-#   programs.firefox = {
-#     enable = true;
-#     profiles = {
-#       default = {
-#           id = 0;
-#           name = "default";
-#           isDefault = true;
-#
-#       };
-#     };
-#   };
 
     programs.firefox = {
       enable = true;
@@ -66,16 +55,16 @@
             {
               name = "NixOS Packages";
               toolbar = true;
-	      bookmarks = [
-	        {
-		  name = "NixOS Packages";
+              bookmarks = [
+                {
+                  name = "NixOS Packages";
                   url = "https://search.nixos.org/packages";
-		}
+                }
                 {
                   name = "Appendix A";
                   url = "https://nix-community.github.io/home-manager/options.xhtml";
                 }
-	      ];
+              ];
             }
           ];
           containers = {
@@ -104,6 +93,10 @@
     shellAliases = {
       docker = "podman";
       vi = "nvim";
+      immich-start="podman pod start pod_immich";
+      immich-stop="podman pod stop pod_immich";
+      cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
+      nix-clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo nixos-rebuild switch";
     };
   };
 
