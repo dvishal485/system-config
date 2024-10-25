@@ -20,6 +20,7 @@
     podman-compose
     localsend
     pkgs-unstable.podman-desktop
+    stremio
   ];
 
   programs.git = {
