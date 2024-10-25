@@ -137,6 +137,11 @@
     #media-session.enable = true;
   };
 
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -153,11 +158,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     toybox
     lshw
-    # cuda-toolkit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
