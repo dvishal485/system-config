@@ -5,8 +5,7 @@
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
-    kdePackages.kate
-    kdePackages.kwallet
+    # essential
     git
     neovim
     wget
@@ -15,12 +14,23 @@
     python3
     ripgrep
     gcc
+
+    # works well
+    kdePackages.kate
+    kdePackages.kwallet
+
+    # tools and utils
     btop
     ouch
     podman-compose
-    localsend
     pkgs-unstable.podman-desktop
+
+    # personal usecase
     stremio
+    localsend
+    gitui # will use w nvim
+    chromium
+    signal-desktop
   ];
 
   programs.git = {
@@ -35,6 +45,7 @@
     };
   };
 
+    # customize firefox - system level (configuration.nix) + user level
     programs.firefox = {
       enable = true;
       profiles = {
@@ -79,6 +90,11 @@
               icon = "briefcase";
               id = 2;
             };
+	    Youtube = {
+              color = "red";
+              icon = "chill";
+              id = 3;
+	    };
           };
           search = {
             force = true;
@@ -91,6 +107,8 @@
 
   programs.bash = {
     enable = true;
+
+    # shell alias saves the day
     shellAliases = {
       docker = "podman";
       vi = "nvim";
@@ -101,6 +119,7 @@
     };
   };
 
+  # smarter cd zoxide with shell alias to enable interactive by default cd
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
