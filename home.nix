@@ -24,12 +24,13 @@
     ouch
     podman-compose
     pkgs-unstable.podman-desktop
+    bat
 
     # personal usecase
     stremio
     localsend
     gitui # will use w nvim
-    chromium
+    google-chrome
     signal-desktop
   ];
 
@@ -107,15 +108,35 @@
 
   programs.bash = {
     enable = true;
+    historyControl = ["ignoredups"];
+    sessionVariables = {
+      FIREFOX_CFG = "\${HOME}/.mozilla/firefox";
+    };
+    shellOptions = [
+      "histappend"
+      "checkwinsize"
+      "extglob"
+      "globstar"
+      "checkjobs"
+      "cdspell"
+    ];
 
     # shell alias saves the day
     shellAliases = {
-      docker = "podman";
       vi = "nvim";
+      cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
+      cat = "bat"; # my cat is batman
+
+      # immich stuff
+      docker = "podman";
       immich-start="podman pod start pod_immich";
       immich-stop="podman pod stop pod_immich";
-      cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
-      nix-clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo nixos-rebuild switch";
+
+      # clean old gen
+      nix-clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+
+      # remove conflicting firefox backup file and build
+      nix-make = "ls \${FIREFOX_CFG} | rg \"\\.backup\" | sed 's/.backup//g' | xargs -I \"{}\" mv \${FIREFOX_CFG}/{}.backup \${FIREFOX_CFG}/{}.bak && sudo nixos-rebuild switch";
     };
   };
 

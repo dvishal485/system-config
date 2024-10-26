@@ -87,6 +87,9 @@
   services.tlp = {
     enable = true;
     settings = {
+      # todo: remove if wifi coverage doesn't improve
+      WIFI_PWR_ON_BAT="off";
+
       DEVICES_TO_ENABLE_ON_STARTUP="bluetooth wifi wwan";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
