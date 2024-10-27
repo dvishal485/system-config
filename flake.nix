@@ -19,22 +19,22 @@
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-                pkgs-unstable = import nixpkgs-unstable {
-                # Refer to the `system` parameter from
-                # the outer scope recursively
-                inherit system;
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import nixpkgs-unstable {
+              # Refer to the `system` parameter from
+              # the outer scope recursively
+              inherit system;
 
-                config.allowUnfree = true;
-              };
+              config.allowUnfree = true;
             };
+          };
 
-            home-manager.users.seattle = import ./home.nix;
-            home-manager.backupFileExtension = "backup";
-          }
+          home-manager.users.seattle = import ./home.nix;
+          home-manager.backupFileExtension = "backup";
+        }
       ];
     };
   };

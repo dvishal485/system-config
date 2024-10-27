@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+# Edi his configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix
       ./firefox.nix
@@ -28,17 +29,17 @@
   services.resolved = {
     enable = true;
     extraConfig = ''
-      [Resolve]
-      DNS=45.90.28.0#nixos-73c4d4.dns.nextdns.io
-      DNS=2a07:a8c0::#nixos-73c4d4.dns.nextdns.io
-      DNS=45.90.30.0#nixos-73c4d4.dns.nextdns.io
-      DNS=2a07:a8c1::#nixos-73c4d4.dns.nextdns.io
-      DNSOverTLS=yes
-    '';
+            [Resolve]
+            DNS=45.90.28.0#nixos-73c4d4.dns.nextdns.io
+            DNS=2a07:a8c0::#nixos-73c4d4.dns.nextdns.io
+            DNS=45.90.30.0#nixos-73c4d4.dns.nextdns.io
+            DNS=2a07:a8c1::#nixos-73c4d4.dns.nextdns.io
+            DNSOverTLS=yes
+      				'';
   };
 
   networking.hostName = "seattle"; # Define your hostname.
-  networking.firewall.allowedTCPPorts = [2283 8000 3000 5173];
+  networking.firewall.allowedTCPPorts = [ 2283 8000 3000 5173 ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -88,9 +89,9 @@
     enable = true;
     settings = {
       # todo: remove if wifi coverage doesn't improve
-      WIFI_PWR_ON_BAT="off";
+      WIFI_PWR_ON_BAT = "off";
 
-      DEVICES_TO_ENABLE_ON_STARTUP="bluetooth wifi wwan";
+      DEVICES_TO_ENABLE_ON_STARTUP = "bluetooth wifi wwan";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
@@ -163,7 +164,32 @@
   environment.systemPackages = with pkgs; [
     toybox
     lshw
+    xclip
+    nixpkgs-fmt
   ];
+
+  programs.nano.enable = false;
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    configure = {
+      customRC = ''
+        				set tabstop=4
+        				set softtabstop=4
+        				set shiftwidth=4
+        				set expandtab
+
+        				set smartindent autoindent
+
+        				set incsearch hlsearch
+        				set termguicolors
+
+        				set scrolloff=12
+        				'';
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
