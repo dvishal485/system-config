@@ -155,7 +155,7 @@
     description = "seattle";
     extraGroups = [ "networkmanager" "wheel" "video" "render" ];
   };
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -176,6 +176,7 @@
     vimAlias = true;
     configure = {
       customRC = ''
+                        set number relativenumber
         				set tabstop=4
         				set softtabstop=4
         				set shiftwidth=4

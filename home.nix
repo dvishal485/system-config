@@ -4,6 +4,7 @@
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
+
   home.packages = with pkgs; [
     # essential
     git
@@ -138,7 +139,7 @@
       nix-clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
 
       # remove conflicting firefox backup file and build
-      nix-make = "ls \$FIREFOX_CFG | rg \"\\.backup\" | sed 's/.backup//g' | xargs -I \"{}\" mv \$FIREFOX_CFG/{}.backup \$FIREFOX_CFG/{}.bak && sudo nixos-rebuild switch";
+      nix-make = "ls \$FIREFOX_CFG | rg \"\\.backup\$\" | sed 's/.backup//g' | xargs -I \"{}\" mv \$FIREFOX_CFG/{}.backup \$FIREFOX_CFG/{}.bak && sudo nixos-rebuild switch";
     };
   };
 
