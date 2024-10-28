@@ -7,7 +7,6 @@
 
   home.packages = with pkgs; [
     # essential
-    git
     wget
     curl
     terminus-nerdfont
