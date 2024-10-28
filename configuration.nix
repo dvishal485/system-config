@@ -173,6 +173,7 @@
     xclip
     gnupg
     nixpkgs-fmt
+    firefox-wayland
   ];
 
   programs.gnupg = {

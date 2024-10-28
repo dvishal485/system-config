@@ -10,7 +10,7 @@
     wget
     curl
     terminus-nerdfont
-    python3
+    python312 python312Packages.pip
     ripgrep
 
     # programming lang support
