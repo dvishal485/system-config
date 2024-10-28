@@ -27,6 +27,7 @@
     bat
 
     # personal usecase
+    kdePackages.kdeconnect-kde
     stremio
     localsend
     gitui # will use w nvim
@@ -46,6 +47,10 @@
     };
   };
 
+  programs.starship = {
+      enable = true;
+      enableBashIntegration = true;
+  };
 
   # customize firefox - system level (configuration.nix) + user level
   programs.firefox = {
