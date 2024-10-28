@@ -44,6 +44,11 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+
+    signing = {
+      signByDefault = true;
+      key = "";
+    };
   };
 
   programs.starship = {
