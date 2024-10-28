@@ -56,72 +56,9 @@
       enableBashIntegration = true;
   };
 
-  # customize firefox - system level (configuration.nix) + user level
-  programs.firefox = {
-    enable = true;
-    profiles = {
-      default = {
-        id = 0;
-        name = "default";
-        isDefault = true;
-        settings = {
-          # "browser.startup.homepage" = "https://duckduckgo.com";
-          "browser.search.defaultenginename" = "DuckDuckGo";
-          "browser.search.order.1" = "DuckDuckGo";
-
-          # "widget.use-xdg-desktop-portal.file-picker" = 1;
-          # "browser.aboutConfig.showWarning" = false;
-          # "browser.compactmode.show" = true;
-          # "browser.cache.disk.enable" = false;
-        };
-        bookmarks = [
-          {
-            name = "NixOS Packages";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "NixOS Packages";
-                url = "https://search.nixos.org/packages";
-              }
-              {
-                name = "Appendix A";
-                url = "https://nix-community.github.io/home-manager/options.xhtml";
-              }
-            ];
-          }
-        ];
-        containers = {
-          Personal = {
-            color = "blue";
-            icon = "fingerprint";
-            id = 1;
-          };
-          College = {
-            color = "orange";
-            icon = "briefcase";
-            id = 2;
-          };
-          Youtube = {
-            color = "red";
-            icon = "chill";
-            id = 3;
-          };
-        };
-        search = {
-          force = true;
-          default = "DuckDuckGo";
-          order = [ "DuckDuckGo" "Google" ];
-        };
-      };
-    };
-  };
-
   programs.bash = {
     enable = true;
     historyControl = [ "ignoredups" ];
-    sessionVariables = {
-      FIREFOX_CFG = "\${HOME}/.mozilla/firefox/default";
-    };
     shellOptions = [
       "histappend"
       "checkwinsize"
@@ -149,7 +86,7 @@
       nix-clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
 
       # remove conflicting firefox backup file and build
-      nix-make = "ls \$FIREFOX_CFG | rg \"\\.backup\$\" | sed 's/.backup//g' | xargs -I \"{}\" mv \$FIREFOX_CFG/{}.backup \$FIREFOX_CFG/{}.bak && sudo nixos-rebuild switch";
+      nix-make = "sudo nixos-rebuild switch";
     };
   };
 

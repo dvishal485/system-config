@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   # Nvidia Configuration
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -6,6 +6,9 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
   };
 
   hardware.nvidia = {
