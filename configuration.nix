@@ -167,8 +167,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    toybox
+    util-linux
     lshw
+    usbutils
+    pciutils
     xclip
     gnupg
     nixpkgs-fmt
