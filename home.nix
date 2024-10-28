@@ -12,11 +12,10 @@
     terminus-nerdfont
     python3
     ripgrep
-    gcc
 
-    # works well
-    kdePackages.kate
-    kdePackages.kwallet
+    # programming lang support
+    gcc
+    go
 
     # tools and utils
     btop
@@ -26,6 +25,7 @@
     bat
 
     # personal usecase
+    kdePackages.kate
     kdePackages.kdeconnect-kde
     stremio
     localsend
