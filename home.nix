@@ -45,6 +45,11 @@
     LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [ pkgs.libffi ]}:$LD_LIBRARY_PATH";
   };
 
+  services.ssh-agent.enable = true;
+  programs.ssh = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     diff-so-fancy.enable = true;
@@ -78,6 +83,9 @@
       "checkjobs"
       "cdspell"
     ];
+    profileExtra = ''
+      ssh-add ~/.ssh/id_ed25519
+    '';
 
     # shell alias saves the day
     shellAliases = {
