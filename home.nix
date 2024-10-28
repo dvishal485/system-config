@@ -134,6 +134,7 @@
     # shell alias saves the day
     shellAliases = {
       cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
+      g = "gitui";
 
       # my cat is batman
       # ah, well, i would like to use both whenever i feel like, cat still useful
