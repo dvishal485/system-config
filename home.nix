@@ -10,12 +10,13 @@
     wget
     curl
     terminus-nerdfont
-    python312 python312Packages.pip
     ripgrep
 
     # programming lang support
+    pkg-config
     gcc
     go
+    libffi
 
     # tools and utils
     btop
@@ -32,7 +33,17 @@
     gitui # will use w nvim
     google-chrome
     signal-desktop
+
+    # python packages
+    (python312.withPackages (ps: with ps; [
+      pip
+    ]))
   ];
+
+  home.sessionVariables = {
+    PKG_CONFIG_PATH = "${pkgs.libffi.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
+    LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [ pkgs.libffi ]}:$LD_LIBRARY_PATH";
+  };
 
   programs.git = {
     enable = true;
