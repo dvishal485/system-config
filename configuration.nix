@@ -39,7 +39,12 @@
   };
 
   networking.hostName = "seattle"; # Define your hostname.
-  networking.firewall.allowedTCPPorts = [ 2283 8000 3000 5173 ];
+  networking.firewall.allowedTCPPorts = [ 2283 5173 4173 ];
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 1714; to = 1764; } # kde connect
+    { from = 3000; to = 3005; } # usual dev ports
+    { from = 8000; to = 8005; } # usual app dev ports
+  ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -165,8 +170,14 @@
     toybox
     lshw
     xclip
+    gnupg
     nixpkgs-fmt
   ];
+
+  programs.gnupg = {
+    agent.enable = true;
+    agent.pinentryPackage = pkgs.pinentry-qt;
+  };
 
   programs.nano.enable = false;
 
