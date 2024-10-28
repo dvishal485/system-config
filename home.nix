@@ -47,7 +47,7 @@
 
     signing = {
       signByDefault = true;
-      key = "";
+      key = "899004706F0BF896B7A19A69C5074BFBC4AD6B5C";
     };
   };
 
