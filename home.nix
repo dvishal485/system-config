@@ -9,6 +9,7 @@
     # essential
     wget
     curl
+    tree
     terminus-nerdfont
     ripgrep
 
