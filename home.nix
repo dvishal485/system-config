@@ -29,7 +29,7 @@
 
     # personal usecase
     kdePackages.kate
-    kdePackages.kdeconnect-kde
+    # kdePackages.kdeconnect-kde # drains phone battery
     stremio
     localsend
     gitui # will use w nvim
