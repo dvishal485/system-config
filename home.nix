@@ -36,6 +36,7 @@
     google-chrome
     signal-desktop
     obsidian
+    pdfslicer
 
     # python packages
     (python312.withPackages (ps: with ps; [
