@@ -12,6 +12,14 @@
       ./nvidia.nix
     ];
 
+  # flatpak specialization
+  specialisation = {
+    flatpak.configuration = {
+      system.nixos.tags = [ "flatpak" ];
+      services.flatpak.enable = true;
+    };
+  };
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Bootloader.
