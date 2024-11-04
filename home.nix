@@ -25,6 +25,7 @@
     podman-compose
     pkgs-unstable.podman-desktop
     bat
+    typst
 
     # personal usecase
     kdePackages.kate
