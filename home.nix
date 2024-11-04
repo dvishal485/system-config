@@ -35,6 +35,7 @@
     gitui # will use w nvim
     google-chrome
     signal-desktop
+    obsidian
 
     # python packages
     (python312.withPackages (ps: with ps; [
