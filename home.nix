@@ -26,6 +26,7 @@
     pkgs-unstable.podman-desktop
     bat
     typst
+    alacritty
 
     # personal usecase
     kdePackages.kate
