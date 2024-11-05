@@ -1,6 +1,9 @@
 { config, lib, pkgs, pkgs-unstable, ... }:
 
 {
+  imports = [
+    ./neovim.nix
+  ];
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
