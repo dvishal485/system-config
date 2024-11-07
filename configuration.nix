@@ -12,6 +12,19 @@
       ./nvidia.nix
     ];
 
+  nixpkgs.overlays = [
+    (self: super: {
+      libfprint-ft9366 = super.callPackage ./fp.nix {};
+    })
+  ];
+
+  services.fprintd = {
+    enable = true;
+    # Replace the default libfprint package with our custom one
+    package = pkgs.fprintd.override { libfprint = pkgs.libfprint-ft9366; };
+  };
+  services.udev.packages = [ pkgs.libfprint-ft9366 ];
+
   nix.gc = {
     automatic = true;
     dates = "daily";
