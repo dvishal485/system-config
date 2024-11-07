@@ -46,7 +46,7 @@ stdenv.mkDerivation rec {
     chmod +x $out/lib/libfprint-2.so.2.0.0
 
     mkdir $out/lib/pkgconfig
-    echo -e "prefix=$out\nincludedir=$out/include\nlibdir=$out/lib\n\nName: libfprint-2\nDescription: Generic C API for fingerprint reader access\nVersion: 1.94.6\nRequires: gio-unix-2.0 >= 2.56, gobject-2.0 >= 2.56\nLibs: -L$out/include -lfprint-2 \nCflags: -I$out/include/libfprint-2\n" > $out/lib/pkgconfig/libfprint-2.pc
+    echo -e "prefix=$out\nincludedir=$out/include\nlibdir=$out/lib\n\nName: libfprint-2\nDescription: Generic C API for fingerprint reader access\nVersion: 1.94.6\nRequires: gio-unix-2.0 >= 2.56, gobject-2.0 >= 2.56\nLibs: -L$out/lib -lfprint-2 \nCflags: -I$out/include/libfprint-2\n" > $out/lib/pkgconfig/libfprint-2.pc
 
     # get files from libfprint required to build the package
     cp -r ${libfprint}/lib/girepository-1.0 $out/lib
