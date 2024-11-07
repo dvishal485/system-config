@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
   version = "0.0.1";
 
   src = fetchurl {
-    url = "https://github.com/ftfpteams/RTS5811-FT9366-fingerprint-linux-driver-with-VID-2808-and-PID-a658/raw/refs/heads/main/libfprint-2-2-1.94.4+tod1-FT9366_20240627.x86_64.rpm";
+    url = "https://github.com/ftfpteams/RTS5811-FT9366-fingerprint-linux-driver-with-VID-2808-and-PID-a658/raw/b040ccd953c27e26c1285c456b4264e70b36bc3f/libfprint-2-2-1.94.4+tod1-FT9366_20240627.x86_64.rpm";
     hash = "sha256-MRWHwBievAfTfQqjs1WGKBnht9cIDj9aYiT3YJ0/CUM=";
   };
 
