@@ -14,16 +14,16 @@
 
   nixpkgs.overlays = [
     (self: super: {
-      libfprint-ft9366 = super.callPackage ./fp.nix {};
+      libfprint-focaltech = super.callPackage ./fp.nix {};
     })
   ];
 
   services.fprintd = {
     enable = true;
     # Replace the default libfprint package with our custom one
-    package = pkgs.fprintd.override { libfprint = pkgs.libfprint-ft9366; };
+    package = pkgs.fprintd.override { libfprint = pkgs.libfprint-focaltech; };
   };
-  services.udev.packages = [ pkgs.libfprint-ft9366 ];
+  services.udev.packages = [ pkgs.libfprint-focaltech ];
 
   nix.gc = {
     automatic = true;

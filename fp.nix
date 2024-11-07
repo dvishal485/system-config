@@ -1,7 +1,7 @@
-{ stdenv, lib, fetchurl, rpm, cpio, glib, gusb, pixman, libgudev, nss, libfprint, cairo, pkg-config, libfprint-tod, autoPatchelfHook }:
+{ stdenv, lib, fetchurl, rpm, cpio, glib, gusb, pixman, libgudev, nss, libfprint, cairo, pkg-config, autoPatchelfHook }:
 
 stdenv.mkDerivation rec {
-  pname = "libfprint-2-tod1-focaltech";
+  pname = "libfprint-focaltech-2808-a658";
   libso = "libfprint-2.so.2.0.0";
   version = "0.0.1";
 
@@ -14,7 +14,6 @@ stdenv.mkDerivation rec {
     rpm cpio
     pkg-config
     autoPatchelfHook
-    libfprint-tod
   ];
 
   buildInputs = [
@@ -38,9 +37,6 @@ stdenv.mkDerivation rec {
     # create this symlink as it was there in libfprint
     ln -s -T $out/lib/${libso} $out/lib/libfprint-2.so
     ln -s -T $out/lib/${libso} $out/lib/libfprint-2.so.2
-
-    # this .so was not marked executable by default
-    chmod +x $out/lib/libfprint-2.so.2.0.0
 
     mkdir $out/lib/pkgconfig
     echo -e "prefix=$out\nincludedir=$out/include\nlibdir=$out/lib\n\nName: libfprint-2\nDescription: Generic C API for fingerprint reader access\nVersion: 1.94.6\nRequires: gio-unix-2.0 >= 2.56, gobject-2.0 >= 2.56\nLibs: -L$out/lib -lfprint-2 \nCflags: -I$out/include/libfprint-2\n" > $out/lib/pkgconfig/libfprint-2.pc
