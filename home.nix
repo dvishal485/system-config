@@ -28,7 +28,7 @@
     podman-compose
     pkgs-unstable.podman-desktop
     bat
-    typst
+    typst tinymist
     alacritty
     libnotify
 
