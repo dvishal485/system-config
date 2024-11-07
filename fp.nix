@@ -1,4 +1,19 @@
-{ stdenv, lib, fetchurl, rpm, cpio, glib, gusb, pixman, libgudev, nss, libfprint, cairo, pkg-config, autoPatchelfHook }:
+{
+  stdenv,
+  lib,
+  fetchurl,
+  rpm,
+  cpio,
+  glib,
+  gusb,
+  pixman,
+  libgudev,
+  nss,
+  libfprint,
+  cairo,
+  pkg-config,
+  autoPatchelfHook,
+}:
 
 stdenv.mkDerivation rec {
   pname = "libfprint-focaltech-2808-a658";
@@ -11,7 +26,8 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    rpm cpio
+    rpm
+    cpio
     pkg-config
     autoPatchelfHook
   ];

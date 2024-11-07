@@ -2,21 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./nvidia.nix
-    ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      libfprint-focaltech = super.callPackage ./fp.nix {};
-    })
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./nvidia.nix
   ];
+
+  nixpkgs.overlays = [ (self: super: { libfprint-focaltech = super.callPackage ./fp.nix { }; }) ];
 
   services.fprintd = {
     enable = true;
@@ -67,7 +67,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # install flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
@@ -88,11 +91,24 @@
   };
 
   networking.hostName = "seattle"; # Define your hostname.
-  networking.firewall.allowedTCPPorts = [ 2283 5173 4173 ];
+  networking.firewall.allowedTCPPorts = [
+    2283
+    5173
+    4173
+  ];
   networking.firewall.allowedTCPPortRanges = [
-    { from = 1714; to = 1764; } # kde connect
-    { from = 3000; to = 3005; } # usual dev ports
-    { from = 8000; to = 8005; } # usual app dev ports
+    {
+      from = 1714;
+      to = 1764;
+    } # kde connect
+    {
+      from = 3000;
+      to = 3005;
+    } # usual dev ports
+    {
+      from = 8000;
+      to = 8005;
+    } # usual app dev ports
   ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -164,8 +180,6 @@
   };
   services.power-profiles-daemon.enable = false;
 
-
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -207,9 +221,14 @@
   users.users.seattle = {
     isNormalUser = true;
     description = "seattle";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "render"
+    ];
   };
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

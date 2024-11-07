@@ -1,9 +1,13 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
-  imports = [
-    ./neovim.nix
-  ];
+  imports = [ ./neovim.nix ];
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
@@ -28,7 +32,8 @@
     podman-compose
     pkgs-unstable.podman-desktop
     bat
-    typst tinymist
+    typst
+    tinymist
     alacritty
     libnotify
 
@@ -44,9 +49,7 @@
     pdfslicer
 
     # python packages
-    (python312.withPackages (ps: with ps; [
-      pip
-    ]))
+    (python312.withPackages (ps: with ps; [ pip ]))
   ];
 
   home.sessionVariables = {
@@ -77,8 +80,8 @@
   };
 
   programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
+    enable = true;
+    enableBashIntegration = true;
   };
 
   programs.bash = {

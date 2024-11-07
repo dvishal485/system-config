@@ -17,34 +17,46 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs@{ self, nixpkgs, rust-overlay, nixpkgs-unstable, home-manager, ... }: {
-    nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      rust-overlay,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }:
+    {
+      nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
 
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              # Refer to the `system` parameter from
-              # the outer scope recursively
-              inherit system;
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              pkgs-unstable = import nixpkgs-unstable {
+                # Refer to the `system` parameter from
+                # the outer scope recursively
+                inherit system;
 
-              config.allowUnfree = true;
+                config.allowUnfree = true;
+              };
             };
-          };
 
-          home-manager.users.seattle = import ./home.nix;
-          home-manager.backupFileExtension = "backup";
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ rust-overlay.overlays.default ];
-          environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-        })
-      ];
+            home-manager.users.seattle = import ./home.nix;
+            home-manager.backupFileExtension = "backup";
+          }
+          (
+            { pkgs, ... }:
+            {
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            }
+          )
+        ];
+      };
     };
-  };
 }
