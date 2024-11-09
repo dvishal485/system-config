@@ -21,6 +21,10 @@
 
   # enable virtualisation
   virtualisation.podman.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
+
+  # cuda by default
+  nixpkgs.config.cudaSupport = true;
 
   # services.ollama = {
   #   enable = true;
@@ -34,8 +38,11 @@
     lshw
     usbutils
     pciutils
-    xclip
     gnupg
+    gparted
+    xclip
+    wl-clipboard-rs
+
     nixpkgs-fmt
     firefox-wayland
     nixfmt-rfc-style
