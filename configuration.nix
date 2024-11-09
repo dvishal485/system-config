@@ -14,40 +14,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nvidia.nix
+    ./fingerprint/default.nix
   ];
-
-  nixpkgs.overlays = [ (self: super: { libfprint-focaltech = super.callPackage ./fp.nix { }; }) ];
-
-  services.fprintd = {
-    enable = true;
-    # Replace the default libfprint package with our custom one
-    package = pkgs.fprintd.override { libfprint = pkgs.libfprint-focaltech; };
-  };
-  services.udev.packages = [ pkgs.libfprint-focaltech ];
-  security.pam.services.login.fprintAuth = false;
-  # similarly to how other distributions handle the fingerprinting login
-  security.pam.services.gdm-fingerprint = lib.mkIf (config.services.fprintd.enable) {
-    text = ''
-      auth       required                    pam_shells.so
-      auth       requisite                   pam_nologin.so
-      auth       requisite                   pam_faillock.so      preauth
-      auth       required                    ${pkgs.fprintd}/lib/security/pam_fprintd.so
-      auth       optional                    pam_permit.so
-      auth       required                    pam_env.so
-
-      account    include                     login
-
-      password   required                    pam_deny.so
-
-      session    include                     login
-    '';
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than +3";
-  };
 
   # flatpak specialization
   specialisation = {
@@ -68,8 +36,14 @@
     "nix-command"
     "flakes"
   ];
+
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than +3";
+  };
 
   # enable virtualisation
   virtualisation.podman.enable = true;
@@ -140,7 +114,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         Experimental = true;
@@ -158,7 +132,7 @@
       # todo: remove if wifi coverage doesn't improve
       WIFI_PWR_ON_BAT = "off";
 
-      DEVICES_TO_ENABLE_ON_STARTUP = "bluetooth wifi wwan";
+      DEVICES_TO_ENABLE_ON_STARTUP = "wifi wwan";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
@@ -256,19 +230,19 @@
     vimAlias = true;
     configure = {
       customRC = ''
-                        set number relativenumber
-        				set tabstop=4
-        				set softtabstop=4
-        				set shiftwidth=4
-        				set expandtab
+        set number relativenumber
+        set tabstop=4
+        set softtabstop=4
+        set shiftwidth=4
+        set expandtab
 
-        				set smartindent autoindent
+        set smartindent autoindent
 
-        				set incsearch hlsearch
-        				set termguicolors
+        set incsearch hlsearch
+        set termguicolors
 
-        				set scrolloff=12
-        				'';
+        set scrolloff=12
+      '';
     };
   };
 

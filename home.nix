@@ -34,6 +34,7 @@
     bat
     typst
     tinymist
+    vscode-fhs
     alacritty
     libnotify
 
@@ -101,7 +102,6 @@
 
     # shell alias saves the day
     shellAliases = {
-      cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
       g = "gitui";
 
       # my cat is batman
@@ -129,10 +129,10 @@
     options = [ "--cmd cd" ];
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode;
-  };
+  #programs.vscode = {
+  #  enable = true;
+  #  package = pkgs.vscode;
+  #};
 
   home.stateVersion = "24.05";
 }
