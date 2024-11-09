@@ -19,6 +19,8 @@
     tree
     terminus-nerdfont
     ripgrep
+    fd
+    gitui
 
     # programming lang support
     pkg-config
@@ -40,14 +42,13 @@
 
     # personal usecase
     kdePackages.kate
-    # kdePackages.kdeconnect-kde # drains phone battery
     stremio
     localsend
-    gitui # will use w nvim
     google-chrome
     signal-desktop
     obsidian
     pdfslicer
+    # kdePackages.kdeconnect-kde # drains phone battery
 
     # python packages
     (python312.withPackages (ps: with ps; [ pip ]))
@@ -87,7 +88,7 @@
 
   programs.bash = {
     enable = true;
-    historyControl = [ "ignoredups" ];
+    historyControl = [ "erasedups" ];
     shellOptions = [
       "histappend"
       "checkwinsize"
@@ -97,7 +98,7 @@
       "cdspell"
     ];
     profileExtra = ''
-      ssh-add ~/.ssh/id_ed25519
+      ssh-add ~/.ssh/id_ed25519 2>/dev/null
     '';
 
     # shell alias saves the day
