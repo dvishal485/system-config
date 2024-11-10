@@ -49,9 +49,6 @@
     obsidian
     pdfslicer
     # kdePackages.kdeconnect-kde # drains phone battery
-
-    # python packages
-    (python312.withPackages (ps: with ps; [ pip ]))
   ];
 
   home.sessionVariables = {
