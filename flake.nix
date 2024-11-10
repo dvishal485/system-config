@@ -11,17 +11,11 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs =
     inputs@{
       self,
       nixpkgs,
-      rust-overlay,
       nixpkgs-unstable,
       home-manager,
       ...
@@ -53,13 +47,6 @@
             home-manager.users.seattle = import ./home.nix;
             home-manager.backupFileExtension = "backup";
           }
-          (
-            { pkgs, ... }:
-            {
-              nixpkgs.overlays = [ rust-overlay.overlays.default ];
-              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-            }
-          )
         ];
       };
     };
