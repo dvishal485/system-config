@@ -51,11 +51,6 @@
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
-  home.sessionVariables = {
-    PKG_CONFIG_PATH = "${pkgs.libffi.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
-    LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [ pkgs.libffi ]}:$LD_LIBRARY_PATH";
-  };
-
   services.ssh-agent.enable = true;
   programs.ssh = {
     enable = true;
