@@ -66,9 +66,10 @@
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     diff-so-fancy.enable = true;
 
-    userName = "dvishal485";
+    userName = "Vishal Das";
     userEmail = "26341736+dvishal485@users.noreply.github.com";
 
     extraConfig = {
