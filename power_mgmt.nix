@@ -14,10 +14,10 @@
       WIFI_PWR_ON_BAT = "off";
       WIFI_PWR_ON_AC = "off";
 
-      DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
+      DEVICES_TO_ENABLE_ON_STARTUP = "bluetooth wifi";
       DEVICES_TO_ENABLE_ON_AC = "bluetooth wifi";
-      DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth";
       DEVICES_TO_DISABLE_ON_STARTUP = "wwan";
+      # DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth";
 
       # [ performance, balanced, low-power ] (not available on device)
       # PLATFORM_PROFILE_ON_AC = "performance";
