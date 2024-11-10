@@ -11,4 +11,6 @@
       "render"
     ];
   };
+
+  nix.settings.trusted-users = [ "seattle" ];
 }
