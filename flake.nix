@@ -30,6 +30,13 @@
       nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
 
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
@@ -38,10 +45,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {
               pkgs-unstable = import nixpkgs-unstable {
-                # Refer to the `system` parameter from
-                # the outer scope recursively
                 inherit system;
-
                 config.allowUnfree = true;
               };
             };
