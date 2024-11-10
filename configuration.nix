@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }:
@@ -46,6 +47,8 @@
     nixpkgs-fmt
     firefox-wayland
     nixfmt-rfc-style
+    direnv
+    pkgs-unstable.devenv
   ];
 
   programs.gnupg = {
