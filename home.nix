@@ -123,6 +123,11 @@
     options = [ "--cmd cd" ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   #programs.vscode = {
   #  enable = true;
   #  package = pkgs.vscode;

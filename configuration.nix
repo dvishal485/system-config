@@ -47,7 +47,6 @@
     nixpkgs-fmt
     firefox-wayland
     nixfmt-rfc-style
-    direnv
     pkgs-unstable.devenv
   ];
 
