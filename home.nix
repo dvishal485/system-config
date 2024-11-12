@@ -17,28 +17,27 @@
     wget
     curl
     tree
-    terminus-nerdfont
     ripgrep
     fd
     gitui
+    ouch
 
     # programming lang support
     pkg-config
     gcc
-    go
-    libffi
+    vscode-fhs
 
     # tools and utils
     btop
-    ouch
+    gnome.gnome-system-monitor
     podman-compose
     pkgs-unstable.podman-desktop
     bat
     typst
     tinymist
-    vscode-fhs
     alacritty
     libnotify
+    gimp
 
     # personal usecase
     kdePackages.kate
@@ -48,6 +47,8 @@
     signal-desktop
     obsidian
     pdfslicer
+    onlyoffice-bin
+    zapzap
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 

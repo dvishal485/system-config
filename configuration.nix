@@ -50,6 +50,11 @@
     pkgs-unstable.devenv
   ];
 
+  fonts.packages = with pkgs; [
+    corefonts
+    nerdfonts
+  ];
+
   programs.gnupg = {
     agent.enable = true;
     # agent.enableSSHSupport = true;
