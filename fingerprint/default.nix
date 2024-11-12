@@ -1,14 +1,16 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
 }:
 {
-  nixpkgs.overlays = [ (self: super: { libfprint-focaltech = super.callPackage ./driver.nix { }; }) ];
   services.fprintd = {
     enable = true;
-    package = pkgs.fprintd.override { libfprint = pkgs.libfprint-focaltech; };
+    package = pkgs.fprintd.override { libfprint = pkgs-unstable.libfprint-focaltech-2808-a658; };
   };
-  security.pam.services.login.fprintAuth = false;
+
+
+  security.pam.services.login.fprintAuth = lib.mkIf (config.services.fprintd.enable) false;
 }
