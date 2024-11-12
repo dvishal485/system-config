@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.neovim = {
     enable = true;
@@ -9,11 +14,9 @@
       stylua
     ];
 
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
-   extraLuaConfig =
+    extraLuaConfig =
       let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
@@ -57,18 +60,46 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
-          { name = "LuaSnip"; path = luasnip; }
-          { name = "catppuccin"; path = catppuccin-nvim; }
-          { name = "mini.ai"; path = mini-nvim; }
-          { name = "mini.bufremove"; path = mini-nvim; }
-          { name = "mini.comment"; path = mini-nvim; }
-          { name = "mini.indentscope"; path = mini-nvim; }
-          { name = "mini.pairs"; path = mini-nvim; }
-          { name = "mini.surround"; path = mini-nvim; }
+          {
+            name = "LuaSnip";
+            path = luasnip;
+          }
+          {
+            name = "catppuccin";
+            path = catppuccin-nvim;
+          }
+          {
+            name = "mini.ai";
+            path = mini-nvim;
+          }
+          {
+            name = "mini.bufremove";
+            path = mini-nvim;
+          }
+          {
+            name = "mini.comment";
+            path = mini-nvim;
+          }
+          {
+            name = "mini.indentscope";
+            path = mini-nvim;
+          }
+          {
+            name = "mini.pairs";
+            path = mini-nvim;
+          }
+          {
+            name = "mini.surround";
+            path = mini-nvim;
+          }
         ];
-        mkEntryFromDrv = drv:
+        mkEntryFromDrv =
+          drv:
           if lib.isDerivation drv then
-            { name = "${lib.getName drv}"; path = drv; }
+            {
+              name = "${lib.getName drv}";
+              path = drv;
+            }
           else
             drv;
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
@@ -102,23 +133,26 @@
       '';
 
   };
-  
+
   # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
   xdg.configFile."nvim/parser".source =
     let
       parsers = pkgs.symlinkJoin {
         name = "treesitter-parsers";
-        paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-          c
-          lua
-          rust
-          typescript
-          javascript
-          go
-          cpp
-          python
-          typst
-        ])).dependencies;
+        paths =
+          (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              c
+              lua
+              rust
+              typescript
+              javascript
+              go
+              cpp
+              python
+              typst
+            ]
+          )).dependencies;
       };
     in
     "${parsers}/parser";

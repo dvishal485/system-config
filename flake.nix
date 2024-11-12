@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -11,40 +11,43 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-  outputs = inputs@{ self, nixpkgs, rust-overlay, nixpkgs-unstable, home-manager, ... }: {
-    nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }:
+    {
+      nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
 
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              # Refer to the `system` parameter from
-              # the outer scope recursively
-              inherit system;
-
-              config.allowUnfree = true;
-            };
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
           };
+        };
 
-          home-manager.users.seattle = import ./home.nix;
-          home-manager.backupFileExtension = "backup";
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ rust-overlay.overlays.default ];
-          environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-        })
-      ];
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              pkgs-unstable = import nixpkgs-unstable {
+                inherit system;
+                config.allowUnfree = true;
+              };
+            };
+
+            home-manager.users.seattle = import ./home.nix;
+            home-manager.backupFileExtension = "backup";
+          }
+        ];
+      };
     };
-  };
 }

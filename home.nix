@@ -1,9 +1,13 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
-  imports = [
-    ./neovim.nix
-  ];
+  imports = [ ./neovim.nix ];
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
@@ -13,46 +17,40 @@
     wget
     curl
     tree
-    terminus-nerdfont
     ripgrep
+    fd
+    gitui
+    ouch
 
     # programming lang support
     pkg-config
     gcc
-    go
-    libffi
+    vscode-fhs
 
     # tools and utils
     btop
-    ouch
+    gnome.gnome-system-monitor
     podman-compose
     pkgs-unstable.podman-desktop
     bat
-    typst tinymist
+    typst
+    tinymist
     alacritty
     libnotify
+    gimp
 
     # personal usecase
     kdePackages.kate
-    # kdePackages.kdeconnect-kde # drains phone battery
     stremio
     localsend
-    gitui # will use w nvim
     google-chrome
     signal-desktop
     obsidian
     pdfslicer
-
-    # python packages
-    (python312.withPackages (ps: with ps; [
-      pip
-    ]))
+    onlyoffice-bin
+    zapzap
+    # kdePackages.kdeconnect-kde # drains phone battery
   ];
-
-  home.sessionVariables = {
-    PKG_CONFIG_PATH = "${pkgs.libffi.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
-    LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [ pkgs.libffi ]}:$LD_LIBRARY_PATH";
-  };
 
   services.ssh-agent.enable = true;
   programs.ssh = {
@@ -61,9 +59,10 @@
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     diff-so-fancy.enable = true;
 
-    userName = "dvishal485";
+    userName = "Vishal Das";
     userEmail = "26341736+dvishal485@users.noreply.github.com";
 
     extraConfig = {
@@ -77,13 +76,21 @@
   };
 
   programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
+    enable = true;
+    settings = {
+      command_timeout = 300;
+      scan_timeout = 10;
+      character = {
+        success_symbol = "[\\$](bold green)";
+        error_symbol = "[\\$](bold red)";
+      };
+    };
+    enableBashIntegration = true;
   };
 
   programs.bash = {
     enable = true;
-    historyControl = [ "ignoredups" ];
+    historyControl = [ "erasedups" ];
     shellOptions = [
       "histappend"
       "checkwinsize"
@@ -93,12 +100,11 @@
       "cdspell"
     ];
     profileExtra = ''
-      ssh-add ~/.ssh/id_ed25519
+      ssh-add ~/.ssh/id_ed25519 2>/dev/null
     '';
 
     # shell alias saves the day
     shellAliases = {
-      cd = "cdi"; # make cd zoxide interactive by default (if multiple entries)
       g = "gitui";
 
       # my cat is batman
@@ -126,10 +132,15 @@
     options = [ "--cmd cd" ];
   };
 
-  programs.vscode = {
+  programs.direnv = {
     enable = true;
-    package = pkgs.vscode;
+    enableBashIntegration = true;
   };
+
+  #programs.vscode = {
+  #  enable = true;
+  #  package = pkgs.vscode;
+  #};
 
   home.stateVersion = "24.05";
 }
