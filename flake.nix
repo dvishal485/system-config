@@ -29,6 +29,7 @@
             inherit system;
             config.allowUnfree = true;
           };
+          self = self;
         };
 
         modules = [

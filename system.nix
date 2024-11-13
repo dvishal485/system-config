@@ -1,5 +1,15 @@
-{ ... }:
+{ self, ... }:
 {
+  system.autoUpgrade = {
+    enable = true;
+    dates = "daily";
+    flake = self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+  };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
