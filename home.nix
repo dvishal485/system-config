@@ -46,6 +46,7 @@
     google-chrome
     signal-desktop
     obsidian
+    xournalpp
     pdfslicer
     onlyoffice-bin
     zapzap
