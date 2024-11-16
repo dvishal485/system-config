@@ -38,6 +38,7 @@
     alacritty
     libnotify
     gimp
+    android-tools
 
     # personal usecase
     kdePackages.kate
@@ -50,6 +51,8 @@
     pdfslicer
     onlyoffice-bin
     zapzap
+    vlc
+    transmission_4-gtk
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
