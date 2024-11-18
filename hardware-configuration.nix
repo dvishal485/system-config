@@ -16,6 +16,9 @@
     "nvme"
     "xhci_pci"
     "ahci"
+
+    # test audio
+    "snd_pci_acp6x"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
