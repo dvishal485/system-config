@@ -52,7 +52,8 @@
 
   fonts.packages = with pkgs; [
     corefonts
-    nerdfonts
+    stix-two
+    (nerdfonts.override { fonts = [ "JetBrainsMono"]; })
   ];
 
   programs.gnupg = {
