@@ -24,8 +24,10 @@
 
     # programming lang support
     pkg-config
-    gcc
     vscode-fhs
+
+    # global toolchains
+    cargo python311 go gcc
 
     # tools and utils
     btop
