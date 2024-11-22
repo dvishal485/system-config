@@ -34,6 +34,15 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/winux" = {
+    device = "/dev/disk/by-uuid/EFFD-D9B4";
+    fsType = "exfat";
+    options = [
+      "users"
+      "nofail"
+    ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/AB08-E9FB";
     fsType = "vfat";

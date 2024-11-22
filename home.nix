@@ -53,6 +53,7 @@
     pdfslicer
     onlyoffice-bin
     zapzap
+    telegram-desktop
     vlc
     transmission_4-gtk
     # kdePackages.kdeconnect-kde # drains phone battery
