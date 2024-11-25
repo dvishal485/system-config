@@ -36,6 +36,7 @@
     2283
     5173
     4173
+    11434 # ollama
   ];
 
   networking.firewall.allowedTCPPortRanges = [
