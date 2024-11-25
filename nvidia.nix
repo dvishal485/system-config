@@ -91,6 +91,11 @@
         prime.offload.enableOffloadCmd = lib.mkForce false;
         prime.sync.enable = lib.mkForce true;
       };
+
+      services.ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
     };
   };
 
