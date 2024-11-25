@@ -53,7 +53,7 @@
   fonts.packages = with pkgs; [
     corefonts
     stix-two
-    (nerdfonts.override { fonts = [ "JetBrainsMono"]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   programs.gnupg = {
