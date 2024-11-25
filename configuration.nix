@@ -16,6 +16,7 @@
     ./power_mgmt.nix
     ./time_locale.nix
     ./system.nix
+    ./bootloader.nix
     ./audio.nix
     ./users.nix
   ];

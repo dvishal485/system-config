@@ -13,9 +13,6 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # install flakes
   nix.settings.experimental-features = [
