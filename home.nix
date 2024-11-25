@@ -6,6 +6,28 @@
   ...
 }:
 
+let
+  my-scrcpy = import ./scrcpy.nix {
+    inherit (pkgs)
+      lib
+      stdenv
+      fetchurl
+      fetchFromGitHub
+      makeWrapper
+      meson
+      ninja
+      pkg-config
+      runtimeShell
+      installShellFiles
+      ;
+    inherit (pkgs)
+      android-tools
+      ffmpeg
+      libusb1
+      SDL2
+      ;
+  };
+in
 {
   imports = [ ./neovim.nix ];
 
@@ -28,6 +50,7 @@
     vscode-fhs
 
     # tools and utils
+    my-scrcpy
     btop
     gnome.gnome-system-monitor
     podman-compose
