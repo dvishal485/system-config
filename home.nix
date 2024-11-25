@@ -119,7 +119,7 @@ in
 
   programs.bash = {
     enable = true;
-    historyControl = [ "erasedups" ];
+    historyControl = [ "erasedups" "ignorespace" ];
     shellOptions = [
       "histappend"
       "checkwinsize"
