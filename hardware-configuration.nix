@@ -35,7 +35,7 @@
   };
 
   fileSystems."/mnt/winux" = {
-    device = "/dev/disk/by-uuid/EFFD-D9B4";
+    device = "/dev/disk/by-uuid/E7FC-B169";
     fsType = "exfat";
     options = [
       "users"
@@ -44,7 +44,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/AB08-E9FB";
+    device = "/dev/disk/by-uuid/546A-4774";
     fsType = "vfat";
     options = [
       "fmask=0077"
