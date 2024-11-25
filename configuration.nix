@@ -48,7 +48,6 @@
     nixpkgs-fmt
     firefox-wayland
     nixfmt-rfc-style
-    pkgs-unstable.devenv
   ];
 
   fonts.packages = with pkgs; [

@@ -8,6 +8,7 @@
 
 {
   imports = [ ./neovim.nix ];
+
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
@@ -26,9 +27,6 @@
     pkg-config
     vscode-fhs
 
-    # global toolchains
-    cargo python311 go gcc
-
     # tools and utils
     btop
     gnome.gnome-system-monitor
@@ -41,6 +39,7 @@
     libnotify
     gimp
     android-tools
+    pkgs-unstable.devbox
 
     # personal usecase
     kdePackages.kate
@@ -107,6 +106,8 @@
       "cdspell"
     ];
     profileExtra = ''
+      # eval "$(devbox global shellenv --init-hook)"
+      eval "$(devbox global shellenv --init-hook --install --no-refresh-alias --omit-nix-env=true)"
       ssh-add ~/.ssh/id_ed25519 2>/dev/null
     '';
 
