@@ -152,7 +152,8 @@ in
       nix-clean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       nix-wipe = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
 
-      # remove conflicting firefox backup file and build
+      # build/update nixos
+      nix-update = "sudo nixos-rebuild switch --update-input nixpkgs --flake . --upgrade";
       nix-make = "sudo nixos-rebuild switch";
     };
   };
