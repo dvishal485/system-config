@@ -57,6 +57,8 @@
     options = [
       "users"
       "nofail"
+      "uid=1000"
+      "gid=100"
     ];
   };
 
