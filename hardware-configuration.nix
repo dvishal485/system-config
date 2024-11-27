@@ -21,7 +21,6 @@
     "snd_pci_acp6x"
   ];
 
-
   boot.kernelParams = [
     # fn key lock disabled by default
     "asus_wmi.fnlock_default=N"

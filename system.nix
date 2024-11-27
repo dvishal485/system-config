@@ -13,7 +13,6 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-
   # install flakes
   nix.settings.experimental-features = [
     "nix-command"
