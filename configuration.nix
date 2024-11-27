@@ -21,6 +21,8 @@
     ./users.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # enable virtualisation
   virtualisation.podman.enable = true;
   hardware.nvidia-container-toolkit.enable = true;
