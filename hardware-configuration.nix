@@ -40,37 +40,49 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d6411291-60ec-4373-a2b8-1046845227a7";
-    fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/d6411291-60ec-4373-a2b8-1046845227a7";
+      fsType = "ext4";
+      options = [
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/bfce04b5-cc32-49bf-9a9a-fdc11fe0947c";
+      fsType = "ext4";
+    };
+
+    "/mnt/winux" = {
+      device = "/dev/disk/by-uuid/E7FC-B169";
+      fsType = "exfat";
+      options = [
+        "users"
+        "nofail"
+        "uid=1000"
+        "gid=100"
+      ];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/546A-4774";
+      fsType = "vfat";
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
+    };
+
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/bfce04b5-cc32-49bf-9a9a-fdc11fe0947c";
-    fsType = "ext4";
-  };
-
-  fileSystems."/mnt/winux" = {
-    device = "/dev/disk/by-uuid/E7FC-B169";
-    fsType = "exfat";
-    options = [
-      "users"
-      "nofail"
-      "uid=1000"
-      "gid=100"
-    ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/546A-4774";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
-  swapDevices = [ { device = "/dev/disk/by-uuid/3a5cec3a-f85d-438e-99a4-6ac96d857f4b"; } ];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/3a5cec3a-f85d-438e-99a4-6ac96d857f4b";
+      options = [ "noatime" ];
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
