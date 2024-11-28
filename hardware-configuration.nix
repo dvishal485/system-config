@@ -47,22 +47,52 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/6c6abb24-fba0-489a-b0c2-a4a8389e0ba6";
+      label = "nixroot";
       fsType = "btrfs";
       options = [
-        "subvol=space/@root"
+        "subvol=root"
         "compress=zstd"
         "noatime"
       ];
     };
 
+    "/nix" = {
+      label = "nixroot";
+      options = [
+        "subvol=nix"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
+    "/persist" = {
+      label = "nixroot";
+      fsType = "btrfs";
+      options = [
+        "subvol=persist"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
+    "/var/log" = {
+      label = "nixroot";
+      fsType = "btrfs";
+      options = [
+        "subvol=log"
+        "compress=zstd"
+        "noatime"
+      ];
+      neededForBoot = true;
+    };
+
     "/home" = {
-      device = "/dev/disk/by-uuid/bfce04b5-cc32-49bf-9a9a-fdc11fe0947c";
+      label = "home";
       fsType = "ext4";
     };
 
     "/mnt/winux" = {
-      device = "/dev/disk/by-uuid/E7FC-B169";
+      label = "winux";
       fsType = "exfat";
       options = [
         "users"
