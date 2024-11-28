@@ -63,6 +63,7 @@ in
     gimp
     android-tools
     pkgs-unstable.devbox
+    pkgs-unstable.d2
 
     # personal usecase
     kdePackages.kate
