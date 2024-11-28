@@ -11,7 +11,10 @@
     ];
   };
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [
+    "ntfs"
+    "btrfs"
+  ];
 
   # install flakes
   nix.settings.experimental-features = [
