@@ -24,11 +24,16 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # enable virtualisation
-  virtualisation.podman.enable = true;
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
   hardware.nvidia-container-toolkit.enable = true;
 
   # cuda by default
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 
   # services.ollama = {
   #   enable = true;

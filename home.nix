@@ -54,7 +54,7 @@ in
     btop
     gnome.gnome-system-monitor
     podman-compose
-    pkgs-unstable.podman-desktop
+    podman-tui
     bat
     typst
     tinymist
@@ -132,8 +132,8 @@ in
       "cdspell"
     ];
     profileExtra = ''
-      # eval "$(devbox global shellenv --init-hook)"
-      eval "$(devbox global shellenv --init-hook --install --no-refresh-alias --omit-nix-env=true)"
+      eval "$(devbox global shellenv --init-hook)"
+      # eval "$(devbox global shellenv --init-hook --install --no-refresh-alias --omit-nix-env=true)"
       ssh-add ~/.ssh/id_ed25519 2>/dev/null
     '';
 
@@ -146,7 +146,6 @@ in
       # cat = "bat";
 
       # immich stuff
-      docker = "podman";
       immich-start = "podman pod start pod_immich";
       immich-stop = "podman pod stop pod_immich";
       immich-update = "podman compose up -d --force-recreate";
