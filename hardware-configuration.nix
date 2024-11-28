@@ -40,6 +40,11 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/6c6abb24-fba0-489a-b0c2-a4a8389e0ba6";
