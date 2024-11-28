@@ -42,10 +42,9 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/d6411291-60ec-4373-a2b8-1046845227a7";
+      device = "/dev/disk/by-uuid/0522e253-103e-4fb0-9356-2ae479771090";
       fsType = "ext4";
       options = [
-        "compress=zstd"
         "noatime"
       ];
     };
