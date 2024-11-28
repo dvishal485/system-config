@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
+  "packages": [
+    "nixfmt-rfc-style@latest",
+    "fd@latest"
+  ],
+  "shell": {
+        "init_hook": [
+       "fd -e nix -x nixfmt"    ],
+    "scripts": {
+      "fmt": [
+        "fd -e nix -x nixfmt"
+      ]
+    }
+  }
+}
