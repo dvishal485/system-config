@@ -6,12 +6,12 @@
   ...
 }:
 {
-  specialisation = {
-    disable-fprintd.configuration = {
-      system.nixos.tags = [ "disable-fprintd" ];
-      services.fprintd.enable = lib.mkForce false;
-    };
-  };
+  # specialisation = {
+  #   disable-fprintd.configuration = {
+  #     system.nixos.tags = [ "disable-fprintd" ];
+  #     services.fprintd.enable = lib.mkForce false;
+  #   };
+  # };
 
   services.fprintd = {
     enable = true;
