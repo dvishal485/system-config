@@ -35,6 +35,9 @@
   #   acceleration = "cuda";
   # };
 
+  # https://nixos.wiki/wiki/Fwupd
+  services.fwupd.enable = true;
+
   services.fstrim.enable = true;
 
   # List packages installed in system profile. To search, run:
@@ -49,10 +52,7 @@
     gparted
     xclip
     wl-clipboard-rs
-
-    nixpkgs-fmt
     firefox-wayland
-    nixfmt-rfc-style
   ];
 
   fonts.packages = with pkgs; [
