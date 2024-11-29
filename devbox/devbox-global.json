@@ -5,7 +5,8 @@
     "go@latest",
     "python3@3.11",
     "nodejs@22",
-    "gcc@latest"
+    "gcc@13",
+    "gcc13Stdenv.cc.cc.lib"
   ],
   "env": {
     "DEVBOX_COREPACK_ENABLED": "true"
