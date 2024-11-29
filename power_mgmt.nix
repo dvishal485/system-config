@@ -16,7 +16,7 @@
 
       DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
       DEVICES_TO_ENABLE_ON_AC = "wifi";
-      DEVICES_TO_DISABLE_ON_STARTUP = "wwan bluetooth ";
+      DEVICES_TO_DISABLE_ON_STARTUP = "wwan bluetooth";
       # DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth";
 
       # [ performance, balanced, low-power ] (not available on device)

@@ -141,6 +141,7 @@ in
     # shell alias saves the day
     shellAliases = {
       g = "gitui";
+      bt = "bluetooth";
 
       # my cat is batman
       # ah, well, i would like to use both whenever i feel like, cat still useful
