@@ -58,6 +58,7 @@
     xclip
     wl-clipboard-rs
     firefox-wayland
+    nix-index
   ];
 
   fonts.packages = with pkgs; [
