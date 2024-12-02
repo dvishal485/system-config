@@ -52,7 +52,7 @@ in
     # tools and utils
     my-scrcpy
     btop
-    gnome.gnome-system-monitor
+    gnome-system-monitor
     podman-compose
     podman-tui
     bat

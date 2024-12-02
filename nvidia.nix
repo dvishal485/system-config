@@ -10,10 +10,8 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # will be renamed to hardware.graphics on NixOS 24.11
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
 
