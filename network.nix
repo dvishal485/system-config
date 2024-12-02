@@ -57,7 +57,7 @@
     }
   ];
 
-# file sharing https://nixos.org/manual/nixos/stable/#module-services-samba-configuring-file-share
+  # file sharing https://nixos.org/manual/nixos/stable/#module-services-samba-configuring-file-share
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
