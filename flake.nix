@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nix-index-database.url = "github:nix-community/nix-index-database";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -18,6 +19,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      nix-index-database,
       ...
     }:
     {
@@ -34,6 +36,10 @@
 
         modules = [
           ./configuration.nix
+          nix-index-database.nixosModules.nix-index
+          {
+            programs.nix-index-database.comma.enable = true;
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
