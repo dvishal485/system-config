@@ -174,6 +174,11 @@ in
     enableBashIntegration = true;
   };
 
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   #programs.vscode = {
   #  enable = true;
   #  package = pkgs.vscode;
