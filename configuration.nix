@@ -58,6 +58,7 @@
     xclip
     wl-clipboard-rs
     firefox-wayland
+    pkgs-unstable.nh
   ];
 
   fonts.packages = with pkgs; [

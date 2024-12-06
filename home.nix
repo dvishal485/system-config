@@ -154,14 +154,6 @@ in
       immich-start = "podman pod start pod_immich";
       immich-stop = "podman pod stop pod_immich";
       immich-update = "podman compose up -d --force-recreate";
-
-      # clean old gen
-      nix-clean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-      nix-wipe = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
-
-      # build/update nixos
-      nix-update = "sudo nixos-rebuild switch --update-input nixpkgs --flake . --upgrade";
-      nix-make = "sudo nixos-rebuild switch";
     };
   };
 
