@@ -24,7 +24,6 @@
   boot.kernelParams = [
     # fn key lock disabled by default
     "asus_wmi.fnlock_default=N"
-    "splash"
   ];
 
   systemd.services.set-asus-fan-mode = {
