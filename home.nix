@@ -56,6 +56,13 @@
     telegram-desktop
     vlc
     transmission_4-gtk
+
+    # dict
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
