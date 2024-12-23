@@ -45,6 +45,7 @@
     # personal usecase
     kdePackages.kate
     stremio
+    zed-editor
     localsend
     google-chrome
     signal-desktop
