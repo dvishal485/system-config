@@ -73,6 +73,8 @@
     agent.pinentryPackage = pkgs.pinentry-qt;
   };
 
+  programs.nix-ld.enable = true;
+
   programs.nano.enable = false;
 
   # remove bad plasma thingy
