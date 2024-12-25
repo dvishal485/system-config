@@ -19,6 +19,7 @@
     ./bootloader.nix
     ./audio.nix
     ./users.nix
+    ./hyprland.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
