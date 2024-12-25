@@ -12,7 +12,7 @@
     dunst
     seahorse
     networkmanagerapplet
-    dolphin
+    nemo
     brightnessctl
     clipse
   ];
