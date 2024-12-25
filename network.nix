@@ -10,11 +10,11 @@
       };
     };
   };
-  # services.blueman.enable = true;
+  services.blueman.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
+  networking.networkmanager.wifi.powersave = true;
 
   networking.hostName = "seattle";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
