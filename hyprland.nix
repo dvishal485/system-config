@@ -20,6 +20,7 @@
     ark
     waybar
     swww
+    kdePackages.qtwayland
   ];
 
   programs.hyprland = {
