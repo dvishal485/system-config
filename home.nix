@@ -123,8 +123,6 @@
     ];
     profileExtra = ''
       eval "$(devbox global shellenv --init-hook)"
-      # eval "$(devbox global shellenv --init-hook --install --no-refresh-alias --omit-nix-env=true)"
-      ssh-add ~/.ssh/id_ed25519 2>/dev/null
     '';
 
     # shell alias saves the day
