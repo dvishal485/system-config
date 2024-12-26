@@ -131,6 +131,8 @@
     shellAliases = {
       g = "gitui";
       bt = "bluetooth";
+      zed = "zeditor";
+      z = "zeditor";
 
       # my cat is batman
       # ah, well, i would like to use both whenever i feel like, cat still useful
