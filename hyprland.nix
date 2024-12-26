@@ -15,6 +15,9 @@
     nemo
     brightnessctl
     clipse
+    gwenview
+    okular
+    ark
   ];
 
   programs.hyprland.enable = true;
