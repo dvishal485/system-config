@@ -18,6 +18,8 @@
     gwenview
     okular
     ark
+    waybar
+    swww
   ];
 
   programs.hyprland = {
@@ -25,9 +27,6 @@
     withUWSM = true;
   };
   programs.hyprlock.enable = true;
-  programs.waybar = {
-    enable = true;
-  };
   services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
