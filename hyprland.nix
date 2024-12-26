@@ -20,7 +20,10 @@
     ark
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
   programs.hyprlock.enable = true;
   programs.waybar = {
     enable = true;
