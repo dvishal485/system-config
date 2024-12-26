@@ -56,8 +56,7 @@
     pciutils
     gnupg
     gparted
-    xclip
-    wl-clipboard-rs
+    wl-clipboard
     firefox-wayland
     pkgs-unstable.nh
   ];
