@@ -21,6 +21,9 @@
     waybar
     swww
     kdePackages.qtwayland
+    pavucontrol
+    grim
+    slurp
   ];
 
   programs.hyprland = {
