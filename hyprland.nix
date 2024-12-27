@@ -11,7 +11,7 @@
     rofi
     dunst
     networkmanagerapplet
-    nemo
+    cosmic-files
     brightnessctl
     clipse
     gwenview
@@ -21,8 +21,7 @@
     swww
     kdePackages.qtwayland
     pavucontrol
-    grim
-    slurp
+    cosmic-screenshot
     libsecret
     libcanberra-gtk3
     arc-icon-theme

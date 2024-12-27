@@ -77,7 +77,6 @@
 
   programs.nano.enable = false;
 
-
   programs.neovim = {
     enable = true;
     viAlias = true;
