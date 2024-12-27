@@ -125,6 +125,7 @@
     ];
     profileExtra = ''
       eval "$(devbox global shellenv --init-hook)"
+      ssh-add
     '';
 
     # shell alias saves the day
