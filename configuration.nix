@@ -77,13 +77,6 @@
 
   programs.nano.enable = false;
 
-  # remove bad plasma thingy
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    elisa
-    konsole
-    khelpcenter
-  ];
 
   programs.neovim = {
     enable = true;
