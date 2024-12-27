@@ -10,7 +10,6 @@
     kitty
     rofi
     dunst
-    seahorse
     networkmanagerapplet
     nemo
     brightnessctl
@@ -24,14 +23,20 @@
     pavucontrol
     grim
     slurp
+    libsecret
+    libcanberra-gtk3
+    arc-icon-theme
   ];
 
   programs.hyprland = {
     enable = true;
     withUWSM = true;
   };
+
+  services.dbus.packages = [ pkgs.seahorse ];
   programs.hyprlock.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
@@ -39,10 +44,14 @@
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.DUNST_ICON_PATH = "${pkgs.arc-icon-theme}/share/icons/Moka/32x32/web";
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
   };
 
   specialisation = {
