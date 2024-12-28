@@ -23,6 +23,7 @@
     pavucontrol
     cosmic-screenshot
     libsecret
+    libgnome-keyring
     libcanberra-gtk3
     kdePackages.qt6ct
   ];
@@ -32,7 +33,10 @@
     withUWSM = true;
   };
 
-  services.dbus.packages = [ pkgs.seahorse ];
+  services.dbus = {
+    enable = true;
+    packages = [ pkgs.seahorse ];
+  };
   programs.hyprlock.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
