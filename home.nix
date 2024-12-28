@@ -11,7 +11,10 @@
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
-  wayland.windowManager.hyprland.systemd.enable = false;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+  };
 
   home.packages = with pkgs; [
     # essential
