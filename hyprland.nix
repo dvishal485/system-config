@@ -24,7 +24,7 @@
     cosmic-screenshot
     libsecret
     libcanberra-gtk3
-    arc-icon-theme
+    kdePackages.qt6ct
   ];
 
   programs.hyprland = {
@@ -43,7 +43,6 @@
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.DUNST_ICON_PATH = "${pkgs.arc-icon-theme}/share/icons/Moka/32x32/web";
   xdg.portal = {
     enable = true;
     wlr.enable = true;
