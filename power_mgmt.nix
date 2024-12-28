@@ -35,6 +35,10 @@
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
 
+      AMDGPU_ABM_LEVEL_ON_AC=0;
+      # resolves screen brightness surge on BAT leading to turn off display
+      AMDGPU_ABM_LEVEL_ON_BAT=0;
+
       # Optional helps save long term battery health
       # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
