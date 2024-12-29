@@ -21,7 +21,7 @@
     swww
     kdePackages.qtwayland
     pavucontrol
-    cosmic-screenshot
+    hyprshot
     libsecret
     libgnome-keyring
     libcanberra-gtk3
