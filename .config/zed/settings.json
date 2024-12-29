@@ -22,5 +22,53 @@
     "mode": "system",
     "light": "One Light",
     "dark": "Atelier Savanna Dark"
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ruff", "pyright"]
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "standard"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          // https://docs.astral.sh/ruff/rules
+          "ignore-overlong-task-comments": true,
+          "fixAll": false,
+          "lineLength": 120,
+          "organizeImports": false,
+          "showSyntaxErrors": true,
+          "lint": {
+            "enable": true,
+            "select": ["I102", "E", "F", "W", "TD", "FIX", "TC"],
+            "extendSelect": [
+              "B",
+              "PTH",
+              "PYI",
+              "C4",
+              "T",
+              "R",
+              "C90",
+              "N",
+              "UP",
+              "ASYNC",
+              "ARG",
+              "RUF"
+            ]
+          }
+        }
+      }
+    }
   }
 }
