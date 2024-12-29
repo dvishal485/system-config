@@ -11,7 +11,7 @@
     rofi
     dunst
     networkmanagerapplet
-    cosmic-files
+    nautilus
     brightnessctl
     clipse
     gwenview
@@ -40,6 +40,7 @@
   programs.hyprlock.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+  services.gvfs.enable = true;
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
