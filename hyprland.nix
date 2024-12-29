@@ -23,6 +23,7 @@
     pavucontrol
     hyprshot
     gnome-keyring
+    dconf-editor
     libsecret
     libgnome-keyring
     libcanberra-gtk3
