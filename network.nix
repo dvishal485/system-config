@@ -14,7 +14,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = true;
+  networking.networkmanager.wifi.powersave = false;
 
   networking.hostName = "seattle";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

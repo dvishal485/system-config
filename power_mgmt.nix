@@ -11,8 +11,8 @@
     enable = true;
     settings = {
       # wifi power savings
-      WIFI_PWR_ON_BAT = "on";
-      WIFI_PWR_ON_AC = "on";
+      WIFI_PWR_ON_BAT = "off";
+      WIFI_PWR_ON_AC = "off";
 
       DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
       DEVICES_TO_ENABLE_ON_AC = "wifi";
