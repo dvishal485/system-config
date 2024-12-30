@@ -1,14 +1,13 @@
 {
-  config,
   pkgs,
-  pkgs-unstable,
-  lib,
+
   ...
 }:
 {
   environment.systemPackages = with pkgs; [
     kitty
     rofi
+
     dunst
     networkmanagerapplet
     nautilus
