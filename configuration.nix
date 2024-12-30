@@ -12,7 +12,7 @@
     ./hardware-configuration.nix
     ./nvidia.nix
     ./network.nix
-    ./fingerprint/default.nix
+    ./fingerprint.nix
     ./power_mgmt.nix
     ./time_locale.nix
     ./system.nix

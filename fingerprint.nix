@@ -14,7 +14,7 @@
   # };
 
   services.fprintd = {
-    enable = true;
+    enable = false;
     package = pkgs.fprintd.override { libfprint = pkgs-unstable.libfprint-focaltech-2808-a658; };
   };
 
