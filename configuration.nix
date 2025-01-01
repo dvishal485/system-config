@@ -61,7 +61,6 @@
     gparted
     wl-clipboard
     firefox-wayland
-    pkgs-unstable.nh
   ];
 
   fonts.packages = with pkgs; [
@@ -69,6 +68,17 @@
     stix-two
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  programs.nh = {
+    enable = true;
+    package = pkgs-unstable.nh;
+    flake = "/etc/nixos";
+    clean = {
+      enable = true;
+      dates = "daily";
+      extraArgs = "--keep-since 3d";
+    };
+  };
 
   #programs.gnupg = {
   # agent.enable = true;
