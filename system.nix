@@ -24,11 +24,6 @@
 
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 3d";
-  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
