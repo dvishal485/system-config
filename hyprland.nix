@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     kitty
     rofi
-
+    egl-wayland
     dunst
     networkmanagerapplet
     nautilus

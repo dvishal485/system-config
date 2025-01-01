@@ -34,10 +34,15 @@
   # cuda by default
   # nixpkgs.config.cudaSupport = true;
 
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
+  specialisation = {
+    ollama.configuration = {
+      system.nixos.tags = [ "ollama" ];
+      services.ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
+    };
+  };
 
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;
