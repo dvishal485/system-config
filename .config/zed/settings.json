@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "vim_mode": true,
+  "relative_line_numbers": true,
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
