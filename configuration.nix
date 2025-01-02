@@ -72,7 +72,7 @@
   programs.nh = {
     enable = true;
     package = pkgs-unstable.nh;
-    flake = "/etc/nixos";
+    flake = "/home/seattle/nix-config";
     clean = {
       enable = true;
       dates = "daily";
