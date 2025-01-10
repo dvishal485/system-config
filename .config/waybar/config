@@ -52,8 +52,7 @@
     "memory": {
         "interval": 5,
         "format": "󰍛 {}%",
-        "max-length": 10
-        ,
+        "max-length": 10,
         "on-click": "pkill btop || alacritty --class task-manager --command btop"
     },
     "tray": {
@@ -69,13 +68,12 @@
                 "weekdays": "<span color='#85c1dc'><b>{}</b></span>",
                 "today": "<span color='#ea999c'><b>{}</b></span>"
             },
-              "on-scroll"         : 1
+            "on-scroll": 1
         },
         "actions": {
             "on-scroll-up": "shift_down",
             "on-scroll-down": "shift_up"
         }
-
     },
     "wireplumber": {
         "format": "{icon} {volume}%",
@@ -85,7 +83,11 @@
         "format-muted": "󰝟",
         "format-icons": {
             "headphone": "",
-            "default": ["󰖀","󰕾",""]
+            "default": [
+                "󰖀",
+                "󰕾",
+                ""
+            ]
         },
         "on-click": "pkill pavucontrol || pavucontrol",
         "scroll-step": 1
