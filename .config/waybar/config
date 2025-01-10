@@ -60,19 +60,16 @@
     },
     "clock": {
         "tooltip-format": "{calendar}",
-        "format-alt": "  {:%a, %d %b %Y}",
+        "format-alt": "  {:%I:%M %p  %a, %d %b %Y}",
         "format": "  {:%I:%M %p}",
         "calendar": {
+            "mode-mon-col": 4,
+            "mode": "year",
             "format": {
                 "months": "<span color='#babbf1'><b>{}</b></span>",
                 "weekdays": "<span color='#85c1dc'><b>{}</b></span>",
-                "today": "<span color='#ea999c'><b>{}</b></span>"
-            },
-            "on-scroll": 1
-        },
-        "actions": {
-            "on-scroll-up": "shift_down",
-            "on-scroll-down": "shift_up"
+                "today": "<span color='#ea999c'><b><u>{}</u></b></span>"
+            }
         }
     },
     "wireplumber": {
