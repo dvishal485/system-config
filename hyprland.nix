@@ -29,6 +29,8 @@
     kdePackages.qt6ct
     libsForQt5.qt5ct
     nwg-look
+    gnome-calendar
+    gnome-calculator
   ];
 
   programs.hyprland = {
