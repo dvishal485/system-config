@@ -44,6 +44,11 @@
     packages = [ pkgs.seahorse ];
   };
 
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "alacritty";
+  };
+
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
