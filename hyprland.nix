@@ -8,7 +8,7 @@
     kitty
     rofi
     egl-wayland
-    dunst
+    swaynotificationcenter
     networkmanagerapplet
     nautilus
     brightnessctl
@@ -42,7 +42,9 @@
     enable = true;
     packages = [ pkgs.seahorse ];
   };
+
   programs.hyprlock.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   services.gvfs.enable = true;
@@ -54,7 +56,7 @@
   security.pam.services.gnomekey.enableGnomeKeyring = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.DUNST_ICON_PATH = "$HOME/.local/share/icons/ePapirus-Dark/16x16/categories:$HOME/.local/share/icons/ePapirus-Dark/16x16/status:$HOME/.local/share/icons/ePapirus-Dark/16x16/apps";
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;

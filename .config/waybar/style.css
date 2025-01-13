@@ -43,6 +43,8 @@ tooltip {
 }
 #custom-notification {
     padding: 0px 5px;
+    margin-right: 20px;
+    margin-left: 5px;
     transition: all 0.3s ease;
     color: @color7;
 }
@@ -50,11 +52,6 @@ tooltip {
     padding: 0px 5px;
     color: @color7;
     transition: all 0.3s ease;
-}
-#custom-pacman {
-    padding: 0px 5px;
-    transition: all 0.3s ease;
-    color: @color7;
 }
 #workspaces {
     padding: 0px 5px;
