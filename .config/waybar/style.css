@@ -52,6 +52,7 @@ tooltip {
     padding: 0px 5px;
     color: @color7;
     transition: all 0.3s ease;
+    font-size: 0.9em;
 }
 #workspaces {
     padding: 0px 5px;

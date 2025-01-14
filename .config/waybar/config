@@ -60,8 +60,7 @@
     },
     "clock": {
         "tooltip-format": "{calendar}",
-        "format-alt": "  {:%I:%M %p  %a, %d %b %Y}",
-        "format": "  {:%I:%M %p}",
+        "format": "  {:%I:%M %p |  %a, %d %b %Y}",
         "calendar": {
             "mode-mon-col": 4,
             "mode": "year",
