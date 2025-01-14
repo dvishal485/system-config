@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   boot.supportedFilesystems = [
     "ntfs"
@@ -25,10 +25,13 @@
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -g 'hello world!' --asterisks -tr --user-menu";
+      };
+    };
   };
 
   # Enable CUPS to print documents.
