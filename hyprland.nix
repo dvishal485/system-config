@@ -31,7 +31,8 @@
     nwg-look
     gnome-calendar
     gnome-calculator
-    hyprsunset
+    wlsunset
+    udiskie
   ];
 
   programs.hyprland = {
