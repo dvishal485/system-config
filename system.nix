@@ -11,7 +11,7 @@
     "flakes"
   ];
 
-  services.journald.extraConfig = "SystemMaxUse=1G";
+  services.journald.extraConfig = "SystemMaxUse=256M";
   systemd.services.set-asus-fan-mode = {
     description = "Set Asus Laptop Fan Mode to Performance Mode";
     wantedBy = [ "multi-user.target" ];
