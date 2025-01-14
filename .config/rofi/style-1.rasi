@@ -11,7 +11,7 @@
 configuration {
 	modi:                       "drun";
     show-icons:                 true;
-    icon-theme: 				"WhiteSur";
+	icon-theme: 		    	"ePapirus-Dark";
     display-drun:               "";
     display-run:                "";
     display-filebrowser:        "";
@@ -106,7 +106,6 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
     spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
