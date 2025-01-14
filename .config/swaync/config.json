@@ -22,9 +22,13 @@
   "hide-on-action": true,
   "script-fail-notify": true,
   "scripts": {
-    "example-script": {
-      "exec": "echo 'Do something...'",
+    "normal-notif": {
+      "exec": "canberra-gtk-play -i message",
       "urgency": "Normal"
+    },
+    "urgent-notif": {
+      "exec": "canberra-gtk-play -i dialog-warning",
+      "urgency": "Urgent"
     }
   },
   "notification-visibility": {
@@ -85,7 +89,7 @@
           },
           {
             "label": "   Lock",
-            "command": "hyprlock"
+            "command": "loginctl lock-session ${XDG_SESSION_ID-}"
           },
           {
             "label": "   Logout",
@@ -93,7 +97,7 @@
           },
           {
             "label": "󰒲   Hibernate",
-            "command": "loginctl terminate-session ${XDG_SESSION_ID-}"
+            "command": "systemctl hibernate"
           },
           {
             "label": "   Shut down",
