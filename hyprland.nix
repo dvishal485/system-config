@@ -32,6 +32,7 @@
     gnome-calculator
     wlsunset
     udiskie
+    hyprpolkitagent
   ];
 
   programs.hyprland = {
