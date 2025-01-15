@@ -24,10 +24,8 @@ USE_BUTTONS=YES
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    east;
-    anchor:                      east;
     fullscreen:                  false;
-    width:                       365px;
+    width:                       700px;
     x-offset:                    -15px;
     y-offset:                    0px;
 
@@ -122,8 +120,8 @@ error-message {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     1;
-    lines:                       5;
+    columns:                     2;
+    lines:                       3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
