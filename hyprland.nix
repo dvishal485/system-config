@@ -12,7 +12,7 @@
     nautilus
     brightnessctl
     clipse
-    gwenview
+    viewnior
     okular
     ark
     waybar
