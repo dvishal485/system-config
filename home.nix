@@ -55,7 +55,7 @@
     xournalpp
     pdfslicer
     onlyoffice-bin
-    zapzap
+    whatsapp-for-linux
     telegram-desktop
     vlc
     transmission_4-gtk
