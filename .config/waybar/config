@@ -69,7 +69,8 @@
                 "weekdays": "<span color='#85c1dc'><b>{}</b></span>",
                 "today": "<span color='#ea999c'><b><u>{}</u></b></span>"
             }
-        }
+        },
+        "on-click": "pidof gnome-calendar || gnome-calendar"
     },
     "wireplumber": {
         "format": "{icon} {volume}%",
