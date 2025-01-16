@@ -65,6 +65,11 @@
     autodetect = true;
   };
 
+  services.logind = {
+    lidSwitch = "ignore";
+    powerKey = "ignore";
+  };
+
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
   security.pam.services.login.enableGnomeKeyring = true;
