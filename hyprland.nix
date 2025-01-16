@@ -60,6 +60,11 @@
   programs.seahorse.enable = true;
   services.gvfs.enable = true;
 
+  services.smartd = {
+    enable = true;
+    autodetect = true;
+  };
+
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
   security.pam.services.login.enableGnomeKeyring = true;
