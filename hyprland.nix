@@ -1,6 +1,5 @@
 {
   pkgs,
-
   ...
 }:
 {
@@ -75,21 +74,5 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
-  };
-
-  specialisation = {
-    plasma-6.configuration = {
-      system.nixos.tags = [ "plasma-6" ];
-      services.desktopManager.plasma6.enable = true;
-
-      # remove bad plasma thingy
-      environment.plasma6.excludePackages = with pkgs.kdePackages; [
-        plasma-browser-integration
-        elisa
-        konsole
-        khelpcenter
-      ];
-
-    };
   };
 }
