@@ -79,6 +79,7 @@
   security.pam.services.gnomekey.enableGnomeKeyring = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
 
   xdg.portal = {
     enable = true;
