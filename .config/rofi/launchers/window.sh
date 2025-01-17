@@ -5,6 +5,7 @@
 dir="$HOME/.config/rofi"
 theme='style-6'
 temp="$HOME/.cache/rofi-windows-preview"
+include_special_workspace=false
 
 workspace_overview(){
     mkdir -p $temp
@@ -12,6 +13,9 @@ workspace_overview(){
     hyprctl keyword animations:enabled 0
     local active_win=$(hyprctl activewindow -j | jq ".address")
     local windows=$(hyprctl clients -j)
+    if [[ $include_special_workspace != "true" ]]; then
+        windows=$(echo $windows | jq 'map(select(.workspace.name | contains("special") | not))')
+    fi
 	echo $windows | jq -r 'sort_by(.workspace.id) .[] | "hyprctl dispatch focuswindow address:\(.address) && grim -g \"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])\" \"$temp/\(.address).png\""' | while read cmd; do
 	    eval "$cmd"
 	done
