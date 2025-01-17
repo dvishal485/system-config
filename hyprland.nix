@@ -5,6 +5,7 @@
 {
   environment.systemPackages = with pkgs; [
     rofi
+    jq
     egl-wayland
     swaynotificationcenter
     networkmanagerapplet
