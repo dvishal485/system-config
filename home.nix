@@ -1,6 +1,4 @@
 {
-  hyprland,
-  Hyprspace,
   pkgs,
   pkgs-unstable,
   ...
@@ -86,7 +84,6 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    diff-so-fancy.enable = true;
 
     userName = "Vishal Das";
     userEmail = "26341736+dvishal485@users.noreply.github.com";
