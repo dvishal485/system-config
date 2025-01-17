@@ -9,6 +9,7 @@
       "wheel"
       "video"
       "render"
+      "input"
     ];
   };
 

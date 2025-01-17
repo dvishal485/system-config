@@ -32,6 +32,8 @@
     wlsunset
     udiskie
     hyprpolkitagent
+    wmctrl
+    libinput-gestures
   ];
 
   programs.hyprland = {
