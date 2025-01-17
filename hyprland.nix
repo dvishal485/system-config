@@ -29,13 +29,22 @@
     libinput-gestures
   ];
 
-  home-manager.users.seattle.home.packages = with pkgs; [
-    pavucontrol
-    gnome-calendar
-    gnome-calculator
-    nwg-look
-    wlsunset
-  ];
+  home-manager.users.seattle = {
+    home.packages = with pkgs; [
+      pavucontrol
+      gnome-calendar
+      gnome-calculator
+      nwg-look
+    ];
+
+    services.wlsunset = {
+      enable = true;
+      latitude = 28.74;
+      longitude = 77.11;
+      temperature.day = 6000;
+      temperature.night = 5600;
+    };
+  };
 
   programs.hyprland = {
     enable = true;
