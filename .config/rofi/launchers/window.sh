@@ -19,7 +19,7 @@ workspace_overview(){
 	echo $active_win | xargs -I {} hyprctl dispatch focuswindow address:{}
 	hyprctl keyword animations:enabled 1
 	local text=$(echo $windows | jq -r '.[] | "\(.title) - \(.address)\\0icon\\x1f'$temp'/\(.address).png\\n"')
-	selected=$(echo -en $text | rofi -dmenu -theme ${dir}/${theme}.rasi)
+	selected=$(echo -en $text | rofi -dmenu -i -theme ${dir}/${theme}.rasi)
 	if [[ $selected != "" ]]; then
         hyprctl dispatch focuswindow address:$(echo $selected | rg '\-\s([a-z0-9]*)$' -or '$1')
     fi
