@@ -16,6 +16,7 @@
     swww
     kdePackages.qtwayland
     hyprshot
+    grim
     gnome-keyring
     libsecret
     libgnome-keyring
