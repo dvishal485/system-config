@@ -1,4 +1,6 @@
 {
+  hyprland,
+  Hyprspace,
   pkgs,
   pkgs-unstable,
   ...
@@ -29,6 +31,8 @@
     vscode-fhs
 
     # tools and utils
+    jq
+    dconf-editor
     scrcpy
     btop
     gnome-system-monitor
@@ -45,7 +49,9 @@
     pkgs-unstable.d2
 
     # personal usecase
-    kdePackages.kate
+    gnome-text-editor
+    viewnior
+    okular
     stremio
     zed-editor
     localsend
@@ -90,7 +96,7 @@
       url = {
         "ssh://git@github.com/".insteadOf = "https://github.com/";
       };
-      core.editor = "nvim";
+      core.editor = "zeditor";
     };
 
     signing = {

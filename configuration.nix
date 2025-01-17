@@ -61,6 +61,7 @@
     gparted
     wl-clipboard
     firefox-wayland
+    libnotify
   ];
 
   fonts.packages = with pkgs; [

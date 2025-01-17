@@ -1,45 +1,46 @@
 {
+  inputs,
   pkgs,
   ...
 }:
 {
   environment.systemPackages = with pkgs; [
     rofi
-    jq
     egl-wayland
     swaynotificationcenter
     networkmanagerapplet
     nautilus
     brightnessctl
     clipse
-    viewnior
-    okular
     ark
     waybar
     swww
     kdePackages.qtwayland
-    pavucontrol
     hyprshot
     gnome-keyring
-    dconf-editor
     libsecret
     libgnome-keyring
     libcanberra-gtk3
     kdePackages.qt6ct
     libsForQt5.qt5ct
-    nwg-look
-    gnome-calendar
-    gnome-calculator
-    wlsunset
     udiskie
     hyprpolkitagent
     wmctrl
     libinput-gestures
   ];
 
+  home-manager.users.seattle.home.packages = with pkgs; [
+    pavucontrol
+    gnome-calendar
+    gnome-calculator
+    nwg-look
+    wlsunset
+  ];
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
   services.dbus = {
