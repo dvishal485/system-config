@@ -2,18 +2,17 @@
 * {
     font-size: 14px;
     font-family: "JetBrainsMono Nerd Font Mono";
-    min-height: 0;
 }
 
 #waybar {
     background: transparent;
     color: @text;
-    margin: 5px 5px;
+    margin: 3px 3px;
 }
 
 #workspaces {
     border-radius: 1rem;
-    margin: 5px;
+    margin: 3px;
     padding: 0.2rem 0.5rem;
     background-color: @surface0;
     margin-left: 1rem;
@@ -45,7 +44,7 @@
 #custom-power {
     background-color: @surface0;
     padding: 0.5rem 1rem;
-    margin: 5px 0;
+    margin: 3px 0;
 }
 
 #custom-notification {
