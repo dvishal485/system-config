@@ -43,6 +43,13 @@
       # Optional helps save long term battery health
       # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
+
+      AHCI_RUNTIME_PM_ON_BAT = "auto";
+      AHCI_RUNTIME_PM_ON_AC = "auto";
+      AHCI_RUNTIME_PM_TIMEOUT = 30;
+
+      RUNTIME_PM_ON_AC = "auto";
+      RUNTIME_PM_ON_BAT = "auto";
     };
   };
 
