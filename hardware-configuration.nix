@@ -75,7 +75,6 @@
         "compress=zstd"
         "noatime"
       ];
-      neededForBoot = true;
     };
 
     "/home" = {
