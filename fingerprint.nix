@@ -5,6 +5,11 @@
   config,
   ...
 }:
+let
+  patched-fprintd = pkgs.fprintd.override {
+    libfprint = pkgs.libfprint-focaltech-2808-a658;
+  };
+in
 {
   # specialisation = {
   #   disable-fprintd.configuration = {
@@ -15,7 +20,7 @@
 
   services.fprintd = {
     enable = false;
-    package = pkgs.fprintd.override { libfprint = pkgs-unstable.libfprint-focaltech-2808-a658; };
+    package = patched-fprintd;
   };
 
   security.pam.services.login.fprintAuth = lib.mkIf (config.services.fprintd.enable) false;
