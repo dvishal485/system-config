@@ -9,7 +9,9 @@
   # Nvidia Configuration
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # will be renamed to hardware.graphics on NixOS 24.11
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
+  environment.sessionVariables.NVD_BACKEND = "direct";
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
