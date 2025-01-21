@@ -85,8 +85,8 @@
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
-  security.pam.services.login.enableGnomeKeyring = true;
   security.pam.services.gnomekey.enableGnomeKeyring = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
