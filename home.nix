@@ -75,9 +75,16 @@
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
-  programs.ssh = {
+  services.gnome-keyring = {
     enable = true;
-    addKeysToAgent = "yes";
+    components = [
+      "pkcs11"
+      "secrets"
+      "ssh"
+    ];
+  };
+  systemd.user.sessionVariables = {
+    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
   };
 
   programs.git = {
@@ -130,7 +137,6 @@
     ];
     profileExtra = ''
       eval "$(devbox global shellenv --init-hook)"
-      ssh-add
     '';
 
     # shell alias saves the day
