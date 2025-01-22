@@ -12,6 +12,7 @@
   environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
   environment.sessionVariables.NVD_BACKEND = "direct";
 
+  environment.systemPackages = [ pkgs.libva-utils ];
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
