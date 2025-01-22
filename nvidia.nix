@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  kernel,
   ...
 }:
 {
@@ -17,7 +16,6 @@
     enable = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
-      libva-vdpau-driver
     ];
   };
 
