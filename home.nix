@@ -61,7 +61,7 @@
     onlyoffice-bin
     whatsapp-for-linux
     telegram-desktop
-    vlc
+    mpv
     transmission_4-gtk
 
     # dict
