@@ -82,12 +82,6 @@
     };
   };
 
-  #programs.gnupg = {
-  # agent.enable = true;
-  # agent.enableSSHSupport = true;
-  #agent.pinentryPackage = pkgs.pinentry-qt;
-  #};
-
   programs.nix-ld.enable = true;
 
   programs.nano.enable = false;
