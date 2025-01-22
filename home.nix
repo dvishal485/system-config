@@ -75,7 +75,6 @@
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
-  services.ssh-agent.enable = true;
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
