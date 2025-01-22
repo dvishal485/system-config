@@ -15,7 +15,10 @@
   environment.systemPackages = [ pkgs.libva-utils ];
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+      libva-vdpau-driver
+    ];
   };
 
   hardware.nvidia = {
