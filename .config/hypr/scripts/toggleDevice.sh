@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 toggle_device() {
     # method 1: hyprctl bug causes wrong device being toggled
