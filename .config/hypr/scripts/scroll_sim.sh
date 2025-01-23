@@ -7,7 +7,7 @@ scroll_ev(){
     dotool < <(
     while true; do
         local curr=$(hyprctl cursorpos -j | jq .y)
-        local delta=$(( (curr - base) / 3 ))
+        local delta=$(( (base - curr) / 3 ))
         base=$curr
         printf "wheel $delta\n"
     done
