@@ -82,16 +82,16 @@
       fsType = "ext4";
     };
 
-    "/mnt/winux" = {
-      label = "winux";
-      fsType = "exfat";
-      options = [
-        "users"
-        "nofail"
-        "uid=1000"
-        "gid=100"
-      ];
-    };
+    # "/mnt/winux" = {
+    #   label = "winux";
+    #   fsType = "exfat";
+    #   options = [
+    #     "users"
+    #     "nofail"
+    #     "uid=1000"
+    #     "gid=100"
+    #   ];
+    # };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/546A-4774";
