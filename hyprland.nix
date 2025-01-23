@@ -37,6 +37,12 @@
       nwg-look
     ];
 
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      systemd.enable = false;
+    };
+
     services.wlsunset = {
       enable = true;
       latitude = 28.74;
