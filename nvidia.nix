@@ -7,6 +7,7 @@
 {
   # Nvidia Configuration
   services.xserver.videoDrivers = [ "nvidia" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   # environment.sessionVariables.VDPAU_DRIVER = "nvidia";
   # environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
