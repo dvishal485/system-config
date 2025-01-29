@@ -71,6 +71,7 @@
     # kdePackages.kdeconnect-kde # drains phone battery
   ];
 
+  programs.obs-studio.enable = true;
   services.gnome-keyring = {
     enable = true;
     components = [
