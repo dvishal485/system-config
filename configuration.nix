@@ -22,7 +22,7 @@
     ./windows.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   # enable virtualisation
   virtualisation.containers.enable = true;
