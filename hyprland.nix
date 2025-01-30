@@ -8,7 +8,7 @@
     egl-wayland
     swaynotificationcenter
     networkmanagerapplet
-    nautilus
+    # nautilus
     brightnessctl
     clipse
     # ark
@@ -66,10 +66,18 @@
     packages = [ pkgs.seahorse ];
   };
 
-  programs.nautilus-open-any-terminal = {
+  programs.thunar = {
     enable = true;
-    terminal = "alacritty";
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+    ];
   };
+  programs.xfconf.enable = lib.mkIf (config.programs.thunar.enable) true;
+
+  # programs.nautilus-open-any-terminal = {
+  #   enable = true;
+  #   terminal = "alacritty";
+  # };
 
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
