@@ -19,19 +19,23 @@
 }
 
 #workspaces button {
-    color: @lavender;
+    color: @yellow;
     border-radius: 1rem;
-    padding: 0.4rem;
+    padding: 0rem 0.5rem;
 }
 
 #workspaces button.active {
-    color: @sky;
-    border-radius: 1rem;
+    color: @lavender;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: @red;
+    font-weight: bold;
 }
 
 #workspaces button:hover {
     color: @sapphire;
-    border-radius: 1rem;
 }
 
 #custom-notification,
