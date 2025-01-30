@@ -11,7 +11,10 @@
     nautilus
     brightnessctl
     clipse
-    ark
+    # ark
+    mate.engrampa
+    unrar
+    unzip
     waybar
     swww
     kdePackages.qtwayland
