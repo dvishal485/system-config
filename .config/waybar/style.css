@@ -63,11 +63,23 @@
 }
 
 #battery {
-    color: @green;
+    color: @yellow;
 }
 
 #battery.charging {
     color: @green;
+}
+
+#battery.plugged {
+    color: @green;
+}
+
+#battery.plugged:not(.charging) {
+    color: @lavender;
+}
+
+#battery.warning:not(.charging) {
+    color: @red;
 }
 
 #battery.warning:not(.charging) {

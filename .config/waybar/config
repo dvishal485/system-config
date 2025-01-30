@@ -107,12 +107,12 @@
             ]
         },
         "format-full": "Charged ",
+        "format-plugged": " {capacity}%",
         "interval": 5,
         "states": {
             "warning": 20,
             "critical": 10
         },
-        "tooltip": false
     },
     "custom/power": {
         "format": "󰤆",
