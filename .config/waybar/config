@@ -48,7 +48,7 @@
                 "today": "<span color='#ea999c'><b><u>{}</u></b></span>"
             }
         },
-        "on-click": "pidof gnome-calendar || gnome-calendar"
+        "on-click": "(pidof gnome-calendar && hyprctl dispatch focuswindow 'title:Calendar') || gnome-calendar"
     },
     "wireplumber": {
         "format": "{icon} {volume}%",
