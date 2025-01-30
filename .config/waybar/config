@@ -57,11 +57,11 @@
         "tooltip-format": "Volume : {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
-            "headphone": "",
+            "headphone": "󰋋",
             "default": [
+                "󰕿",
                 "󰖀",
-                "󰕾",
-                ""
+                "󰕾"
             ]
         },
         "on-click": "pkill pavucontrol || pavucontrol",
