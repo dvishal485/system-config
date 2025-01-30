@@ -67,11 +67,6 @@
         "on-click": "pkill pavucontrol || pavucontrol",
         "scroll-step": 1
     },
-    "custom/logo": {
-        "format": "  ",
-        "tooltip": false,
-        "on-click": "pkill rofi || ~/.config/rofi/launchers/misc/launcher.sh &"
-    },
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": {

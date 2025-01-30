@@ -1,7 +1,7 @@
 @import "mocha.css";
 * {
     font-size: 14px;
-    font-family: "JetBrainsMono Nerd Font Mono";
+    font-family: "JetBrainsMono Nerd Font";
 }
 
 #waybar {
@@ -95,9 +95,8 @@
     border-radius: 0;
 }
 
-#pulseaudio {
+#wireplumber {
     color: @maroon;
-    margin-left: 0.5rem;
 }
 
 #custom-music {
@@ -114,6 +113,7 @@
     margin-right: 0.5rem;
     border-radius: 0px 1rem 1rem 0px;
     color: @red;
+    font-weight: bold;
 }
 
 #tray {
