@@ -18,6 +18,10 @@
     margin-left: 1rem;
 }
 
+#taskbar {
+    margin-right: 2rem;
+}
+
 #workspaces button {
     color: @yellow;
     border-radius: 1rem;
