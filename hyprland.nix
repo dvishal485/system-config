@@ -36,7 +36,7 @@
     home.packages = with pkgs; [
       pavucontrol
       gnome-calendar
-      gnome-calculator
+      qalculate-gtk
       nwg-look
     ];
 
