@@ -33,12 +33,6 @@
             "urgent": "󰀦 "
         }
     },
-    "memory": {
-        "interval": 5,
-        "format": "󰍛 {}%",
-        "max-length": 10,
-        "on-click": "pkill btop || alacritty --class task-manager --command btop"
-    },
     "tray": {
         "spacing": 10
     },
