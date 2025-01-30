@@ -77,7 +77,8 @@
 
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.gvfs.enable = true;
+  services.gvfs.enable = true; # trash service
+  services.tumbler.enable = true; # img thumbnail service
 
   services.smartd = {
     enable = true;
