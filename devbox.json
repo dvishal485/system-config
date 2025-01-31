@@ -4,14 +4,17 @@
     "nixfmt-rfc-style@latest",
     "fd@latest",
     "nixd@latest",
-    "nil@latest"
+    "nil@latest",
+    "ripgrep@latest"
   ],
   "shell": {
-    "init_hook": [
-      "fd -e nix -x nixfmt"
-    ],
+    "init_hook": ["fd -e nix -x nixfmt"],
     "scripts": {
-      "fmt": [
+      "fmt": ["fd -e nix -x nixfmt"],
+      "config": [
+        "newConfig=$(fd -d1 --base-directory .config --strip-cwd-prefix -x echo '(mkHomeConfig \"{}\")' | sort -V)",
+        "cat home-config-files.nix | rg '\\[.*\\]' --passthru --multiline-dotall --multiline -r \"[ $newConfig ]\" > new-home-config.nix",
+        "mv new-home-config.nix home-config-files.nix",
         "fd -e nix -x nixfmt"
       ]
     }

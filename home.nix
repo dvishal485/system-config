@@ -4,7 +4,10 @@
   ...
 }:
 {
-  imports = [ ./neovim.nix ];
+  imports = [
+    ./neovim.nix
+    ./home-config-files.nix
+  ];
 
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
