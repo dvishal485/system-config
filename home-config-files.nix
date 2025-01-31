@@ -18,6 +18,7 @@ in
     (mkHomeConfig "Thunar")
     (mkHomeConfig "dunst")
     (mkHomeConfig "hypr")
+    (mkHomeConfig "mpv")
     (mkHomeConfig "rofi")
     (mkHomeConfig "swaync")
     (mkHomeConfig "waybar")
