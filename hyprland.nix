@@ -16,7 +16,8 @@
     brightnessctl
     clipse
     # ark
-    hypridle
+    # hypridle
+    inputs.hypridle.packages."${pkgs.system}".hypridle
     # pkgs-unstable.hyprlock
     inputs.hyprlock.packages."${pkgs.system}".hyprlock
     mate.engrampa

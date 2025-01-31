@@ -5,6 +5,10 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    hypridle = {
+      url = "github:hyprwm/Hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
