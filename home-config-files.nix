@@ -8,7 +8,7 @@ let
   nixHomeConfigPath = "/etc/nixos/.config";
   mkHomeConfig = configFile: {
     home.file = {
-      ".config/test/${configFile}".source = config.lib.file.mkOutOfStoreSymlink "${nixHomeConfigPath}/${configFile}";
+      ".config/${configFile}".source = config.lib.file.mkOutOfStoreSymlink "${nixHomeConfigPath}/${configFile}";
     };
   };
 in
