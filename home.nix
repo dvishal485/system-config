@@ -127,6 +127,12 @@
       "erasedups"
       "ignorespace"
     ];
+    historyIgnore = [
+      "exit"
+      "shutdown"
+      "reboot"
+    ];
+    historySize = 50000;
     shellOptions = [
       "histappend"
       "checkwinsize"
