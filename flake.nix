@@ -5,6 +5,11 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";

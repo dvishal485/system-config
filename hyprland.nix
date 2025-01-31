@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-unstable,
+  inputs,
   lib,
   config,
   ...
@@ -16,7 +17,8 @@
     clipse
     # ark
     hypridle
-    pkgs-unstable.hyprlock
+    # pkgs-unstable.hyprlock
+    inputs.hyprlock.packages."${pkgs.system}".hyprlock
     mate.engrampa
     unrar
     unzip
