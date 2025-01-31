@@ -50,6 +50,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.default;
       xwayland.enable = true;
       systemd.enable = false;
     };
@@ -66,7 +67,8 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.default;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
 
   services.dbus = {
@@ -122,7 +124,8 @@
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
+      # this is added by hyprland with programs.hyprland.portalPackage
+      # inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
   };
 }

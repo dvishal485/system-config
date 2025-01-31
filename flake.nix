@@ -4,7 +4,12 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-gaming.url = "github:fufexan/nix-gaming";
-
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hypridle = {
       url = "github:hyprwm/Hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
