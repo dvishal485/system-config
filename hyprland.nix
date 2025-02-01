@@ -10,6 +10,9 @@
   environment.systemPackages = with pkgs; [
     # hypr
     inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
+    inputs.hypridle.packages."${pkgs.system}".hypridle
+    inputs.hyprlock.packages."${pkgs.system}".hyprlock
+
     rofi
     egl-wayland
     swaynotificationcenter
@@ -18,10 +21,6 @@
     brightnessctl
     clipse
     # ark
-    # hypridle
-    inputs.hypridle.packages."${pkgs.system}".hypridle
-    # pkgs-unstable.hyprlock
-    inputs.hyprlock.packages."${pkgs.system}".hyprlock
     mate.engrampa
     unrar
     unzip
