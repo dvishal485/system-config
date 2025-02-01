@@ -20,6 +20,7 @@
     ./users.nix
     ./hyprland.nix
     ./windows.nix
+    ./thunar.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;

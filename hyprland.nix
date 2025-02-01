@@ -85,11 +85,12 @@
     # ];
   };
 
-  programs.thunar = {
+  programs.thunar-with-flags = {
     enable = true;
     plugins = with pkgs.xfce; [
       thunar-archive-plugin
     ];
+    configureFlags = [ "--disable-wallpaper-plugin" ];
   };
 
   # enabled by programs.thunar
