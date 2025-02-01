@@ -3,7 +3,6 @@
   "packages": [
     "nixfmt-rfc-style@latest",
     "fd@latest",
-    "nixd@latest",
     "nil@latest",
     "ripgrep@latest"
   ],
