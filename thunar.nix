@@ -6,8 +6,8 @@
 }:
 
 let
-  cfg = config.programs.thunar;
 
+  cfg = config.programs.thunar-with-flags;
 in
 {
   meta = {
@@ -15,7 +15,7 @@ in
   };
 
   options = {
-    programs.thunar = {
+    programs.thunar-with-flags = {
       enable = lib.mkEnableOption "Thunar, the Xfce file manager";
 
       plugins = lib.mkOption {
@@ -25,13 +25,25 @@ in
         example = lib.literalExpression "with pkgs.xfce; [ thunar-archive-plugin thunar-volman ]";
       };
 
+      configureFlags = lib.mkOption {
+        default = [ ];
+        type = lib.types.listOf lib.types.str;
+        description = "List of flags to pass to the Thunar build.";
+        example = lib.literalExpression ''
+          [ "--disable-wallpaper-plugin" ]
+        '';
+      };
     };
   };
 
   config = lib.mkIf cfg.enable (
     let
-      package = pkgs.xfce.thunar.override { thunarPlugins = cfg.plugins; };
-
+      packageWithPlugins = pkgs.xfce.thunar.override {
+        thunarPlugins = cfg.plugins;
+      };
+      package = packageWithPlugins.overrideAttrs (oldAttrs: {
+        configureFlags = (oldAttrs.configureFlags or [ ]) ++ cfg.configureFlags;
+      });
     in
     {
       environment.systemPackages = [
