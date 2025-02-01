@@ -42,6 +42,7 @@
     android-tools
     pkgs-unstable.devbox
     pkgs-unstable.d2
+    wayvnc
 
     # personal usecase
     gnome-text-editor
