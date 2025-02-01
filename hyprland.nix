@@ -8,6 +8,8 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    # hypr
+    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
     rofi
     egl-wayland
     swaynotificationcenter
@@ -35,7 +37,6 @@
     kdePackages.qt6ct
     libsForQt5.qt5ct
     udiskie
-    hyprpolkitagent
     wmctrl
     libinput-gestures
   ];
