@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ./neovim.nix
     ./home-config-files.nix
   ];
 
@@ -99,7 +98,7 @@
       url = {
         "ssh://git@github.com/".insteadOf = "https://github.com/";
       };
-      core.editor = "zeditor";
+      core.editor = "hx";
     };
 
     signing = {

@@ -61,6 +61,7 @@
     pciutils
     gnupg
     gparted
+    pkgs-unstable.evil-helix
     wl-clipboard
     firefox-wayland
     libnotify
@@ -103,29 +104,8 @@
 
   programs.nix-ld.enable = true;
 
-  programs.nano.enable = false;
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    configure = {
-      customRC = ''
-        set number relativenumber
-        set tabstop=4
-        set softtabstop=4
-        set shiftwidth=4
-        set expandtab
-
-        set smartindent autoindent
-
-        set incsearch hlsearch
-        set termguicolors
-
-        set scrolloff=12
-      '';
-    };
-  };
+  programs.nano.enable = lib.mkForce false;
+  programs.neovim.enable = lib.mkForce false;
 
   # flatpak specialization
   # specialisation = {
