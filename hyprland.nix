@@ -27,7 +27,6 @@
     kdePackages.qtwayland
     hyprshot
     grim
-    gnome-keyring
     libsecret
     libgnome-keyring
     libcanberra-gtk3
@@ -81,7 +80,9 @@
 
   services.dbus = {
     enable = true;
-    packages = [ pkgs.seahorse ];
+    # packages = [
+    #   pkgs.seahorse # already added by programs.seahorse.enable
+    # ];
   };
 
   programs.thunar = {
