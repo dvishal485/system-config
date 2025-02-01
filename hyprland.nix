@@ -119,6 +119,13 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "alacritty" ] ;
+    };
+  };
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
