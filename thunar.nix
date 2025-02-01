@@ -41,7 +41,7 @@ in
         configureFlags = o.configureFlags ++ cfg.configureFlags;
       });
       package =
-        if cfg.thunarPlugins == [ ] then
+        if cfg.plugins == [ ] then
           thunarWithFlags
         else
           pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
