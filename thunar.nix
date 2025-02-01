@@ -6,12 +6,11 @@
 }:
 
 let
-
   cfg = config.programs.thunar-with-flags;
 in
 {
   meta = {
-    maintainers = lib.teams.xfce.members;
+    maintainers = lib.teams.xfce.members ++ [ lib.maintainers.imsick ];
   };
 
   options = {
@@ -38,12 +37,13 @@ in
 
   config = lib.mkIf cfg.enable (
     let
-      packageWithPlugins = pkgs.xfce.thunar.override {
-        thunarPlugins = cfg.plugins;
-      };
-      package = packageWithPlugins.overrideAttrs (oldAttrs: {
-        configureFlags = (oldAttrs.configureFlags or [ ]) ++ cfg.configureFlags;
+      thunarWithFlags = pkgs.xfce.thunar.overrideAttrs (o: {
+        configureFlags = o.configureFlags ++ cfg.configureFlags;
       });
+      package = pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
+        thunarPlugins = [ pkgs.xfce.thunar-archive-plugin ];
+        thunar = thunarWithFlags;
+      };
     in
     {
       environment.systemPackages = [
