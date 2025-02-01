@@ -27,6 +27,9 @@
   "languages": {
     "Python": {
       "language_servers": ["ruff", "pyright"]
+    },
+    "Nix": {
+      "language_servers": ["nil"]
     }
   },
   "lsp": {
@@ -68,6 +71,13 @@
               "RUF"
             ]
           }
+        }
+      }
+    },
+    "nil": {
+      "settings": {
+        "formatting": {
+          "command": ["nixfmt"]
         }
       }
     }
