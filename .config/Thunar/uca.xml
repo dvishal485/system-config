@@ -11,4 +11,15 @@
 	<patterns>*</patterns>
 	<directories/>
 </action>
+<action>
+	<icon>preferences-desktop-wallpaper</icon>
+	<name>Set as Wallpaper (swww)</name>
+	<submenu></submenu>
+	<unique-id>1738407598793718-1</unique-id>
+	<command>swww img %f</command>
+	<description>Set desktop wallpaper using swww</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
 </actions>

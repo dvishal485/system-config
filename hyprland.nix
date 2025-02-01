@@ -91,7 +91,9 @@
       thunar-archive-plugin
     ];
   };
-  programs.xfconf.enable = lib.mkIf (config.programs.thunar.enable) true;
+
+  # enabled by programs.thunar
+  # programs.xfconf.enable = lib.mkIf (config.programs.thunar.enable) true;
 
   # programs.nautilus-open-any-terminal = {
   #   enable = true;
