@@ -17,11 +17,9 @@
     egl-wayland
     swaynotificationcenter
     networkmanagerapplet
-    # nautilus
     brightnessctl
     clipse
-    # ark
-    mate.engrampa
+    mate.engrampa # alternative to ark
     unrar
     unzip
     waybar
