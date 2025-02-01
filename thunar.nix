@@ -45,7 +45,7 @@ in
           thunarWithFlags
         else
           pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
-            thunarPlugins = [ pkgs.xfce.thunar-archive-plugin ];
+            thunarPlugins = cfg.plugins;
             thunar = thunarWithFlags;
           };
     in
