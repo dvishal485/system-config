@@ -40,10 +40,14 @@ in
       thunarWithFlags = pkgs.xfce.thunar.overrideAttrs (o: {
         configureFlags = o.configureFlags ++ cfg.configureFlags;
       });
-      package = pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
-        thunarPlugins = [ pkgs.xfce.thunar-archive-plugin ];
-        thunar = thunarWithFlags;
-      };
+      package =
+        if cfg.thunarPlugins == [ ] then
+          thunarWithFlags
+        else
+          pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
+            thunarPlugins = [ pkgs.xfce.thunar-archive-plugin ];
+            thunar = thunarWithFlags;
+          };
     in
     {
       environment.systemPackages = [
