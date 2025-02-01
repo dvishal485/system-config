@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 {
   # bluetooth
   hardware.bluetooth = {
@@ -32,12 +32,17 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [
-    2283
-    5173
-    4173
-    11434 # ollama
-  ];
+  networking.firewall.allowedTCPPorts =
+    [
+      2283 # immich
+    ]
+    ++ [
+      #vite
+      5173
+      4173
+    ]
+    ++ lib.optionals config.services.ollama.enable [ 11434 ]
+    ++ lib.optionals config.services.openssh.enable [ 22 ];
 
   networking.firewall.allowedTCPPortRanges = [
     # kde connect
