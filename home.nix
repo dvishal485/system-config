@@ -37,7 +37,6 @@
     bat
     typst
     tinymist
-    alacritty
     libnotify
     gimp
     android-tools

@@ -40,6 +40,16 @@
     libinput-gestures
   ];
 
+  programs.foot = {
+    enable = true;
+    enableBashIntegration = true;
+    settings = {
+      main = {
+        dpi-aware = true;
+      };
+    };
+  };
+
   home-manager.users.seattle = {
     home.packages = with pkgs; [
       pavucontrol
@@ -122,7 +132,7 @@
   xdg.terminal-exec = {
     enable = true;
     settings = {
-      default = [ "alacritty" ] ;
+      default = [ "foot" ];
     };
   };
 

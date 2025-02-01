@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
-	<icon>Alacritty</icon>
-	<name>Open in Alacritty</name>
+	<icon>utilities-terminal</icon>
+	<name>Open in Terminal</name>
 	<submenu></submenu>
 	<unique-id>1738235439562558-1</unique-id>
-	<command>alacritty --working-directory %f</command>
-	<description>Launch alacritty with this folder as working directory</description>
+	<command>xdg-terminal --working-directory %f</command>
+	<description>Launch terminal with this folder as working directory</description>
 	<range>*</range>
 	<patterns>*</patterns>
 	<directories/>
