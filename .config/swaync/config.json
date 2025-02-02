@@ -41,7 +41,8 @@
   "widgets": [
     "label",
     "menubar",
-    "buttons-grid",
+    "backlight",
+    "backlight#KB",
     "volume",
     "mpris",
     "title",
@@ -66,17 +67,17 @@
       "image-radius": 6
     },
     "backlight": {
-      "label": "",
-      "device": "intel_backlight",
+      "label": "󰃟 ",
+      "device": "amdgpu_bl1",
       "min": 10
     },
     "backlight#KB": {
-      "label": " ",
+      "label": "  ",
       "device": "asus::kbd_backlight",
       "subsystem": "leds"
     },
     "volume": {
-      "label": ""
+      "label": " "
     },
     "menubar": {
       "menu#power-buttons": {
