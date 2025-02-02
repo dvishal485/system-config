@@ -106,22 +106,6 @@
           }
         ]
       }
-    },
-    "buttons-grid": {
-      "actions": [
-        {
-          "label": "",
-          "command": "nwg-look"
-        },
-        {
-          "label": "",
-          "command": "gnome-calendar"
-        },
-        {
-          "label": "",
-          "command": "firefox"
-        }
-      ]
     }
   }
 }
