@@ -101,6 +101,10 @@
             "command": "systemctl hibernate"
           },
           {
+            "label": "󰤄  Hybrid Sleep",
+            "command": "systemctl suspend-then-hibernate"
+          },
+          {
             "label": "   Shut down",
             "command": "systemctl poweroff"
           }
