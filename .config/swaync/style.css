@@ -219,16 +219,15 @@
 }
 
 .widget-mpris-player {
-    padding: 8px;
+    padding: 12px;
 }
 
 .widget-mpris-title {
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 }
 
 .widget-mpris-subtitle {
-    font-size: 1.1rem;
 }
 
 /* Volume and Brightness Widget*/
