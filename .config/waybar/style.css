@@ -44,11 +44,9 @@
 
 #custom-notification,
 #tray,
-#backlight,
 #clock,
 #battery,
 #wireplumber,
-#custom-lock,
 #custom-power {
     background-color: @surface0;
     padding: 0.5rem 1rem;
@@ -90,27 +88,12 @@
     color: @red;
 }
 
-#backlight {
-    color: @yellow;
-}
-
-#backlight,
 #battery {
     border-radius: 0;
 }
 
 #wireplumber {
     color: @maroon;
-}
-
-#custom-music {
-    color: @mauve;
-    border-radius: 1rem;
-}
-
-#custom-lock {
-    border-radius: 1rem 0px 0px 1rem;
-    color: @lavender;
 }
 
 #custom-power {
