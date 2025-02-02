@@ -68,8 +68,7 @@
     },
     "backlight": {
       "label": "󰃟 ",
-      "device": "amdgpu_bl1",
-      "min": 10
+      "device": "amdgpu_bl1"
     },
     "backlight#KB": {
       "label": "  ",
