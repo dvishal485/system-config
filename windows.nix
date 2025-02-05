@@ -4,12 +4,15 @@
   environment.systemPackages =
     with pkgs;
     [
+    ]
+    # nix flake show github:fufexan/nix-gaming
+    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
       (lutris.override {
         extraPkgs = pkgs: [ ];
       })
-    ]
-    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
       wine-ge
+      mangohud
+      gamemode
     ]);
   programs.gamemode.enable = true;
 
