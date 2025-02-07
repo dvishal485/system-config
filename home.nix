@@ -30,7 +30,7 @@
     jq
     dconf-editor
     scrcpy
-    btop
+    htop
     gnome-system-monitor
     podman-compose
     podman-tui
