@@ -156,9 +156,9 @@
       # cat = "bat";
 
       # immich stuff
-      immich-start = "podman pod start pod_immich";
-      immich-stop = "podman pod stop pod_immich";
-      immich-update = "podman compose up -d --force-recreate";
+      immich-start = "uwsm app -- podman pod start pod_immich";
+      immich-stop = "uwsm app -- podman pod stop pod_immich";
+      immich-update = "uwsm app -- podman compose up -d --force-recreate";
     };
   };
 
