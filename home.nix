@@ -107,6 +107,14 @@
       signByDefault = true;
       key = "899004706F0BF896B7A19A69C5074BFBC4AD6B5C";
     };
+
+    delta = {
+      enable = true;
+      options = {
+        "side-by-side" = true;
+        "line-numbers" = true;
+      };
+    };
   };
 
   programs.starship = {
