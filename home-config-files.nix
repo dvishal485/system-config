@@ -13,7 +13,7 @@ let
   };
 in
 {
-  # fd -d1 --base-directory .config --strip-cwd-prefix -x echo '(mkHomeConfig "{}")'
+  # fd -H -d1 --base-directory .config --strip-cwd-prefix -x echo '(mkHomeConfig "{}")'
   imports = [
     (mkHomeConfig "Thunar")
     (mkHomeConfig "dunst")
@@ -23,5 +23,6 @@ in
     (mkHomeConfig "swaync")
     (mkHomeConfig "waybar")
     (mkHomeConfig "zed")
+    (mkHomeConfig ".gitignore")
   ];
 }
