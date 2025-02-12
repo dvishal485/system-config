@@ -151,6 +151,10 @@
       zed = "zeditor";
       z = "zeditor";
 
+      # sorry vim
+      vi = "hx";
+      vim = "hx";
+
       # my cat is batman
       # ah, well, i would like to use both whenever i feel like, cat still useful
       # cat = "bat";
