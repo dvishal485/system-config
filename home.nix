@@ -46,6 +46,7 @@
 
     # personal usecase
     gnome-text-editor
+    spotube
     viewnior
     okular
     stremio
