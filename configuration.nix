@@ -82,14 +82,14 @@
     dotool
   ];
 
-  # fix /dev/uinput group
-  # https://git.sr.ht/~geb/dotool/tree/HEAD/item/80-dotool.rules
   services.udev.extraRules =
     let
       mkRule = as: lib.concatStringsSep ", " as;
       mkRules = rs: lib.concatStringsSep "\n" rs;
     in
     mkRules [
+      # fix /dev/uinput group
+      # https://git.sr.ht/~geb/dotool/tree/HEAD/item/80-dotool.rules
       (mkRule [
         ''KERNEL=="uinput"''
         ''GROUP="input"''
