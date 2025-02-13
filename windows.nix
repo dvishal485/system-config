@@ -1,23 +1,102 @@
-{ inputs, pkgs, ... }:
 {
-  hardware.graphics.enable32Bit = true;
-
-  programs.gamemode.enable = true;
-  environment.systemPackages =
-    with pkgs;
-    [
-      (lutris.override {
-        extraPkgs = pkgs: [ ];
-      })
-      mangohud
-    ]
-    # nix flake show github:fufexan/nix-gaming
-    ++ ([
-      inputs.nix-gaming.packages.${pkgs.system}.wine-ge
-    ]);
-
-  nix.settings = {
-    substituters = [ "https://nix-gaming.cachix.org" ];
-    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.programs.gaming;
+in
+{
+  options = {
+    programs.gaming = {
+      enable = lib.mkEnableOption "Enable gaming module with lutris";
+      lutris = {
+        package = lib.mkOption {
+          type = lib.types.package;
+          description = "Lutris package";
+          default = pkgs.lutris;
+        };
+        extraPkgs = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          description = "Extra packages to install with lutris";
+          default = [ ];
+        };
+      };
+      wine = {
+        enable = lib.mkEnableOption "Enable wine";
+        package = lib.mkOption {
+          type = lib.types.package;
+          description = "Wine package";
+          default = pkgs.wineWowPackages.stable;
+        };
+      };
+      gamemode = {
+        enable = lib.mkEnableOption "Enable gamemode";
+        enableRenice = lib.mkOption {
+          type = lib.types.bool;
+          description = "Renice gamemode";
+          default = true;
+        };
+      };
+      gamescope = {
+        enable = lib.mkEnableOption "Enable gamescope";
+        package = lib.mkOption {
+          default = pkgs.gamescope;
+          type = lib.types.package;
+          description = "Package to use";
+        };
+        enableRenice = lib.mkOption {
+          type = lib.types.bool;
+          description = "Renice gamescope";
+          default = true;
+        };
+      };
+      mangohud = {
+        enable = lib.mkEnableOption "Enable mangohud";
+        enableMangojuice = lib.mkOption {
+          type = lib.types.bool;
+          description = "Enable mangojuice";
+          default = cfg.mangohud.enable;
+        };
+        package = lib.mkOption {
+          default = pkgs.mangohud;
+          type = lib.types.package;
+          description = "Package to use";
+        };
+      };
+    };
   };
+
+  config = lib.mkIf cfg.enable {
+    hardware.graphics.enable32Bit = true;
+
+    programs.gamemode = lib.mkIf cfg.gamemode.enable {
+      enable = true;
+      enableRenice = cfg.gamemode.enableRenice;
+    };
+
+    programs.gamescope = lib.mkIf cfg.gamescope.enable {
+      enable = true;
+      package = cfg.gamescope.package;
+      capSysNice = cfg.gamescope.enableRenice;
+    };
+
+    environment.systemPackages =
+      let
+        winePkg = lib.optional cfg.wine.enable cfg.wine.package;
+        gamescopePkg = lib.optional cfg.gamescope.enable cfg.gamescope.package;
+        lutrisPkg = cfg.lutris.package.override {
+          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ cfg.lutris.extraPkgs;
+        };
+      in
+      [
+        lutrisPkg
+      ]
+      ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
+      ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice
+      ++ winePkg;
+  };
+
+  meta.maintainers = [ lib.maintainers.imsick ];
 }

@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   pkgs-unstable,
   lib,
@@ -24,6 +25,17 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
+  programs.gaming = {
+    enable = true;
+    wine = {
+      enable = true;
+      # nix flake show github:fufexan/nix-gaming
+      package = inputs.nix-gaming.packages.${pkgs.system}.wine-ge;
+    };
+    gamemode.enable = true;
+    gamescope.enable = true;
+    mangohud.enable = true;
+  };
 
   # enable virtualisation
   virtualisation.containers.enable = true;
@@ -128,11 +140,13 @@
     substituters = [
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
+      "https://nix-gaming.cachix.org"
     ];
 
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
   };
 }
