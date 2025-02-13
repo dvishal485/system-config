@@ -100,7 +100,7 @@
         "ssh://git@github.com/".insteadOf = "https://github.com/";
       };
       core.editor = "hx";
-      core.excludesFile = ".config/.gitignore";
+      core.excludesFile = "$HOME/.config/.gitignore";
     };
 
     signing = {
