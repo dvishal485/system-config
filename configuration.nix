@@ -20,7 +20,7 @@
     ./audio.nix
     ./users.nix
     ./hyprland.nix
-    ./windows.nix
+    ./gaming.nix
     ./thunar.nix
   ];
 
