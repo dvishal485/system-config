@@ -32,12 +32,18 @@ in
           [ "--disable-wallpaper-plugin" ]
         '';
       };
+
+      package = lib.mkOption {
+        default = pkgs.xfce.thunar;
+        type = lib.types.package;
+        description = "The Thunar package to use.";
+      };
     };
   };
 
   config = lib.mkIf cfg.enable (
     let
-      thunarWithFlags = pkgs.xfce.thunar.overrideAttrs (o: {
+      thunarWithFlags = cfg.package.overrideAttrs (o: {
         configureFlags = o.configureFlags ++ cfg.configureFlags;
       });
       package =
