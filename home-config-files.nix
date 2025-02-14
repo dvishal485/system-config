@@ -14,15 +14,19 @@ let
 in
 {
   # fd -H -d1 --base-directory .config --strip-cwd-prefix -x echo '(mkHomeConfig "{}")'
-  imports = [
-    (mkHomeConfig "Thunar")
-    (mkHomeConfig "dunst")
-    (mkHomeConfig "hypr")
-    (mkHomeConfig "mpv")
-    (mkHomeConfig "rofi")
-    (mkHomeConfig "swaync")
-    (mkHomeConfig "waybar")
-    (mkHomeConfig "zed")
-    (mkHomeConfig ".gitignore")
-  ];
+  imports =
+    let
+      listOfConfigs = [
+        "Thunar"
+        "dunst"
+        "hypr"
+        "mpv"
+        "rofi"
+        "swaync"
+        "waybar"
+        "zed"
+        ".gitignore"
+      ];
+    in
+    map mkHomeConfig listOfConfigs;
 }

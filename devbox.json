@@ -11,7 +11,7 @@
     "scripts": {
       "fmt": ["fd -e nix -x nixfmt"],
       "config": [
-        "newConfig=$(fd -H -d1 --base-directory .config --strip-cwd-prefix -x echo '(mkHomeConfig \"{}\")' | sort -V)",
+        "newConfig=$(fd -H -d1 --base-directory .config --strip-cwd-prefix -x echo '\"{}\"' | sort -V)",
         "cat home-config-files.nix | rg '\\[.*\\]' --passthru --multiline-dotall --multiline -r \"[ $newConfig ]\" > new-home-config.nix",
         "mv new-home-config.nix home-config-files.nix",
         "fd -e nix -x nixfmt"
