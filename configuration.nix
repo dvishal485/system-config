@@ -32,7 +32,7 @@
       enable = true;
       # nix flake show github:fufexan/nix-gaming
       # package = inputs.nix-gaming.packages.${pkgs.system}.wine-ge;
-      package = pkgs.wineWowPackages.waylandFull;
+      package = pkgs-unstable.wineWowPackages.waylandFull;
     };
     gamemode.enable = true;
     gamescope.enable = true;
