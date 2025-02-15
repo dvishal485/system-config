@@ -17,9 +17,14 @@ in
           description = "Lutris package";
           default = pkgs.lutris;
         };
-        extraPkgs = lib.mkOption {
+        envPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
-          description = "Extra packages to install with lutris";
+          description = "Extra packages to install with lutris and system";
+          default = [ ];
+        };
+        libPackages = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          description = "Extra libraries to install with lutris";
           default = [ ];
         };
       };
@@ -86,8 +91,9 @@ in
       let
         winePkg = lib.optional cfg.wine.enable cfg.wine.package;
         gamescopePkg = lib.optional cfg.gamescope.enable cfg.gamescope.package;
+        lutrisExtras = cfg.lutris.envPackages ++ cfg.lutris.libPackages;
         lutrisPkg = cfg.lutris.package.override {
-          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ cfg.lutris.extraPkgs;
+          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ lutrisExtras;
         };
       in
       [
@@ -95,6 +101,7 @@ in
       ]
       ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
       ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice
+      ++ cfg.lutris.envPackages
       ++ winePkg;
   };
 

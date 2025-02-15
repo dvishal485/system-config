@@ -27,7 +27,8 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
     enable = true;
-    lutris.extraPkgs = [ ];
+    lutris.envPackages = with pkgs; [
+    ];
     wine = {
       enable = true;
       # nix flake show github:fufexan/nix-gaming
