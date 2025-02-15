@@ -28,7 +28,7 @@
     },
     "urgent-notif": {
       "exec": "canberra-gtk-play -i dialog-warning",
-      "urgency": "Urgent"
+      "urgency": "Critical"
     }
   },
   "notification-visibility": {
