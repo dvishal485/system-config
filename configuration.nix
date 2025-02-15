@@ -28,6 +28,7 @@
   programs.gaming = {
     enable = true;
     lutris.envPackages = with pkgs; [
+      vkbasalt
     ];
     wine = {
       enable = true;
