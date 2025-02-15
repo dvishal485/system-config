@@ -383,9 +383,9 @@
     /* The Control Center which contains the old notifications + widgets */
     background: #1a1b26;
     color: #7aa2f7;
-    border: 2px solid #1a1b26;
-    border-radius: 18px;
-    margin: 8px 10px;
+    border: 2px solid #ffffff;
+    border-right: none;
+    border-radius: 18px 0px 0px 18px;
     padding: 10px;
 }
 
@@ -465,7 +465,7 @@
 }
 
 .widget-label > label {
-    font-size: 15px;
+    font-size: 20px;
     margin: 10px;
 }
 /* Title widget */
