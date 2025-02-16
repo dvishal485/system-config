@@ -29,7 +29,7 @@
 }
 
 #workspaces button.active {
-    color: @lavender;
+    color: @green;
     font-weight: bold;
 }
 
@@ -47,6 +47,7 @@
 #clock,
 #battery,
 #wireplumber,
+#submap,
 #custom-power {
     background-color: @surface0;
     padding: 0.5rem 1rem;
@@ -56,6 +57,12 @@
 #custom-notification {
     padding-left: 1rem;
     border-radius: 1rem 0px 0px 1rem;
+}
+
+#submap {
+    color: @lavender;
+    border-radius: 1rem;
+    margin-right: 1rem;
 }
 
 #clock {

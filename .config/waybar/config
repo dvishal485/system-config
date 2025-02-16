@@ -5,12 +5,14 @@
     "height": 46,
     "modules-left": [
         "clock",
-        "wlr/taskbar"
+        "wlr/taskbar",
+        "hyprland/window",
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "hyprland/submap",
         "tray",
         "custom/notification",
         "wireplumber",
@@ -34,8 +36,20 @@
             "urgent": "󰀦 "
         }
     },
+    "hyprland/window" : {
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "🌎 $1",
+        },
+        "separate-outputs": true,
+    },
     "tray": {
         "spacing": 10
+    },
+    "hyprland/submap": {
+        "format": "✌️ {}",
+        "max-length": 15,
+        "tooltip": false,
     },
     "clock": {
         "tooltip-format": "{calendar}",
