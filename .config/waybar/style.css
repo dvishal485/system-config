@@ -119,3 +119,8 @@
 #idle_inhibitor.activated {
     color: @mauve;
 }
+
+#keyboard-state {
+    background: @surface0;
+    margin: 3px 0px;
+}
