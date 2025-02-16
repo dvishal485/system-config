@@ -15,6 +15,7 @@
         "hyprland/submap",
         "tray",
         "custom/notification",
+        "idle_inhibitor",
         "wireplumber",
         "battery",
         "custom/power"
@@ -26,6 +27,15 @@
         "icon-size": 25,
         "tooltip-format": "{title}",
         "ignore-list": [ "WhatsApp for Linux" ]
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "deactivated": "󰈸",
+            "activated": ""
+        },
+        "tooltip-format-activated": "System is not allowed to sleep",
+        "tooltip-format-deactivated": "Idle module running as usual"
     },
     "hyprland/workspaces": {
         "on-click": "activate",
