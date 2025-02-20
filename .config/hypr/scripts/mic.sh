@@ -11,4 +11,4 @@ else
     ICON="mic-on"
 fi
 MIC_VOLUME_INT=$(echo -n $MIC_VOLUME | rg -o '([0-9]).([0-9]*)' -r '$1$2')
-notify-send "Output Sound" "$MIC_VOLUME" -e -i $ICON -h int:value:$MIC_VOLUME_INT -h string:synchronous:mic-volume
+notify-send "Input Audio" "$MIC_VOLUME" -e -i $ICON -h int:value:$MIC_VOLUME_INT -h string:synchronous:mic-volume
