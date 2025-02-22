@@ -164,8 +164,17 @@
   };
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
+    GDK_BACKEND = "wayland";
+    GDK_SCALE = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_SCALE_FACTOR = "1";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
 
   xdg.terminal-exec = {
     enable = true;
