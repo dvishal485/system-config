@@ -2,7 +2,7 @@
 
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 if [ "$HYPRGAMEMODE" = 1 ] ; then
-    hyprctl keyword monitor eDP-1,1920x1080@144,auto,1.0
+    hyprctl keyword monitor eDP-1,highres,highrr,1.0
     hyprctl --batch "\
         keyword animations:enabled 0;\
         keyword decoration:shadow:enabled 0;\
