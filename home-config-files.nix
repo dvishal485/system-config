@@ -23,6 +23,7 @@ in
         "mpv"
         "rofi"
         "swaync"
+        "udiskie"
         "waybar"
         "zed"
         ".gitignore"

@@ -1,0 +1,4 @@
+# https://man.archlinux.org/man/udiskie.8.en
+device_config:
+  - id_type: btrfs
+    options: [compress=zstd]
