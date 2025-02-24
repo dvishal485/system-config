@@ -9,6 +9,7 @@
 {
   environment.systemPackages = with pkgs; [
     # hypr
+    inputs.hyprland-qtutils.packages."${pkgs.system}".default
     inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
     inputs.hypridle.packages."${pkgs.system}".hypridle
     inputs.hyprlock.packages."${pkgs.system}".hyprlock
