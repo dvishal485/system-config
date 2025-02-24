@@ -106,7 +106,8 @@
 
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/3a5cec3a-f85d-438e-99a4-6ac96d857f4b";
+      label = "swap";
+      # device = "/dev/disk/by-label/swap";
       options = [ "noatime" ];
     }
   ];
