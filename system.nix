@@ -38,12 +38,6 @@
     };
   };
 
-  security.sudo-rs = {
-    enable = true;
-    package = pkgs.sudo-rs;
-    execWheelOnly = true;
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
