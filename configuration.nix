@@ -125,16 +125,24 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
-  programs.nh = {
-    enable = true;
-    package = pkgs-unstable.nh;
-    flake = "/home/seattle/nix-config";
-    clean = {
+  programs.nh =
+    let
+      nh-patched = pkgs-unstable.nh.overrideAttrs (
+        finalAttrs: previousAttrs: {
+          patches = previousAttrs.patches ++ [ ./nh.patch ];
+        }
+      );
+    in
+    {
       enable = true;
-      dates = "daily";
-      extraArgs = "--keep-since 3d";
+      package = nh-patched;
+      flake = "/home/seattle/nix-config";
+      clean = {
+        enable = true;
+        dates = "daily";
+        extraArgs = "--keep-since 3d";
+      };
     };
-  };
 
   programs.nix-ld.enable = true;
 
