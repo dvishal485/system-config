@@ -81,7 +81,7 @@
     usbutils
     pciutils
     gnupg
-    gparted
+    gnome-disk-utility
     pkgs-unstable.evil-helix
     wl-clipboard
     firefox-wayland
