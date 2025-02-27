@@ -50,6 +50,10 @@
   };
   hardware.nvidia-container-toolkit.enable = true;
 
+  security.sudo.extraConfig = ''
+    Defaults insults
+  '';
+
   # cuda by default
   # nixpkgs.config.cudaSupport = true;
 
