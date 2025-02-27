@@ -89,6 +89,19 @@
     dotool
   ];
 
+  environment.etc.sudo-askpass = {
+    enable = true;
+    text = ''
+      #!/bin/sh
+      ${pkgs.zenity}/bin/zenity --password --title="Input password for elevated privilages"
+    '';
+    mode = "555";
+  };
+
+  environment.sessionVariables = {
+    SUDO_ASKPASS = "/etc/sudo-askpass";
+  };
+
   services.udev.extraRules =
     let
       mkRule = as: lib.concatStringsSep ", " as;
