@@ -22,4 +22,15 @@
 	<patterns>*</patterns>
 	<image-files/>
 </action>
+<action>
+	<icon>administration</icon>
+	<name>Open as Admin</name>
+	<submenu></submenu>
+	<unique-id>1740647023068646-1</unique-id>
+	<command>sudo -A -E thunar %f</command>
+	<description>Open Thunar as root user</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
 </actions>
