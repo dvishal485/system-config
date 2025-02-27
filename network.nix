@@ -17,6 +17,7 @@
   networking.networkmanager.wifi.powersave = false;
 
   networking.hostName = "seattle";
+  networking.dhcpcd.wait = "background";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # NextDNS
