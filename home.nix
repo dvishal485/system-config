@@ -48,7 +48,7 @@
     gnome-text-editor
     spotube
     viewnior
-    okular
+    kdePackages.okular
     stremio
     zed-editor
     localsend
