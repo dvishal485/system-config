@@ -13,7 +13,7 @@
 
   # environment.sessionVariables.VDPAU_DRIVER = "nvidia";
   # environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
-  environment.sessionVariables.NVD_BACKEND = "direct";
+  # environment.sessionVariables.NVD_BACKEND = "direct";
 
   environment.systemPackages = [ pkgs.libva-utils ];
   hardware.graphics = {
