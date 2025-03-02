@@ -7,9 +7,9 @@
 }:
 let
     # hyprland_pkg = inputs.hyprland.packages.${pkgs.system}.default;
+    # xdg_portal_pkg = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     hyprland_pkg = pkgs.hyprland;
     xdg_portal_pkg = pkgs.xdg-desktop-portal-hyprland;
-    # xdg_portal_pkg = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
 in
 {
   environment.systemPackages = with pkgs; [
