@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
@@ -21,6 +22,7 @@
   environment.systemPackages = [ pkgs.libva-utils ];
   hardware.graphics = {
     enable = true;
+    # package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system}.mesa.drivers;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       rocmPackages.clr.icd

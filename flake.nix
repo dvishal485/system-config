@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    # nixpkgs.follows = "hyprland/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
