@@ -6,7 +6,10 @@
 }:
 {
   # Nvidia Configuration
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [
+    "nvidia"
+    "amdgpu"
+  ];
 
   # this is what powerManagement does
   # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
@@ -20,6 +23,7 @@
     enable = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
+      rocmPackages.clr.icd
     ];
   };
 
