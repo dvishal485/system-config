@@ -1,18 +1,23 @@
 {
+  inputs,
+  config,
   pkgs,
   pkgs-unstable,
-  inputs,
-  lib,
-  config,
   ...
 }:
+let
+    # hyprland_pkg = inputs.hyprland.packages.${pkgs.system}.default;
+    hyprland_pkg = pkgs.hyprland;
+    xdg_portal_pkg = pkgs.xdg-desktop-portal-hyprland;
+    # xdg_portal_pkg = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+in
 {
   environment.systemPackages = with pkgs; [
     # hypr
-    inputs.hyprland-qtutils.packages."${pkgs.system}".default
-    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
-    inputs.hypridle.packages."${pkgs.system}".hypridle
-    inputs.hyprlock.packages."${pkgs.system}".hyprlock
+    pkgs-unstable.hyprland-qtutils
+    pkgs-unstable.hyprlock
+    hyprpolkitagent
+    hypridle
 
     rofi
     egl-wayland
@@ -94,7 +99,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
+      package = config.programs.hyprland.package;
       xwayland.enable = true;
       systemd.enable = false;
     };
@@ -111,8 +116,8 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    package = hyprland_pkg;
+    portalPackage = xdg_portal_pkg;
   };
 
   services.dbus = {

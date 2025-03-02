@@ -1,31 +1,12 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/44534bc021b85c8d78e465021e21f33b856e2540?";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hypridle = {
-      url = "github:hyprwm/Hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprpolkitagent = {
-      url = "github:hyprwm/hyprpolkitagent";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-qtutils = {
-      url = "github:hyprwm/hyprland-qtutils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    hyprland.url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.46.2&submodules=1";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
