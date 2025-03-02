@@ -6,10 +6,15 @@
   ...
 }:
 let
-  # hyprland_pkg = inputs.hyprland.packages.${pkgs.system}.default;
-  # xdg_portal_pkg = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-  hyprland_pkg = pkgs.hyprland;
-  xdg_portal_pkg = pkgs.xdg-desktop-portal-hyprland;
+  use_hyprland_flake = false;
+
+  hyprland = inputs.hyprland.packages.${pkgs.system};
+  hyprland_pkg = if use_hyprland_flake then hyprland.default else pkgs.hyprland;
+  xdg_portal_pkg =
+    if use_hyprland_flake then
+      hyprland.xdg-desktop-portal-hyprland
+    else
+      pkgs.xdg-desktop-portal-hyprland;
 in
 {
   environment.systemPackages = with pkgs; [
