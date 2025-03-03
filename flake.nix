@@ -4,6 +4,9 @@
     # nixpkgs.follows = "hyprland/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nh.url = "github:viperML/nh/v3.6.0";
+    nh.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
