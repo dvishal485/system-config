@@ -168,11 +168,6 @@
       # my cat is batman
       # ah, well, i would like to use both whenever i feel like, cat still useful
       # cat = "bat";
-
-      # immich stuff
-      immich-start = "uwsm app -- podman pod start pod_immich";
-      immich-stop = "uwsm app -- podman pod stop pod_immich";
-      immich-update = "uwsm app -- podman compose up -d --force-recreate";
     };
   };
 
