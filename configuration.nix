@@ -128,9 +128,10 @@
 
   programs.nh =
     let
-      nh-patched = pkgs-unstable.nh.overrideAttrs (
+      nh = inputs.nh.packages.${pkgs.system}.nh;
+      nh-patched = nh.overrideAttrs (
         finalAttrs: previousAttrs: {
-          patches = previousAttrs.patches ++ [ ./nh.patch ];
+          patches = previousAttrs.patches ++ [ ./nh-v3.6.0.patch ];
         }
       );
     in
