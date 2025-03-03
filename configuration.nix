@@ -84,7 +84,7 @@
     gnome-disk-utility
     pkgs-unstable.evil-helix
     wl-clipboard
-    firefox-wayland
+    librewolf
     libnotify
     dotool
   ];
