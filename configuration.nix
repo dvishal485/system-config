@@ -93,7 +93,7 @@
     enable = true;
     text = ''
       #!/bin/sh
-      ${pkgs.zenity}/bin/zenity --password --title="Input password for elevated privilages"
+      ${pkgs.zenity}/bin/zenity --password --title="Input password for elevated privilages" || (read -s -p 'Input Password: ' password && echo $password && unset password)
     '';
     mode = "555";
   };
