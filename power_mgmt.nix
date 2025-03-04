@@ -58,14 +58,39 @@
     let
       mkRule = as: lib.concatStringsSep ", " as;
       mkRules = rs: lib.concatStringsSep "\n" rs;
+      targetMachine = "seattle@.host";
     in
     mkRules [
+      # hdd spin stop for laptop battery savings
       (mkRule [
         ''ACTION=="add|change"''
         ''SUBSYSTEM=="block"''
         ''KERNEL=="sd[a-z]"''
         ''ATTR{queue/rotational}=="1"''
         ''RUN+="${pkgs.hdparm}/bin/hdparm -B 90 -S 41 /dev/%k"''
+      ])
+      # hibernate at low battery
+      (mkRule [
+        ''SUBSYSTEM=="power_supply"''
+        ''KERNEL=="BAT0"''
+        ''ATTR{status}=="Discharging"''
+        ''ATTR{capacity}=="[0-5]"''
+        ''RUN+="${pkgs.systemd}/bin/systemctl hibernate"''
+      ])
+      # battery status notification
+      (mkRule [
+        ''ACTION=="change"''
+        ''SUBSYSTEM=="power_supply"''
+        ''ATTRS{type}=="Mains"''
+        ''ATTRS{online}=="0"''
+        ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery -u low -h string:synchronous:battery_status 'Changing Power States' 'Using battery power'"''
+      ])
+      (mkRule [
+        ''ACTION=="change"''
+        ''SUBSYSTEM=="power_supply"''
+        ''ATTRS{type}=="Mains"''
+        ''ATTRS{online}=="1"''
+        ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery_plugged -u low -h string:synchronous:battery_status 'Changing Power States' 'Using AC power'"''
       ])
     ];
 }
