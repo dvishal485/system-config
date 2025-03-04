@@ -78,19 +78,22 @@
         ''RUN+="${pkgs.systemd}/bin/systemctl hibernate"''
       ])
       # battery status notification
-      (mkRule [
-        ''ACTION=="change"''
-        ''SUBSYSTEM=="power_supply"''
-        ''ATTRS{type}=="Mains"''
-        ''ATTRS{online}=="0"''
-        ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery -u low -h string:synchronous:battery_status 'Changing Power States' 'Using battery power'"''
-      ])
-      (mkRule [
-        ''ACTION=="change"''
-        ''SUBSYSTEM=="power_supply"''
-        ''ATTRS{type}=="Mains"''
-        ''ATTRS{online}=="1"''
-        ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery_plugged -u low -h string:synchronous:battery_status 'Changing Power States' 'Using AC power'"''
-      ])
+      # as of now, when the rule fires, it doesn't reach graphical target unit
+      # and hence fails, but not just that, it somehow prevents further
+      # tasks, example: my keyring fails to unlock with greetd login
+      # (mkRule [
+      #   ''ACTION=="change"''
+      #   ''SUBSYSTEM=="power_supply"''
+      #   ''ATTRS{type}=="Mains"''
+      #   ''ATTRS{online}=="0"''
+      #   ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery -u low -h string:synchronous:battery_status 'Changing Power States' 'Using battery power'"''
+      # ])
+      # (mkRule [
+      #   ''ACTION=="change"''
+      #   ''SUBSYSTEM=="power_supply"''
+      #   ''ATTRS{type}=="Mains"''
+      #   ''ATTRS{online}=="1"''
+      #   ''RUN+="${pkgs.systemd}/bin/systemd-run --machine=${targetMachine} --user ${pkgs.libnotify}/bin/notify-send -e -i battery_plugged -u low -h string:synchronous:battery_status 'Changing Power States' 'Using AC power'"''
+      # ])
     ];
 }
