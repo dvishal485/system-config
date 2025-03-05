@@ -6,6 +6,15 @@
 }:
 let
   cfg = config.programs.gaming;
+  patchDesktop =
+    pkg: appName: from: to:
+    lib.hiPrio (
+      pkgs.runCommand "nv-offload-${appName}" { } ''
+        ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
+        ${pkgs.gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
+      ''
+    );
+  GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
 in
 {
   options = {
@@ -16,6 +25,11 @@ in
           type = lib.types.package;
           description = "Lutris package";
           default = pkgs.lutris;
+        };
+        nvOffload = lib.mkOption {
+          type = lib.types.bool;
+          description = "Enable nvidia offload for lutris";
+          default = config.hardware.nvidia.prime.offload.enable;
         };
         envPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
@@ -99,10 +113,22 @@ in
       [
         lutrisPkg
       ]
+      ++ lib.optional cfg.lutris.nvOffload (GPUOffloadApp lutrisPkg "net.lutris.Lutris")
       ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
       ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice
       ++ cfg.lutris.envPackages
       ++ winePkg;
+
+    assertions =
+      let
+        offload = config.hardware.nvidia.prime.offload;
+      in
+      [
+        {
+          assertion = !cfg.lutris.nvOffload || (offload.enable && offload.enableOffloadCmd);
+          message = "nvOffload requires NVIDIA PRIME Offload Mode enabled with offload-command";
+        }
+      ];
   };
 
   meta.maintainers = [ lib.maintainers.imsick ];

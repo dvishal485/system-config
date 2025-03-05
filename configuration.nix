@@ -30,6 +30,7 @@
     lutris.envPackages = with pkgs; [
       vkbasalt
     ];
+    lutris.nvOffload = false;
     wine = {
       enable = true;
       # nix flake show github:fufexan/nix-gaming
