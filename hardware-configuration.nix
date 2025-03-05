@@ -78,9 +78,18 @@
     };
 
     "/home" = {
-      label = "home";
-      fsType = "ext4";
+      label = "nixroot";
+      fsType = "btrfs";
+      options = [
+        "subvol=home"
+        "compress=zstd"
+      ];
     };
+
+    # "/home" = {
+    #   label = "home";
+    #   fsType = "ext4";
+    # };
 
     # "/mnt/winux" = {
     #   label = "winux";
