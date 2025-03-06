@@ -21,6 +21,7 @@ in
     programs.gaming = {
       enable = lib.mkEnableOption "Enable gaming module with lutris";
       lutris = {
+        enable = lib.mkEnableOption "Enable lutris";
         package = lib.mkOption {
           type = lib.types.package;
           description = "Lutris package";
@@ -31,16 +32,29 @@ in
           description = "Enable nvidia offload for lutris";
           default = config.hardware.nvidia.prime.offload.enable;
         };
-        envPackages = lib.mkOption {
-          type = lib.types.listOf lib.types.package;
-          description = "Extra packages to install with lutris and system";
-          default = [ ];
+      };
+      heroic = {
+        enable = lib.mkEnableOption "Enable heroic";
+        package = lib.mkOption {
+          type = lib.types.package;
+          description = "Heroic package";
+          default = pkgs.heroic;
         };
-        libPackages = lib.mkOption {
-          type = lib.types.listOf lib.types.package;
-          description = "Extra libraries to install with lutris";
-          default = [ ];
+        nvOffload = lib.mkOption {
+          type = lib.types.bool;
+          description = "Enable nvidia offload for heroic";
+          default = config.hardware.nvidia.prime.offload.enable;
         };
+      };
+      envPackages = lib.mkOption {
+        type = lib.types.listOf lib.types.package;
+        description = "Extra packages to install with lutris and/or heroic";
+        default = [ ];
+      };
+      libPackages = lib.mkOption {
+        type = lib.types.listOf lib.types.package;
+        description = "Extra libraries to install with lutris and/or heroic";
+        default = [ ];
       };
       wine = {
         enable = lib.mkEnableOption "Enable wine";
@@ -105,18 +119,22 @@ in
       let
         winePkg = lib.optional cfg.wine.enable cfg.wine.package;
         gamescopePkg = lib.optional cfg.gamescope.enable cfg.gamescope.package;
-        lutrisExtras = cfg.lutris.envPackages ++ cfg.lutris.libPackages;
+        extraPkgs = cfg.envPackages ++ cfg.libPackages;
         lutrisPkg = cfg.lutris.package.override {
-          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ lutrisExtras;
+          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ extraPkgs;
+        };
+        heroicPkg = cfg.heroic.package.override {
+          extraPkgs = pkgs: winePkg ++ gamescopePkg ++ extraPkgs;
         };
       in
-      [
-        lutrisPkg
-      ]
-      ++ lib.optional cfg.lutris.nvOffload (GPUOffloadApp lutrisPkg "net.lutris.Lutris")
+      lib.optional cfg.heroic.enable heroicPkg
+      ++ lib.optional cfg.lutris.enable lutrisPkg
+      ++ lib.optional (cfg.lutris.enable && cfg.lutris.nvOffload) (
+        GPUOffloadApp lutrisPkg "net.lutris.Lutris"
+      )
       ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
       ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice
-      ++ cfg.lutris.envPackages
+      ++ cfg.envPackages
       ++ winePkg;
 
     assertions =
@@ -125,7 +143,8 @@ in
       in
       [
         {
-          assertion = !cfg.lutris.nvOffload || (offload.enable && offload.enableOffloadCmd);
+          assertion =
+            (cfg.lutris.nvOffload || cfg.heroic.nvOffload) -> (offload.enable && offload.enableOffloadCmd);
           message = "nvOffload requires NVIDIA PRIME Offload Mode enabled with offload-command";
         }
       ];

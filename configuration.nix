@@ -27,10 +27,11 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
     enable = true;
-    lutris.envPackages = with pkgs; [
+    lutris.enable = false;
+    heroic.enable = true;
+    envPackages = with pkgs; [
       vkbasalt
     ];
-    lutris.nvOffload = false;
     wine = {
       enable = true;
       # nix flake show github:fufexan/nix-gaming
