@@ -42,7 +42,7 @@
       label = "nixroot";
       fsType = "btrfs";
       options = [
-        "subvol=root"
+        "subvol=root_container/root"
         "compress=zstd"
         "noatime"
       ];
@@ -51,7 +51,7 @@
     "/nix" = {
       label = "nixroot";
       options = [
-        "subvol=nix"
+        "subvol=root_container/nix"
         "compress=zstd"
         "noatime"
       ];
@@ -61,7 +61,7 @@
       label = "nixroot";
       fsType = "btrfs";
       options = [
-        "subvol=persist"
+        "subvol=root_container/persist"
         "compress=zstd"
         "noatime"
       ];
@@ -71,7 +71,7 @@
       label = "nixroot";
       fsType = "btrfs";
       options = [
-        "subvol=log"
+        "subvol=root_container/log"
         "compress=zstd"
         "noatime"
       ];
