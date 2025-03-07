@@ -27,8 +27,8 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
     enable = true;
-    lutris.enable = false;
-    heroic.enable = true;
+    lutris.enable = true;
+    heroic.enable = false;
     envPackages = with pkgs; [
       vkbasalt
     ];
