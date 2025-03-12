@@ -150,8 +150,8 @@
       "checkjobs"
       "cdspell"
     ];
-    profileExtra = ''
-      eval "$(devbox global shellenv --init-hook)"
+    bashrcExtra = ''
+      eval "$(devbox global shellenv --init-hook)" > /dev/null
     '';
 
     # shell alias saves the day
