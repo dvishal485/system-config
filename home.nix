@@ -151,7 +151,7 @@
       "cdspell"
     ];
     bashrcExtra = ''
-      eval "$(devbox global shellenv --init-hook)" > /dev/null
+      set -h && eval "$(devbox global shellenv --init-hook)"
     '';
 
     # shell alias saves the day
