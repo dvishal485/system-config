@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   boot.supportedFilesystems = [
-    "ntfs"
     "btrfs"
   ];
 
