@@ -46,7 +46,7 @@
 
     # personal usecase
     gnome-text-editor
-    spotube
+    pkgs-unstable.spotube
     viewnior
     kdePackages.okular
     stremio
