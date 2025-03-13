@@ -12,6 +12,11 @@ let
       pkgs.runCommand "wrapped-${appName}" { } ''
         ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
         ${pkgs.gnused}/bin/sed -E 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
+
+        # temporary patch to fix lutris desktop file
+        ${pkgs.coreutils}/bin/cp $out/share/applications/${appName}.desktop $out/share/applications/${appName}-temp.desktop
+        sed 's# %U##g' < $out/share/applications/${appName}-temp.desktop > $out/share/applications/${appName}.desktop
+        ${pkgs.coreutils}/bin/rm $out/share/applications/${appName}-temp.desktop
       ''
     );
   gamemodeToggleScript = cfg.lutris.gamingModeToggleScript;
