@@ -24,9 +24,14 @@ let
           ''Exec=${preCmd} \1''
         else
           let
-            gamingModeToggle = pkgs.writeShellScript "toggle-gaming-mode" gamemodeToggleScript;
+            toggleGamingMode = pkgs.writeShellScript "toggle-gaming-mode" gamemodeToggleScript;
+            wrappedPkg = pkgs.writeShellScript "gaming-wrapper-${desktopName}" ''
+              ${toggleGamingMode}
+              ${preCmd} "$@"
+              ${toggleGamingMode}
+            '';
           in
-          ''Exec=${gamingModeToggle} \&\& ${preCmd} \1 \&\& ${gamingModeToggle}'';
+          ''Exec=${wrappedPkg} \1'';
     in
     patchDesktop pkg desktopName "^Exec=(.*)" replace_pattern;
 in
