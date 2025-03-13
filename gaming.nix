@@ -9,12 +9,26 @@ let
   patchDesktop =
     pkg: appName: from: to:
     lib.hiPrio (
-      pkgs.runCommand "nv-offload-${appName}" { } ''
+      pkgs.runCommand "wrapped-${appName}" { } ''
         ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
-        ${pkgs.gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
+        ${pkgs.gnused}/bin/sed -E 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
       ''
     );
-  GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
+  gamemodeToggleScript = cfg.lutris.gamingModeToggleScript;
+  wrapperApp =
+    pkg: desktopName:
+    let
+      preCmd = if cfg.lutris.nvOffload then "nvidia-offload" else "";
+      replace_pattern =
+        if gamemodeToggleScript == null then
+          ''Exec=${preCmd} \1''
+        else
+          let
+            gamingModeToggle = pkgs.writeShellScript "toggle-gaming-mode" gamemodeToggleScript;
+          in
+          ''Exec=${gamingModeToggle} \&\& ${preCmd} \1 \&\& ${gamingModeToggle}'';
+    in
+    patchDesktop pkg desktopName "^Exec=(.*)" replace_pattern;
 in
 {
   options = {
@@ -22,6 +36,11 @@ in
       enable = lib.mkEnableOption "Enable gaming module with lutris";
       lutris = {
         enable = lib.mkEnableOption "Enable lutris";
+        gamingModeToggleScript = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          description = "Script used to toggle gaming mode; runs before and after lutris";
+          default = null;
+        };
         package = lib.mkOption {
           type = lib.types.package;
           description = "Lutris package";
@@ -129,8 +148,8 @@ in
       in
       lib.optional cfg.heroic.enable heroicPkg
       ++ lib.optional cfg.lutris.enable lutrisPkg
-      ++ lib.optional (cfg.lutris.enable && cfg.lutris.nvOffload) (
-        GPUOffloadApp lutrisPkg "net.lutris.Lutris"
+      ++ lib.optional (cfg.lutris.enable && (cfg.lutris.nvOffload || gamemodeToggleScript != null)) (
+        wrapperApp lutrisPkg "net.lutris.Lutris"
       )
       ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
       ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice

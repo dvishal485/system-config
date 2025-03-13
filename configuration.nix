@@ -28,6 +28,7 @@
   programs.gaming = {
     enable = true;
     lutris.enable = true;
+    lutris.gamingModeToggleScript = builtins.readFile ./.config/hypr/scripts/perf_mode.sh;
     heroic.enable = false;
     envPackages = with pkgs; [
       vkbasalt
