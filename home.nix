@@ -23,7 +23,6 @@
     ouch
 
     # programming lang support
-    pkg-config
     vscode-fhs
 
     # tools and utils
