@@ -21,6 +21,7 @@
     fd
     gitui
     ouch
+    rmtrash
 
     # programming lang support
     vscode-fhs
@@ -155,6 +156,7 @@
 
     # shell alias saves the day
     shellAliases = {
+      rm = "rmtrash";
       g = "gitui";
       bt = "bluetooth";
       zed = "zeditor";
