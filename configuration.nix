@@ -28,6 +28,7 @@
   programs.gaming = {
     enable = true;
     lutris.enable = true;
+    lutris.package = pkgs-unstable.lutris;
     lutris.gamingModeToggleScript = builtins.readFile ./.config/hypr/scripts/perf_mode.sh;
     heroic.enable = false;
     envPackages = with pkgs; [
@@ -40,7 +41,7 @@
       package = pkgs-unstable.wineWowPackages.waylandFull;
     };
     gamemode.enable = true;
-    gamescope.enable = true;
+    gamescope.enable = false; # doesn't work, also not required
     mangohud.enable = true;
   };
 
