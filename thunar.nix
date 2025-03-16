@@ -7,6 +7,17 @@
 
 let
   cfg = config.programs.thunar-with-flags;
+  thunarWithFlags = cfg.package.overrideAttrs (o: {
+    configureFlags = o.configureFlags ++ cfg.configureFlags;
+  });
+  finalPackage =
+    if cfg.plugins == [ ] then
+      thunarWithFlags
+    else
+      pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
+        thunarPlugins = cfg.plugins;
+        thunar = thunarWithFlags;
+      };
 in
 {
   meta = {
@@ -38,37 +49,28 @@ in
         type = lib.types.package;
         description = "The Thunar package to use.";
       };
+      finalPackage = lib.mkOption {
+        type = lib.types.package;
+        readOnly = true;
+        description = "The final Thunar package with custom flags and plugins";
+        default = finalPackage;
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable (
-    let
-      thunarWithFlags = cfg.package.overrideAttrs (o: {
-        configureFlags = o.configureFlags ++ cfg.configureFlags;
-      });
-      package =
-        if cfg.plugins == [ ] then
-          thunarWithFlags
-        else
-          pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
-            thunarPlugins = cfg.plugins;
-            thunar = thunarWithFlags;
-          };
-    in
-    {
-      environment.systemPackages = [
-        package
-      ];
+  config = lib.mkIf cfg.enable ({
+    environment.systemPackages = [
+      finalPackage
+    ];
 
-      services.dbus.packages = [
-        package
-      ];
+    services.dbus.packages = [
+      finalPackage
+    ];
 
-      systemd.packages = [
-        package
-      ];
+    systemd.packages = [
+      finalPackage
+    ];
 
-      programs.xfconf.enable = true;
-    }
-  );
+    programs.xfconf.enable = true;
+  });
 }
