@@ -15,6 +15,19 @@ let
       hyprland.xdg-desktop-portal-hyprland
     else
       pkgs.xdg-desktop-portal-hyprland;
+  hyprshot_notification = pkgs.writeScriptBin "hyprshot-notification" ''
+    #!/usr/bin/env sh
+    action=$(${pkgs.libnotify}/bin/notify-send "Screenshot saved" \
+      "Screenshot saved to path $@" \
+      -t 5000 -i "$@" -a Hyprshot \
+      -A default=show -A dir='Show directory')
+
+    if [[ "$action" == "default" ]]; then
+      ${pkgs.xdg-utils}/bin/xdg-open "$@"
+    elif [[ "$action" == "dir" ]]; then
+      ${pkgs.xdg-utils}/bin/xdg-open "$(${pkgs.coreutils}/bin/dirname "$@")"
+    fi
+  '';
 in
 {
   environment.systemPackages = with pkgs; [
@@ -23,6 +36,7 @@ in
     pkgs-unstable.hyprlock
     hyprpolkitagent
     hypridle
+    hyprshot
 
     rofi
     egl-wayland
@@ -36,8 +50,6 @@ in
     waybar
     swww
     kdePackages.qtwayland
-    hyprshot
-    grim
     libsecret
     libgnome-keyring
     libcanberra-gtk3
@@ -100,6 +112,7 @@ in
       gnome-calendar
       qalculate-gtk
       nwg-look
+      hyprshot_notification
     ];
 
     wayland.windowManager.hyprland = {
