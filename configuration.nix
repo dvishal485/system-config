@@ -31,7 +31,7 @@
     lutris.package = pkgs-unstable.lutris;
     gamingModeToggleScript = builtins.readFile ./.config/hypr/scripts/perf_mode.sh;
     heroic.enable = false;
-    envPackages = with pkgs; [
+    libPackages = with pkgs; [
       vkbasalt
     ];
     wine = {
