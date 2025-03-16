@@ -33,7 +33,7 @@
     htop
     gnome-system-monitor
     podman-compose
-    podman-tui
+    podman-desktop
     bat
     typst
     tinymist
