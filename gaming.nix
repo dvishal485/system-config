@@ -48,16 +48,16 @@ in
       enable = lib.mkEnableOption "Enable gaming module with lutris";
       lutris = {
         enable = lib.mkEnableOption "Enable lutris";
-        gamingModeToggleScript = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
-          description = "Script used to toggle gaming mode; runs before and after lutris";
-          default = null;
-        };
         package = lib.mkOption {
           type = lib.types.package;
           description = "Lutris package";
           default = pkgs.lutris;
         };
+      };
+      gamingModeToggleScript = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        description = "Script used to toggle gaming mode; runs before and after lutris and heroic";
+        default = null;
       };
       nvOffload = lib.mkOption {
         type = lib.types.bool;
