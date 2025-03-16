@@ -9,34 +9,36 @@ let
   patchDesktop =
     pkg: appName: from: to:
     lib.hiPrio (
-      pkgs.runCommand "wrapped-${appName}" { } ''
+      pkgs.runCommand appName { } ''
         ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
         ${pkgs.gnused}/bin/sed -E 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
 
         # temporary patch to fix lutris desktop file
-        ${pkgs.coreutils}/bin/cp $out/share/applications/${appName}.desktop $out/share/applications/${appName}-temp.desktop
-        sed 's# %U##g' < $out/share/applications/${appName}-temp.desktop > $out/share/applications/${appName}.desktop
-        ${pkgs.coreutils}/bin/rm $out/share/applications/${appName}-temp.desktop
+        sed -i 's# %U##g' $out/share/applications/${appName}.desktop
       ''
     );
-  gamemodeToggleScript = cfg.lutris.gamingModeToggleScript;
-  wrapperApp =
+  preCmd = if cfg.nvOffload then "nvidia-offload" else "";
+  gamemodeToggleScript =
+    if cfg.gamingModeToggleScript == null then
+      null
+    else
+      let
+        toggleGamingMode = pkgs.writeScriptBin "toggle-gaming-mode" cfg.gamingModeToggleScript;
+      in
+      pkgs.writeScriptBin "gaming-wrapper" ''
+        #!/usr/bin/env sh
+        ${toggleGamingMode}/bin/toggle-gaming-mode &
+        ${preCmd} $@
+        ${toggleGamingMode}/bin/toggle-gaming-mode
+      '';
+  wrapApp =
     pkg: desktopName:
     let
-      preCmd = if cfg.lutris.nvOffload then "nvidia-offload" else "";
       replace_pattern =
         if gamemodeToggleScript == null then
           ''Exec=${preCmd} \1''
         else
-          let
-            toggleGamingMode = pkgs.writeShellScript "toggle-gaming-mode" gamemodeToggleScript;
-            wrappedPkg = pkgs.writeShellScript "gaming-wrapper-${desktopName}" ''
-              ${toggleGamingMode}
-              ${preCmd} "$@"
-              ${toggleGamingMode}
-            '';
-          in
-          ''Exec=${wrappedPkg} \1'';
+          ''Exec=${gamemodeToggleScript}/bin/gaming-wrapper \1'';
     in
     patchDesktop pkg desktopName "^Exec=(.*)" replace_pattern;
 in
@@ -56,11 +58,11 @@ in
           description = "Lutris package";
           default = pkgs.lutris;
         };
-        nvOffload = lib.mkOption {
-          type = lib.types.bool;
-          description = "Enable nvidia offload for lutris";
-          default = config.hardware.nvidia.prime.offload.enable;
-        };
+      };
+      nvOffload = lib.mkOption {
+        type = lib.types.bool;
+        description = "Enable nvidia offload for lutris and heroic desktop files";
+        default = config.hardware.nvidia.prime.offload.enable;
       };
       heroic = {
         enable = lib.mkEnableOption "Enable heroic";
@@ -68,11 +70,6 @@ in
           type = lib.types.package;
           description = "Heroic package";
           default = pkgs.heroic;
-        };
-        nvOffload = lib.mkOption {
-          type = lib.types.bool;
-          description = "Enable nvidia offload for heroic";
-          default = config.hardware.nvidia.prime.offload.enable;
         };
       };
       envPackages = lib.mkOption {
@@ -155,12 +152,14 @@ in
         heroicPkg = cfg.heroic.package.override {
           extraPkgs = pkgs: winePkg ++ gamescopePkg ++ extraPkgs;
         };
+        wrapperRequired = cfg.nvOffload || gamemodeToggleScript != null;
       in
       lib.optional cfg.heroic.enable heroicPkg
       ++ lib.optional cfg.lutris.enable lutrisPkg
-      ++ lib.optional (cfg.lutris.enable && (cfg.lutris.nvOffload || gamemodeToggleScript != null)) (
-        wrapperApp lutrisPkg "net.lutris.Lutris"
+      ++ lib.optional (wrapperRequired && cfg.heroic.enable) (
+        wrapApp heroicPkg "com.heroicgameslauncher.hgl.desktop"
       )
+      ++ lib.optional (wrapperRequired && cfg.lutris.enable) (wrapApp lutrisPkg "net.lutris.Lutris")
       ++ lib.optional cfg.mangohud.enable cfg.mangohud.package
       ++ lib.optional cfg.mangohud.enableMangojuice pkgs.mangojuice
       ++ cfg.envPackages
@@ -172,8 +171,7 @@ in
       in
       [
         {
-          assertion =
-            (cfg.lutris.nvOffload || cfg.heroic.nvOffload) -> (offload.enable && offload.enableOffloadCmd);
+          assertion = cfg.nvOffload -> (offload.enable && offload.enableOffloadCmd);
           message = "nvOffload requires NVIDIA PRIME Offload Mode enabled with offload-command";
         }
       ];
