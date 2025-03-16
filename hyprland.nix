@@ -56,8 +56,8 @@ in
     kdePackages.qt6ct
     libsForQt5.qt5ct
     udiskie
-    wmctrl
-    libinput-gestures
+    # wmctrl
+    # libinput-gestures
   ];
 
   programs.foot = {
