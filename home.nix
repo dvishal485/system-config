@@ -49,7 +49,7 @@
     viewnior
     kdePackages.okular
     stremio
-    zed-editor
+    pkgs-unstable.zed-editor
     localsend
     google-chrome
     signal-desktop

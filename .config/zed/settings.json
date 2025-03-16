@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "vim_mode": true,
+  "confirm_quit": true,
   "relative_line_numbers": true,
   "assistant": {
     "default_model": {
@@ -15,6 +16,10 @@
       "model": "gpt-4o"
     },
     "version": "2"
+  },
+  "tabs": {
+    "git_status": true,
+    "show_diagnostics": "errors"
   },
   "ui_font_size": 16,
   "buffer_font_size": 16,
