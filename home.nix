@@ -44,6 +44,8 @@
     pkgs-unstable.d2
     # wayvnc
 
+    (callPackage ./derivations/neohtop.nix { })
+
     # personal usecase
     gnome-text-editor
     pkgs-unstable.spotube
