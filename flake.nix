@@ -26,7 +26,7 @@
       ...
     }:
     {
-      nixosConfigurations.seattle = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.rio = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
 
         specialArgs = {

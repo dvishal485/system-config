@@ -58,8 +58,8 @@
     let
       mkRule = as: lib.concatStringsSep ", " as;
       mkRules = rs: lib.concatStringsSep "\n" rs;
-      targetMachine = "seattle@.host";
     in
+    # targetMachine = "seattle@.host";
     mkRules [
       # hdd spin stop for laptop battery savings
       (mkRule [
