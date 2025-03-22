@@ -185,6 +185,7 @@ in
   security.pam.services.sudo.nodelay = true;
   security.pam.services.hyprlock = {
     nodelay = true;
+    enableGnomeKeyring = true;
   };
   security.pam.services.greetd.enableGnomeKeyring = true;
 
