@@ -17,4 +17,7 @@ theme='style-1'
 ## Run
 rofi \
     -show drun \
+    -matching fuzzy \
+    -sort \
+    -sorting-method fzf \
     -theme ${dir}/${theme}.rasi
