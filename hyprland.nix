@@ -38,7 +38,7 @@ in
     hypridle
     hyprshot
 
-    rofi
+    rofi-wayland
     egl-wayland
     swaynotificationcenter
     networkmanagerapplet
