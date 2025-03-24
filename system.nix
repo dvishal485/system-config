@@ -29,6 +29,37 @@
     };
   };
 
+  systemd.timers.btrfs-backup = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+  };
+
+  systemd.services.btrfs-backup = {
+    path = with pkgs; [
+      btrfs-progs
+      util-linux
+    ];
+    script = ''
+      mount_point=/tmp/backup-mount
+
+      suffix=$(date +%Y-%m-%d)
+
+      mkdir -p $mount_point
+      mount -o noatime -o compress=zstd /dev/disk/by-label/nixroot $mount_point
+
+      btrfs subvol snapshot $mount_point/home $mount_point/backups/home-$suffix -r
+
+      umount $mount_point && rm -r $mount_point
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
+
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
