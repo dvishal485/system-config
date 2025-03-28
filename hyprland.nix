@@ -51,7 +51,6 @@ in
     swww
     kdePackages.qtwayland
     libsecret
-    libgnome-keyring
     libcanberra-gtk3
     kdePackages.qt6ct
     libsForQt5.qt5ct
