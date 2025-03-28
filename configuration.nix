@@ -24,7 +24,7 @@
     ./thunar.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
     enable = true;
     lutris.enable = true;
