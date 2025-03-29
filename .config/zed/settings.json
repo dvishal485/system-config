@@ -36,6 +36,9 @@
     },
     "Nix": {
       "language_servers": ["nil"]
+    },
+    "Markdown": {
+      "format_on_save": "off"
     }
   },
   "lsp": {
