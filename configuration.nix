@@ -22,7 +22,50 @@
     ./hyprland.nix
     ./gaming.nix
     ./thunar.nix
+    inputs.btrfs-simple-snapshot.nixosModules.default
   ];
+
+  services.btrfs-simple-snapshot = {
+    enable = true;
+    tasks =
+      let
+        mount_point = "/var/tmp/btrfs-simple-snapshot";
+      in
+      [
+        {
+          pre-cmd = ''
+            ${pkgs.coreutils}/bin/mkdir -p ${mount_point}
+            ${pkgs.util-linux}/bin/mount -o noatime -o compress=zstd /dev/disk/by-label/nixroot ${mount_point}
+          '';
+          post-cmd = ''
+            ${pkgs.util-linux}/bin/umount ${mount_point}
+            ${pkgs.coreutils}/bin/rm -r ${mount_point}
+          '';
+          mount-point = mount_point;
+          subvolume = "home";
+          snapshot-path = "backups";
+          snapshot = {
+            enable = true;
+            args = {
+              readonly = true;
+              suffix-format = "%Y-%m-%d-%H.%M.%S";
+              prefix = null;
+            };
+          };
+          cleanup = {
+            enable = true;
+            args = {
+              keep-count = 10;
+              keep-since = "3 days";
+            };
+          };
+        }
+      ];
+    config = {
+      verbose = true;
+      interval = "hourly";
+    };
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
@@ -176,12 +219,14 @@
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
+      "https://btrfs-simple-snapshot.cachix.org"
     ];
 
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "btrfs-simple-snapshot.cachix.org-1:fzqd4nDTzaoXe0sPf/y0lrrz/sm9kyJhuYt87hRMb58="
     ];
   };
 }
