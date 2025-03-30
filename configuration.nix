@@ -56,14 +56,14 @@
             enable = true;
             args = {
               keep-count = 10;
-              keep-since = "3 days";
+              keep-since = "1 week";
             };
           };
         }
       ];
     config = {
       verbose = true;
-      interval = "hourly";
+      interval = "daily";
     };
   };
 
