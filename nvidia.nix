@@ -86,11 +86,17 @@
   specialisation = {
     nvidia-sync-mode.configuration = {
       system.nixos.tags = [ "nvidia-sync-mode" ];
+      environment.etc."specialisation".text = "nvidia-sync-mode";
       hardware.nvidia = {
         prime.offload.enable = lib.mkForce false;
         prime.offload.enableOffloadCmd = lib.mkForce false;
         prime.sync.enable = lib.mkForce true;
       };
+    };
+    gaming.configuration = {
+      system.nixos.tags = [ "gaming" ];
+      environment.etc."specialisation".text = "gaming";
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;
     };
   };
 
