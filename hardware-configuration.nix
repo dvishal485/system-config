@@ -86,6 +86,15 @@
       ];
     };
 
+    "/mnt/root" = {
+      label = "nixroot";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
     # "/home" = {
     #   label = "home";
     #   fsType = "ext4";
