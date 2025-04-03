@@ -25,6 +25,7 @@
 
     # programming lang support
     vscode-fhs
+    android-studio-full
 
     # tools and utils
     jq
