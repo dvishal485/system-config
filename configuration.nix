@@ -134,6 +134,7 @@
     librewolf
     libnotify
     dotool
+    # uutils-coreutils-noprefix still a wip
   ];
 
   environment.etc.sudo-askpass = {
