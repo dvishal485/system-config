@@ -22,6 +22,7 @@
     ./hyprland.nix
     ./gaming.nix
     ./thunar.nix
+    ./android.nix
     inputs.btrfs-simple-snapshot.nixosModules.default
   ];
 
