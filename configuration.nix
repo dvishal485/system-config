@@ -20,6 +20,7 @@
     ./audio.nix
     ./users.nix
     ./hyprland.nix
+    ./pam-keyring.nix
     ./gaming.nix
     ./thunar.nix
     ./android.nix

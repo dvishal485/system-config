@@ -49,7 +49,6 @@ in
     waybar
     swww
     kdePackages.qtwayland
-    libsecret
     libcanberra-gtk3
     kdePackages.qt6ct
     libsForQt5.qt5ct
@@ -136,13 +135,6 @@ in
     portalPackage = xdg_portal_pkg;
   };
 
-  services.dbus = {
-    enable = true;
-    # packages = [
-    #   pkgs.seahorse # already added by programs.seahorse.enable
-    # ];
-  };
-
   programs.thunar-with-flags = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -163,8 +155,6 @@ in
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
   services.gvfs.enable = true; # trash service
   services.tumbler.enable = true; # img thumbnail service
 
@@ -179,13 +169,6 @@ in
   };
 
   security.polkit.enable = true;
-
-  security.pam.services.sudo.nodelay = true;
-  security.pam.services.hyprlock = {
-    nodelay = true;
-    enableGnomeKeyring = true;
-  };
-  security.pam.services.greetd.enableGnomeKeyring = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
