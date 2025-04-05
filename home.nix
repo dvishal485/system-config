@@ -74,6 +74,7 @@
     aspellDicts.en-science
 
     # kdePackages.kdeconnect-kde # drains phone battery
+    mongodb-compass
   ];
 
   programs.obs-studio.enable = true;
