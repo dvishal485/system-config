@@ -49,4 +49,8 @@ in
   environment.systemPackages = [
     (pkgs.android-studio-full.withSdk androidSdk)
   ];
+  environment.variables = {
+    ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+    GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${versions.buildTools}/aapt2";
+  };
 }
