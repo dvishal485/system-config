@@ -39,7 +39,6 @@ in
     hyprshot
 
     rofi-wayland
-    egl-wayland
     swaynotificationcenter
     networkmanagerapplet
     brightnessctl

@@ -26,6 +26,7 @@
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       rocmPackages.clr.icd
+      egl-wayland
     ];
   };
 
