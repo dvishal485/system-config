@@ -19,6 +19,13 @@
     # ];
   };
 
+
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = lib.mkIf use_kwallet "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+  };
+  environment.variables.SSH_ASKPASS_REQUIRE = lib.mkIf use_kwallet "prefer";
+
   # pam service
   security.pam.services = {
     sudo.nodelay = true;
