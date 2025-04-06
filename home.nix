@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  config,
   ...
 }:
 {
@@ -12,8 +11,6 @@
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
   programs.home-manager.enable = true;
-
-  home.shell.enableBashIntegration = true;
 
   home.packages = with pkgs; [
     # essential
@@ -125,24 +122,7 @@
         error_symbol = "[\\$](bold red)";
       };
     };
-  };
-
-  # shell alias saves the day
-  home.shellAliases = {
-    rm = "rmtrash";
-    g = "gitui";
-    gg = "lazygit";
-    bt = "bluetooth";
-    zed = "zeditor";
-    z = "zeditor";
-
-    # sorry vim
-    vi = "hx";
-    vim = "hx";
-
-    # my cat is batman
-    # ah, well, i would like to use both whenever i feel like, cat still useful
-    # cat = "bat";
+    enableBashIntegration = true;
   };
 
   programs.bash = {
@@ -169,16 +149,35 @@
       set -h && eval "$(devbox global shellenv --init-hook)"
     '';
 
+    # shell alias saves the day
+    shellAliases = {
+      rm = "rmtrash";
+      g = "gitui";
+      gg = "lazygit";
+      bt = "bluetooth";
+      zed = "zeditor";
+      z = "zeditor";
+
+      # sorry vim
+      vi = "hx";
+      vim = "hx";
+
+      # my cat is batman
+      # ah, well, i would like to use both whenever i feel like, cat still useful
+      # cat = "bat";
+    };
   };
 
   # smarter cd zoxide with shell alias to enable interactive by default cd
   programs.zoxide = {
     enable = true;
+    enableBashIntegration = true;
     options = [ "--cmd cd" ];
   };
 
   programs.direnv = {
     enable = true;
+    enableBashIntegration = true;
   };
 
   programs.helix = {
@@ -196,6 +195,7 @@
 
   programs.fzf = {
     enable = true;
+    enableBashIntegration = true;
   };
 
   #programs.vscode = {
