@@ -20,6 +20,7 @@
     ripgrep
     fd
     gitui
+    lazygit
     ouch
     rmtrash
 
@@ -151,6 +152,7 @@
     shellAliases = {
       rm = "rmtrash";
       g = "gitui";
+      gg = "lazygit";
       bt = "bluetooth";
       zed = "zeditor";
       z = "zeditor";
