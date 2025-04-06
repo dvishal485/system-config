@@ -3,6 +3,7 @@
   pkgs,
   pkgs-unstable,
   lib,
+  config,
   ...
 }:
 
@@ -139,18 +140,22 @@
     # uutils-coreutils-noprefix still a wip
   ];
 
-  environment.etc.sudo-askpass = {
-    enable = true;
-    text = ''
-      #!/bin/sh
-      ${pkgs.zenity}/bin/zenity --password --title="Input password for elevated privilages" || (read -s -p 'Input Password: ' password && echo $password && unset password)
-    '';
-    mode = "555";
-  };
-
-  environment.sessionVariables = {
-    SUDO_ASKPASS = "/etc/sudo-askpass";
-  };
+  environment.sessionVariables =
+    let
+      prompt = "Input password for elevated privilages";
+      gui-askpass =
+        if config.programs.ssh.enableAskPassword then
+          "${config.programs.ssh.askPassword} '${prompt}'"
+        else
+          "${pkgs.zenity}/bin/zenity --password --title='${prompt}'";
+      wrapped-askpass = pkgs.writeScriptBin "sudo-askpass" ''
+        #!/usr/bin/env sh
+        ${gui-askpass} || (read -s -p 'Input Password: ' password && echo $password && unset password)
+      '';
+    in
+    {
+      SUDO_ASKPASS = "${wrapped-askpass}/bin/sudo-askpass";
+    };
 
   # services.udev.extraRules =
   #   let
