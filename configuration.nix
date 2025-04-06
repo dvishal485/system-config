@@ -135,7 +135,7 @@
     wl-clipboard
     librewolf
     libnotify
-    dotool
+    # dotool
     # uutils-coreutils-noprefix still a wip
   ];
 
@@ -152,21 +152,21 @@
     SUDO_ASKPASS = "/etc/sudo-askpass";
   };
 
-  services.udev.extraRules =
-    let
-      mkRule = as: lib.concatStringsSep ", " as;
-      mkRules = rs: lib.concatStringsSep "\n" rs;
-    in
-    mkRules [
-      # fix /dev/uinput group
-      # https://git.sr.ht/~geb/dotool/tree/HEAD/item/80-dotool.rules
-      (mkRule [
-        ''KERNEL=="uinput"''
-        ''GROUP="input"''
-        ''MODE="0620"''
-        ''OPTIONS+="static_node=uinput"''
-      ])
-    ];
+  # services.udev.extraRules =
+  #   let
+  #     mkRule = as: lib.concatStringsSep ", " as;
+  #     mkRules = rs: lib.concatStringsSep "\n" rs;
+  #   in
+  #   mkRules [
+  #     # fix /dev/uinput group
+  #     # https://git.sr.ht/~geb/dotool/tree/HEAD/item/80-dotool.rules
+  #     (mkRule [
+  #       ''KERNEL=="uinput"''
+  #       ''GROUP="input"''
+  #       ''MODE="0620"''
+  #       ''OPTIONS+="static_node=uinput"''
+  #     ])
+  #   ];
 
   fonts.packages = with pkgs; [
     corefonts
