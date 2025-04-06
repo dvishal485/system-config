@@ -1,30 +1,37 @@
 {
-  inputs,
-  config,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
+  services.dbus.enable = true;
+  services.dbus.packages = with pkgs; [
+    libsecret
+    gcr_4
+  ];
+
+  programs.gnupg = {
+    dirmngr.enable = true;
+    agent = {
+      enable = true;
+      enableBrowserSocket = true;
+      enableSSHSupport = false;
+      pinentryPackage = pkgs.pinentry-gnome3;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     libsecret
+    gcr_4
   ];
+  programs.ssh = {
+    startAgent = false;
+    enableAskPassword = true;
+    askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+  };
+  environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
+
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-
-  services.dbus = {
-    enable = true;
-    # packages = [
-    #   pkgs.seahorse # already added by programs.seahorse.enable
-    # ];
-  };
-
-
-  programs.ssh = {
-    enableAskPassword = true;
-    askPassword = lib.mkIf use_kwallet "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
-  };
-  environment.variables.SSH_ASKPASS_REQUIRE = lib.mkIf use_kwallet "prefer";
 
   # pam service
   security.pam.services = {
@@ -33,19 +40,24 @@
       nodelay = true;
       enableGnomeKeyring = true;
     };
-    greetd.enableGnomeKeyring = true;
+    # login = {
+    #   enableGnomeKeyring = true;
+    # };
+    greetd = {
+      enableGnomeKeyring = true;
+    };
   };
 
   # home manager
   home-manager.users.seattle = {
-    services.gnome-keyring = {
-      enable = true;
-      components = [
-        "pkcs11"
-        "secrets"
-        "ssh"
-      ];
-    };
+    # services.gnome-keyring = {
+    #   enable = true;
+    #   components = [
+    #     "pkcs11"
+    #     "secrets"
+    #     "ssh"
+    #   ];
+    # };
 
     systemd.user.sessionVariables = {
       SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
