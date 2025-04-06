@@ -44,7 +44,8 @@
     pkgs-unstable.d2
     # wayvnc
 
-    (callPackage ./derivations/neohtop.nix { })
+    # no worky on 24.11 as unstable branch got a breaking change w gbm driver path
+    pkgs-unstable.neohtop
 
     # personal usecase
     gnome-text-editor
