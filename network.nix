@@ -18,6 +18,7 @@
 
   networking.hostName = "rio";
   networking.dhcpcd.wait = "background";
+  networking.networkmanager.wifi.backend = "iwd";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # NextDNS
