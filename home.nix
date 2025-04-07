@@ -26,7 +26,6 @@
 
     # programming lang support
     vscode-fhs
-    ghidra-bin
 
     # tools and utils
     jq
