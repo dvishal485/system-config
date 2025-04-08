@@ -140,6 +140,14 @@
     # uutils-coreutils-noprefix still a wip
   ];
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    histSize = 10000;
+  };
+
   environment.sessionVariables =
     let
       prompt = "Input password for elevated privilages";
