@@ -38,16 +38,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1743266616,
-        "narHash": "sha256-HvS5TR/gKfm7Q8MCgYMeQ2CoBovGSJpeiiCkmV0YVSk=",
+        "lastModified": 1744109891,
+        "narHash": "sha256-gBIUTV99qIRjLVkxfILBmmHj/nMu3LYd6Js8NMXCJxo=",
         "owner": "dvishal485",
         "repo": "btrfs-simple-snapshot",
-        "rev": "1305b8a752747e142b20e308cd974e263f4bf63e",
+        "rev": "55d13033a28ee748890722c256c7b7779db6119a",
         "type": "github"
       },
       "original": {
         "owner": "dvishal485",
-        "ref": "v0.1.4",
+        "ref": "v0.1.5",
         "repo": "btrfs-simple-snapshot",
         "type": "github"
       }

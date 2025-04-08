@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # nixpkgs.follows = "hyprland/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    btrfs-simple-snapshot.url = "github:dvishal485/btrfs-simple-snapshot/v0.1.4";
+    btrfs-simple-snapshot.url = "github:dvishal485/btrfs-simple-snapshot/v0.1.5";
 
     nh.url = "github:viperML/nh/v3.6.0";
     nh.inputs.nixpkgs.follows = "nixpkgs-unstable";
