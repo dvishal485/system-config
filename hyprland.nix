@@ -60,6 +60,7 @@ in
   programs.foot = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     settings = {
       main = {
         dpi-aware = true;

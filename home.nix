@@ -140,6 +140,8 @@
       };
     };
     enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
 
   programs.zsh = {
     enable = true;
@@ -190,12 +192,14 @@
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     options = [ "--cmd cd" ];
   };
 
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.helix = {
@@ -214,6 +218,7 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   #programs.vscode = {
