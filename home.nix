@@ -10,6 +10,24 @@
 
   home.username = "seattle";
   home.homeDirectory = "/home/seattle";
+  home.shellAliases =
+
+    {
+      rm = "rmtrash";
+      g = "gitui";
+      gg = "lazygit";
+      bt = "bluetooth";
+      zed = "zeditor";
+      z = "zeditor";
+
+      # sorry vim
+      vi = "hx";
+      vim = "hx";
+
+      # my cat is batman
+      # ah, well, i would like to use both whenever i feel like, cat still useful
+      # cat = "bat";
+    };
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
@@ -147,24 +165,6 @@
     bashrcExtra = ''
       set -h && eval "$(devbox global shellenv --init-hook)"
     '';
-
-    # shell alias saves the day
-    shellAliases = {
-      rm = "rmtrash";
-      g = "gitui";
-      gg = "lazygit";
-      bt = "bluetooth";
-      zed = "zeditor";
-      z = "zeditor";
-
-      # sorry vim
-      vi = "hx";
-      vim = "hx";
-
-      # my cat is batman
-      # ah, well, i would like to use both whenever i feel like, cat still useful
-      # cat = "bat";
-    };
   };
 
   # smarter cd zoxide with shell alias to enable interactive by default cd
