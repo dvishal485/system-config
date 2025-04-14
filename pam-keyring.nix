@@ -7,6 +7,7 @@
   services.dbus.packages = with pkgs; [
     libsecret
     gcr_4
+    kdePackages.kwallet
   ];
 
   programs.gnupg = {
@@ -22,6 +23,8 @@
   environment.systemPackages = with pkgs; [
     libsecret
     gcr_4
+    kdePackages.kwalletmanager
+    kdePackages.kwallet
   ];
   programs.ssh = {
     startAgent = false;
@@ -45,6 +48,11 @@
     # };
     greetd = {
       enableGnomeKeyring = true;
+      kwallet = {
+        enable = true;
+        package = pkgs.kwallet-pam;
+        forceRun = true;
+      };
     };
   };
 
