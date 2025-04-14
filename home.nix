@@ -14,8 +14,7 @@
 
     {
       rm = "rmtrash";
-      g = "gitui";
-      gg = "lazygit";
+      g = "lazygit";
       bt = "bluetooth";
       zed = "zeditor";
       z = "zeditor";
