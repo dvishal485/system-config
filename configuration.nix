@@ -72,7 +72,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   programs.gaming = {
-    enable = true;
+    enable = false;
     lutris.enable = true;
     lutris.package = pkgs-unstable.lutris;
     gamingModeToggleScript = builtins.readFile ./.config/hypr/scripts/perf_mode.sh;

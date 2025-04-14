@@ -98,6 +98,7 @@
       system.nixos.tags = [ "gaming" ];
       environment.etc."specialisation".text = "gaming";
       boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;
+      programs.gaming.enable = lib.mkForce true;
     };
   };
 
