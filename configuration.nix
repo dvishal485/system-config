@@ -201,7 +201,7 @@
     {
       enable = true;
       package = nh-patched;
-      flake = "/home/seattle/nix-config";
+      flake = "/home/seattle/nix";
       clean = {
         enable = true;
         dates = "daily";
