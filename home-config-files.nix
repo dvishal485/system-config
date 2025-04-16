@@ -5,7 +5,8 @@
 # devbox run config
 { config, ... }:
 let
-  nixHomeConfigPath = "/etc/nixos/.config";
+  nixConfig = "/etc/nixos";
+  nixHomeConfigPath = "${nixConfig}/.config";
   mkHomeConfig = configFile: {
     home.file = {
       "${config.xdg.configHome}/${configFile}".source = config.lib.file.mkOutOfStoreSymlink "${nixHomeConfigPath}/${configFile}";
@@ -30,4 +31,8 @@ in
       ];
     in
     map mkHomeConfig listOfConfigs;
+
+  # devbox global config and lock file
+  home.file."${config.xdg.dataHome}/devbox/global/default/devbox.json".source = config.lib.file.mkOutOfStoreSymlink "${nixConfig}/devbox/devbox-global.json";
+  home.file."${config.xdg.dataHome}/devbox/global/default/devbox.lock".source = config.lib.file.mkOutOfStoreSymlink "${nixConfig}/devbox/devbox-global.lock";
 }

@@ -1,15 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.4/.schema/devbox.schema.json",
   "packages": {
-    "rustup":  "latest",
-    "go":      "latest",
+    "rustup": "latest",
+    "go": "latest",
     "python3": "3.11",
-    "nodejs":  "22",
-    "gcc":     "13",
-    "gcc13Stdenv.cc.cc": {
-      "outputs": ["lib", "out"]
-    },
-    "nil":              "latest",
+    "nodejs": "22",
+    "gcc": "13",
+    "nil": "latest",
     "nixfmt-rfc-style": "latest"
   },
   "env": {
