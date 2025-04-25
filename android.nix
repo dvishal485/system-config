@@ -1,8 +1,10 @@
 {
   pkgs,
+  lib,
   ...
 }:
 let
+  enable = false;
   versions = {
     cmdLineTools = "13.0";
     tools = "26.1.1";
@@ -44,7 +46,7 @@ let
   };
   androidSdk = androidComposition.androidsdk;
 in
-{
+lib.mkIf enable {
   nixpkgs.config.android_sdk.accept_license = true;
   environment.systemPackages = [
     (pkgs.android-studio-full.withSdk androidSdk)
