@@ -2,7 +2,9 @@
 {
   # Power savings
   powerManagement.enable = true;
-  services.thermald.enable = true;
+
+  # for intel cpu
+  # services.thermald.enable = true;
 
   # disable ppd to enable tlp
   services.power-profiles-daemon.enable = lib.mkForce false;
