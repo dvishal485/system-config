@@ -194,7 +194,7 @@
       nh = inputs.nh.packages.${pkgs.system}.nh;
       nh-patched = nh.overrideAttrs (
         finalAttrs: previousAttrs: {
-          patches = previousAttrs.patches ++ [ ./nh-v3.6.0.patch ];
+          patches = previousAttrs.patches ++ [ ./nh-v4.0.2.patch ];
         }
       );
     in

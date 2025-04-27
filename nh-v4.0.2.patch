@@ -1,0 +1,34 @@
+diff --git a/src/commands.rs b/src/commands.rs
+index 4297d98..7ac8dba 100644
+--- a/src/commands.rs
++++ b/src/commands.rs
+@@ -83,6 +83,13 @@ impl Command {
+                 Exec::cmd("sudo")
+             };
+ 
++            // use SUDO_ASKPASS program for sudo if present
++            let cmd = if std::env::var("SUDO_ASKPASS").is_ok() {
++                cmd.arg("-A")
++            } else {
++                cmd
++            };
++
+             cmd.arg(&self.command).args(&self.args)
+         } else {
+             Exec::cmd(&self.command).args(&self.args)
+diff --git a/src/main.rs b/src/main.rs
+index c8cf197..ec46b3d 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -55,6 +55,11 @@ fn self_elevate() -> ! {
+     use std::os::unix::process::CommandExt;
+ 
+     let mut cmd = std::process::Command::new("sudo");
++    // use SUDO_ASKPASS program for sudo if present
++    if std::env::var("SUDO_ASKPASS").is_ok() {
++        cmd.arg("-A");
++    }
++
+     cmd.args(std::env::args());
+     debug!("{:?}", cmd);
+     let err = cmd.exec();
