@@ -1,8 +1,6 @@
 {
-  inputs,
   pkgs,
   config,
-  lib,
   ...
 }:
 {
@@ -31,20 +29,13 @@
   };
 
   hardware.nvidia = {
-    # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
-    # Modesetting is required.
     modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
     powerManagement.enable = true;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
     dynamicBoost.enable = true;
+
+    nvidiaSettings = true;
+    nvidiaPersistenced = true;
 
     prime = {
       offload = {
@@ -52,7 +43,6 @@
         enableOffloadCmd = true;
       };
 
-      # Make sure to use the correct Bus ID values for your system!
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "PCI:4:0:0";
     };
@@ -66,12 +56,6 @@
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-    nvidiaPersistenced = true;
-
-    # changed in commit 4d711bc9394a61f804fb6e4aa0e04fadd642fa73
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
     # package = config.boot.kernelPackages.nvidiaPackages.production;
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -82,28 +66,6 @@
       settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
       persistencedSha256 = "sha256-G1V7JtHQbfnSRfVjz/LE2fYTlh9okpCbE4dfX9oYSg8=";
     };
-  };
-
-  specialisation = {
-    nvidia-sync-mode.configuration = {
-      system.nixos.tags = [ "nvidia-sync-mode" ];
-      environment.etc."specialisation".text = "nvidia-sync-mode";
-      hardware.nvidia = {
-        prime.offload.enable = lib.mkForce false;
-        prime.offload.enableOffloadCmd = lib.mkForce false;
-        prime.sync.enable = lib.mkForce true;
-      };
-    };
-    gaming.configuration =
-      let
-        kernel = pkgs.linuxPackages_xanmod_latest;
-      in
-      {
-        system.nixos.tags = [ "gaming" ];
-        environment.etc."specialisation".text = "gaming";
-        boot.kernelPackages = lib.mkForce kernel;
-        programs.gaming.enable = lib.mkForce true;
-      };
   };
 
   nix.settings = {

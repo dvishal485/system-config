@@ -39,7 +39,7 @@
         };
 
         modules = [
-          ./configuration.nix
+          ./hosts/rio/configuration.nix
           nix-index-database.nixosModules.nix-index
           {
             programs.nix-index-database.comma.enable = true;
@@ -56,7 +56,7 @@
               inherit inputs;
             };
 
-            home-manager.users.seattle = import ./home.nix;
+            home-manager.users.seattle = import ./home/users/seattle;
             home-manager.backupFileExtension = "backup";
           }
         ];

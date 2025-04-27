@@ -32,11 +32,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
-  };
-
   fileSystems = {
     "/" = {
       label = "nixroot";
@@ -50,6 +45,7 @@
 
     "/nix" = {
       label = "nixroot";
+      fsType = "btrfs";
       options = [
         "subvol=root_container/nix"
         "compress=zstd"

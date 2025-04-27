@@ -11,23 +11,29 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./nvidia.nix
-    ./network.nix
-    ./fingerprint.nix
-    ./power_mgmt.nix
-    ./time_locale.nix
-    ./system.nix
-    ./bootloader.nix
-    ./audio.nix
-    ./users.nix
-    ./hyprland.nix
-    ./pam-keyring.nix
-    ./gaming.nix
-    ./thunar.nix
-    ./android.nix
+    ./graphics.nix
+    ../../network.nix
+    ../../fingerprint.nix
+    ../../power_mgmt.nix
+    ../../time_locale.nix
+    ../../system.nix
+    ../../bootloader.nix
+    ../../audio.nix
+    ../../users.nix
+    ../../hyprland.nix
+    ../../pam-keyring.nix
+
+    ./specialisations/gaming.nix
+    ./specialisations/nvidia-sync-mode.nix
+    ../../thunar.nix
+    ../../android.nix
     inputs.btrfs-simple-snapshot.nixosModules.default
   ];
 
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
   services.btrfs-simple-snapshot = {
     enable = true;
     tasks =
@@ -71,26 +77,6 @@
   };
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
-  programs.gaming = {
-    enable = false;
-    lutris.enable = true;
-    lutris.package = pkgs-unstable.lutris;
-    gamingModeToggleScript = builtins.readFile ./.config/hypr/scripts/perf_mode.sh;
-    heroic.enable = false;
-    libPackages = with pkgs; [
-      vkbasalt
-    ];
-    wine = {
-      enable = true;
-      # nix flake show github:fufexan/nix-gaming
-      # package = inputs.nix-gaming.packages.${pkgs.system}.wine-ge;
-      package = pkgs-unstable.wineWowPackages.waylandFull;
-    };
-    gamemode.enable = true;
-    gamescope.enable = false; # doesn't work, also not required
-    mangohud.enable = true;
-  };
-
   # enable virtualisation
   virtualisation.containers.enable = true;
   virtualisation.podman = {
