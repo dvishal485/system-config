@@ -5,8 +5,8 @@
 }:
 {
   imports = [
-    # ../../config-dotfiles.nix
     ./git.nix
+    ./dotfiles.nix
     ../../applications/shell.nix
     ../../applications/direnv.nix
     ../../applications/zoxide.nix
@@ -14,7 +14,6 @@
     ../../applications/helix.nix
     ../../applications/fzf.nix
     ../../applications/obs-studio.nix
-    ../../../home-config-files.nix
   ];
 
   home.packages = with pkgs; [
