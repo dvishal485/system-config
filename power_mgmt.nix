@@ -2,6 +2,7 @@
 {
   # Power savings
   powerManagement.enable = true;
+  boot.resumeDevice = "/dev/disk/by-label/swap";
 
   # for intel cpu
   # services.thermald.enable = true;
