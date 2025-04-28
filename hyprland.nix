@@ -136,14 +136,6 @@ in
     portalPackage = xdg_portal_pkg;
   };
 
-  programs.thunar-with-flags = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-    ];
-    configureFlags = [ "--disable-wallpaper-plugin" ];
-  };
-
   # enabled by programs.thunar
   # programs.xfconf.enable = lib.mkIf (config.programs.thunar.enable) true;
 

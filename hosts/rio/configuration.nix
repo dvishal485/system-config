@@ -25,7 +25,7 @@
 
     ./specialisations/gaming.nix
     ./specialisations/nvidia-sync-mode.nix
-    ../../thunar.nix
+    ../../applications/thunar.nix
     ../../android.nix
     inputs.btrfs-simple-snapshot.nixosModules.default
   ];
