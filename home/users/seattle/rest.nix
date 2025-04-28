@@ -24,15 +24,9 @@
   };
 
   home.packages = with pkgs; [
-    # essential
     ouch
     rmtrash
-
-    # programming lang support
     vscode-fhs
-
-    # tools and utils
-    dconf-editor
     scrcpy
     gnome-system-monitor
     podman-compose
@@ -44,12 +38,6 @@
     android-tools
     pkgs-unstable.devbox
     pkgs-unstable.d2
-    # wayvnc
-
-    # no worky on 24.11 as unstable branch got a breaking change w gbm driver path
-    pkgs-unstable.neohtop
-
-    # personal usecase
     gnome-text-editor
     pkgs-unstable.spotube
     viewnior
@@ -67,14 +55,10 @@
     telegram-desktop
     mpv
     transmission_4-gtk
-
-    # kdePackages.kdeconnect-kde # drains phone battery
     mongodb-compass
+    # wayvnc
+
+    # no worky on 24.11 as unstable branch got a breaking change w gbm driver path
+    pkgs-unstable.neohtop
   ];
-
-  #programs.vscode = {
-  #  enable = true;
-  #  package = pkgs.vscode;
-  #};
-
 }
