@@ -41,6 +41,7 @@
 
     ../../applications/thunar.nix
     ../../applications/comma.nix
+    ../../applications/foot.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
