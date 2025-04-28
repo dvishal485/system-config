@@ -14,6 +14,7 @@
     ../../applications/helix.nix
     ../../applications/fzf.nix
     ../../applications/obs-studio.nix
+    ../../applications/hyprshot.nix
   ];
 
   home.sessionVariables = {
