@@ -92,7 +92,6 @@ in
 
   home-manager.users.seattle = {
     home.packages = with pkgs; [
-      pavucontrol
       gnome-calendar
       qalculate-gtk
       nwg-look
