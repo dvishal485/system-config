@@ -24,9 +24,15 @@
     # fn key lock disabled by default
     "asus_wmi.fnlock_default=N"
   ];
+
   boot.kernel.sysctl = {
     "kernel.nmi_watchdog" = 0;
+    "kernel.panic" = 10;
   };
+
+  boot.supportedFilesystems = [
+    "btrfs"
+  ];
 
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];

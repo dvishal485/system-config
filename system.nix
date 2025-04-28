@@ -1,12 +1,6 @@
 { pkgs, ... }:
 {
-  boot.supportedFilesystems = [
-    "btrfs"
-  ];
 
-  boot.kernel.sysctl = {
-    "kernel.panic" = 10;
-  };
 
   # install flakes
   nix.settings.experimental-features = [
