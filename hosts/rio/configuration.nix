@@ -14,7 +14,6 @@
     ./graphics.nix
     ./users.nix
 
-    ../../system.nix
     ../../bootloader.nix
     ../../hyprland.nix
 
@@ -44,6 +43,22 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nix.settings.auto-optimise-store = true;
+
+  nixpkgs.config.allowUnfree = true;
+
+  services.journald.extraConfig = "SystemMaxUse=32M";
+
+  # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
+
+  services.printing.enable = true;
+  services.xserver.enable = false;
 
   security.sudo.extraConfig = ''
     Defaults insults
