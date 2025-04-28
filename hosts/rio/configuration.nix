@@ -14,7 +14,6 @@
     ./graphics.nix
     ./users.nix
 
-    ../../power_mgmt.nix
     ../../system.nix
     ../../bootloader.nix
     ../../hyprland.nix
@@ -27,7 +26,9 @@
     ../../applications/firewall.nix
     ../../applications/bluetooth.nix
     ../../applications/fingerprint.nix
+
     ../../applications/time_locale.nix
+    ../../applications/power_mgmt.nix
 
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
