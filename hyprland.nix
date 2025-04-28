@@ -91,11 +91,6 @@ in
   };
 
   home-manager.users.seattle = {
-    home.packages = with pkgs; [
-      gnome-calendar
-      qalculate-gtk
-      nwg-look
-    ];
 
     wayland.windowManager.hyprland = {
       enable = true;

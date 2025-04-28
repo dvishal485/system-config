@@ -35,6 +35,9 @@
     typst
     tinymist
     gimp
+    qalculate-gtk
+    nwg-look
+    gnome-calendar
     android-tools
     pkgs-unstable.devbox
     pkgs-unstable.d2
