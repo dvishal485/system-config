@@ -87,6 +87,13 @@
     wl-clipboard
     librewolf
     libnotify
+    wget
+    curl
+    tree
+    ripgrep
+    fd
+    jq
+    htop
     # dotool
     # uutils-coreutils-noprefix still a wip
   ];

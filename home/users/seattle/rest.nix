@@ -24,11 +24,6 @@
 
   home.packages = with pkgs; [
     # essential
-    wget
-    curl
-    tree
-    ripgrep
-    fd
     ouch
     rmtrash
 
@@ -36,17 +31,14 @@
     vscode-fhs
 
     # tools and utils
-    jq
     dconf-editor
     scrcpy
-    htop
     gnome-system-monitor
     podman-compose
     podman-desktop
     bat
     typst
     tinymist
-    libnotify
     gimp
     android-tools
     pkgs-unstable.devbox
