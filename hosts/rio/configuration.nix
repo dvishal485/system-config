@@ -32,15 +32,15 @@
     ../../applications/power_mgmt.nix
     ../../applications/asus-fan-mode.nix
     ../../applications/btrfs.nix
-
-    ../../applications/thunar.nix
+    ../../applications/pam.nix
     ../../applications/virtualisation.nix
 
     ../../applications/gnupg.nix
     ../../applications/keyring.nix
     ../../applications/ssh.nix
 
-    ../../applications/pam.nix
+    ../../applications/thunar.nix
+    ../../applications/comma.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
