@@ -20,11 +20,18 @@ let
           description = "Enable this configuration symlink";
         };
 
+        sourceBase = lib.mkOption {
+          type = lib.types.str;
+          default = "${cfg.nixos-config-path}/home/users/${username}";
+          defaultText = lib.literalMD "''${cfg.nixos-config-path}/users/''${config.home.username}";
+          description = "Base source path for the configuration files";
+        };
+
         sourcePath = lib.mkOption {
           type = lib.types.str;
-          default = "${cfg.nixos-config-path}/home/users/${username}/.config/${name}";
-          defaultText = lib.literalMD "''${cfg.nixos-config-path}/users/''${config.home.username}/.config/''${name}";
-          description = "Source path for the configuration files";
+          default = ".config/${name}";
+          defaultText = lib.literalMD ".config/''${name}";
+          description = "Source path for the configuration files at user level";
         };
 
         configPath = lib.mkOption {
@@ -62,7 +69,7 @@ in
       lib.mapAttrsToList (
         name: sourceCfg:
         lib.mkIf sourceCfg.enable {
-          "${sourceCfg.configPath}/${sourceCfg.target}".source = mkOutOfStoreSymlink sourceCfg.sourcePath;
+          "${sourceCfg.configPath}/${sourceCfg.target}".source = mkOutOfStoreSymlink "${sourceCfg.sourceBase}/${sourceCfg.sourcePath}";
         }
       ) cfg.sources
     );

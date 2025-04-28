@@ -1,4 +1,5 @@
-_: {
+{ config, ... }:
+{
   imports = [
     ../../config-dotfiles.nix
   ];
@@ -16,13 +17,13 @@ _: {
     ".gitignore".enable = false;
     "devbox.json" = {
       enable = true;
-      sourcePath = "./devbox/devbox-global.json";
-      target = "devbox/global/default/devbox.json";
+      sourcePath = "devbox/devbox-global.json";
+      configPath = "${config.xdg.dataHome}/devbox/global/default";
     };
     "devbox.lock" = {
       enable = true;
-      sourcePath = "./devbox/devbox-global.lock";
-      target = "devbox/global/default/devbox.lock";
+      sourcePath = "devbox/devbox-global.lock";
+      configPath = "${config.xdg.dataHome}/devbox/global/default";
     };
   };
 }
