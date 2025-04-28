@@ -19,15 +19,6 @@
   # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -g 'hello world!' --asterisks -tr --user-menu";
-      };
-    };
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

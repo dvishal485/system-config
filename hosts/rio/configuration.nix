@@ -26,6 +26,7 @@
     ../../applications/firewall.nix
     ../../applications/bluetooth.nix
     ../../applications/fingerprint.nix
+    ../../applications/greetd.nix
 
     ../../applications/time_locale.nix
     ../../applications/power_mgmt.nix
