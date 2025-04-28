@@ -42,6 +42,7 @@
     ../../applications/ssh.nix
 
     ../../applications/thunar.nix
+    ../../applications/calendar.nix
     ../../applications/comma.nix
     ../../applications/foot.nix
     ../../applications/sudo-askpass.nix
