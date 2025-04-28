@@ -13,7 +13,6 @@
     ./hardware-configuration.nix
     ./graphics.nix
     ../../power_mgmt.nix
-    ../../time_locale.nix
     ../../system.nix
     ../../bootloader.nix
     ../../users.nix
@@ -27,6 +26,7 @@
     ../../applications/firewall.nix
     ../../applications/bluetooth.nix
     ../../applications/fingerprint.nix
+    ../../applications/time_locale.nix
 
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
