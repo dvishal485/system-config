@@ -1,4 +1,12 @@
-_: {
+{ inputs, ... }:
+{
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager.users.seattle = import ./default.nix;
+    }
+  ];
+
   users.users.seattle = {
     uid = 1000;
     isNormalUser = true;

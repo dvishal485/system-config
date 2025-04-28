@@ -22,8 +22,6 @@
     inputs@{
       nixpkgs,
       nixpkgs-unstable,
-      home-manager,
-      nix-index-database,
       ...
     }:
     {
@@ -40,21 +38,6 @@
 
         modules = [
           ./hosts/rio/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              pkgs-unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-              };
-              inherit inputs;
-            };
-
-            home-manager.users.seattle = import ./home/users/seattle;
-            home-manager.backupFileExtension = "backup";
-          }
         ];
       };
     };
