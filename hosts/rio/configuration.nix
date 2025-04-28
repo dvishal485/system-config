@@ -12,10 +12,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./graphics.nix
+    ./users.nix
+
     ../../power_mgmt.nix
     ../../system.nix
     ../../bootloader.nix
-    ../../users.nix
     ../../hyprland.nix
 
     ./specialisations/gaming.nix
