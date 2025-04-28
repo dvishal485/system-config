@@ -27,18 +27,11 @@
     ./specialisations/nvidia-sync-mode.nix
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
+    ../../applications/virtualisation.nix
     ../../android.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
-  # enable virtualisation
-  virtualisation.containers.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  hardware.nvidia-container-toolkit.enable = true;
 
   security.sudo.extraConfig = ''
     Defaults insults
