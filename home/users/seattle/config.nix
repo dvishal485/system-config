@@ -7,6 +7,8 @@
     }
   ];
 
+  programs.hyprland-full.users = [ "seattle" ];
+
   users.users.seattle = {
     uid = 1000;
     isNormalUser = true;

@@ -11,4 +11,10 @@
     ];
     configureFlags = [ "--disable-wallpaper-plugin" ];
   };
+
+  environment.systemPackages = with pkgs; [
+    mate.engrampa # alternative to ark
+    unrar
+    unzip
+  ];
 }

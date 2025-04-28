@@ -14,8 +14,6 @@
     ./graphics.nix
     ./users.nix
 
-    ../../hyprland.nix
-
     ./specialisations/gaming.nix
     ./specialisations/nvidia-sync-mode.nix
     # ./specialisations/ollama.nix
@@ -37,6 +35,7 @@
     ../../applications/virtualisation.nix
     ../../applications/font.nix
     ../../applications/zsh.nix
+    ../../applications/hyprland.nix
 
     ../../applications/gnupg.nix
     ../../applications/keyring.nix
@@ -78,10 +77,16 @@
     # uutils-coreutils-noprefix still a wip
   ];
 
+  programs.nano.enable = false;
+
   programs.nix-ld.enable = true;
   services.fstrim.enable = true;
   services.printing.enable = true;
   services.xserver.enable = false;
+  services.smartd = {
+    enable = true;
+    autodetect = true;
+  };
 
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;

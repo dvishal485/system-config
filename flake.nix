@@ -22,6 +22,7 @@
     inputs@{
       nixpkgs,
       nixpkgs-unstable,
+      hyprland,
       ...
     }:
     {
@@ -33,6 +34,7 @@
             inherit system;
             config.allowUnfree = true;
           };
+          inherit hyprland;
           inherit inputs;
         };
 
