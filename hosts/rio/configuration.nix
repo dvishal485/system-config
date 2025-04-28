@@ -29,8 +29,9 @@
 
     ../../applications/time_locale.nix
     ../../applications/power_mgmt.nix
-
+    ../../applications/asus-fan-mode.nix
     ../../applications/btrfs.nix
+
     ../../applications/thunar.nix
     ../../applications/virtualisation.nix
 
