@@ -15,6 +15,7 @@
     ../../applications/fzf.nix
     ../../applications/obs-studio.nix
     ../../applications/hyprshot.nix
+    ../../applications/dictionary.nix
   ];
 
   home.sessionVariables = {
@@ -66,14 +67,6 @@
     telegram-desktop
     mpv
     transmission_4-gtk
-
-    # dict
-    aspell
-    hunspell
-    hunspellDicts.en_US
-    aspellDicts.en
-    aspellDicts.en-computers
-    aspellDicts.en-science
 
     # kdePackages.kdeconnect-kde # drains phone battery
     mongodb-compass
