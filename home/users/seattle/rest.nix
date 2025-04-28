@@ -16,6 +16,7 @@
     ../../applications/obs-studio.nix
     ../../applications/hyprshot.nix
     ../../applications/dictionary.nix
+    ../../applications/wlsunset.nix
   ];
 
   home.sessionVariables = {
