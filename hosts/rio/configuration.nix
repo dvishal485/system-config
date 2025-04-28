@@ -12,7 +12,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./graphics.nix
-    ../../network.nix
     ../../fingerprint.nix
     ../../power_mgmt.nix
     ../../time_locale.nix
@@ -25,6 +24,9 @@
     ./specialisations/nvidia-sync-mode.nix
 
     ../../applications/audio.nix
+    ../../applications/network.nix
+    ../../applications/firewall.nix
+    ../../applications/bluetooth.nix
 
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
