@@ -42,6 +42,7 @@
     ../../applications/thunar.nix
     ../../applications/comma.nix
     ../../applications/foot.nix
+    ../../applications/sudo-askpass.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
@@ -106,23 +107,6 @@
     syntaxHighlighting.enable = true;
     histSize = 10000;
   };
-
-  environment.sessionVariables =
-    let
-      prompt = "Input password for elevated privilages";
-      gui-askpass =
-        if config.programs.ssh.enableAskPassword then
-          "${config.programs.ssh.askPassword} '${prompt}'"
-        else
-          "${pkgs.zenity}/bin/zenity --password --title='${prompt}'";
-      wrapped-askpass = pkgs.writeScriptBin "sudo-askpass" ''
-        #!/usr/bin/env sh
-        ${gui-askpass} || (read -s -p 'Input Password: ' password && echo $password && unset password)
-      '';
-    in
-    {
-      SUDO_ASKPASS = "${wrapped-askpass}/bin/sudo-askpass";
-    };
 
   # services.udev.extraRules =
   #   let
