@@ -27,6 +27,7 @@
     ../../applications/fingerprint.nix
     ../../applications/greetd.nix
     ../../applications/bootloader.nix
+    ../../applications/polkit.nix
 
     ../../applications/time_locale.nix
     ../../applications/power_mgmt.nix
