@@ -16,6 +16,11 @@
     ../../applications/obs-studio.nix
   ];
 
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
+    GNOME_KEYRING_CONTROL = "/run/user/1000/keyring";
+  };
+
   home.packages = with pkgs; [
     # essential
     wget

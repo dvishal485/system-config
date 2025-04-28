@@ -4,6 +4,7 @@
 
   users.users.seattle = {
     isNormalUser = true;
+    uid = 1000;
     description = "seattle";
     extraGroups = [
       "networkmanager"

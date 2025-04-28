@@ -21,13 +21,17 @@
     ../../audio.nix
     ../../users.nix
     ../../hyprland.nix
-    ../../pam-keyring.nix
 
     ./specialisations/gaming.nix
     ./specialisations/nvidia-sync-mode.nix
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
     ../../applications/virtualisation.nix
+    ../../applications/gnupg.nix
+    ../../applications/keyring.nix
+    ../../applications/ssh.nix
+
+    ../../applications/pam.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
