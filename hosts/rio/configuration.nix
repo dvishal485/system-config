@@ -50,34 +50,6 @@
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nix.settings.auto-optimise-store = true;
-
-  nixpkgs.config.allowUnfree = true;
-
-  services.journald.extraConfig = "SystemMaxUse=32M";
-
-  # https://nix.dev/manual/nix/2.18/command-ref/conf-file.html#conf-auto-optimise-store
-
-  services.printing.enable = true;
-  services.xserver.enable = false;
-
-  security.sudo.extraConfig = ''
-    Defaults insults
-  '';
-
-  # cuda by default
-  # nixpkgs.config.cudaSupport = true;
-
-  # https://nixos.wiki/wiki/Fwupd
-  services.fwupd.enable = true;
-
-  services.fstrim.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -103,6 +75,22 @@
     # uutils-coreutils-noprefix still a wip
   ];
 
+  programs.nix-ld.enable = true;
+  services.fstrim.enable = true;
+  services.printing.enable = true;
+  services.xserver.enable = false;
+
+  # https://nixos.wiki/wiki/Fwupd
+  services.fwupd.enable = true;
+
+  services.journald.extraConfig = "SystemMaxUse=32M";
+
+  security.sudo.extraConfig = ''
+    Defaults insults
+  '';
+
+  # cuda by default
+  # nixpkgs.config.cudaSupport = true;
 
   # services.udev.extraRules =
   #   let
@@ -120,29 +108,18 @@
   #     ])
   #   ];
 
+  nixpkgs.config.allowUnfree = true;
 
-  programs.nix-ld.enable = true;
-
-  programs.nano.enable = lib.mkForce false;
-  programs.neovim.enable = lib.mkForce false;
-
-  # flatpak specialization
-  # specialisation = {
-  #  flatpak.configuration = {
-  #    system.nixos.tags = [ "flatpak" ];
-  #    services.flatpak.enable = true;
-  #  };
-  # };
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 
   nix.settings = {
+    auto-optimise-store = true;
+
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
     substituters = [
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
