@@ -34,6 +34,7 @@
     ../../applications/btrfs.nix
     ../../applications/pam.nix
     ../../applications/virtualisation.nix
+    ../../applications/font.nix
     ../../applications/zsh.nix
 
     ../../applications/gnupg.nix
@@ -119,13 +120,6 @@
   #     ])
   #   ];
 
-  fonts.packages = with pkgs; [
-    corefonts
-    stix-two
-    # https://github.com/NixOS/nixpkgs/blob/nixos-24.11/pkgs/data/fonts/nerdfonts/shas.nix
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    # nerd-fonts.jetbrains-mono
-  ];
 
   programs.nix-ld.enable = true;
 
