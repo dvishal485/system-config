@@ -22,8 +22,7 @@
     inputs@{
       nixpkgs,
       nixpkgs-unstable,
-      home-manager,
-      nix-index-database,
+      hyprland,
       ...
     }:
     {
@@ -35,30 +34,12 @@
             inherit system;
             config.allowUnfree = true;
           };
+          inherit hyprland;
           inherit inputs;
         };
 
         modules = [
-          ./configuration.nix
-          nix-index-database.nixosModules.nix-index
-          {
-            programs.nix-index-database.comma.enable = true;
-          }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              pkgs-unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-              };
-              inherit inputs;
-            };
-
-            home-manager.users.seattle = import ./home.nix;
-            home-manager.backupFileExtension = "backup";
-          }
+          ./hosts/rio/configuration.nix
         ];
       };
     };

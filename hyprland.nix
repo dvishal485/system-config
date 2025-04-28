@@ -15,19 +15,6 @@ let
       hyprland.xdg-desktop-portal-hyprland
     else
       pkgs.xdg-desktop-portal-hyprland;
-  hyprshot_notification = pkgs.writeScriptBin "hyprshot-notification" ''
-    #!/usr/bin/env sh
-    action=$(${pkgs.libnotify}/bin/notify-send "Screenshot saved" \
-      "Screenshot saved to path $@" \
-      -t 5000 -i "$@" -a Hyprshot \
-      -A default=show -A dir='Show directory')
-
-    if [[ "$action" == "default" ]]; then
-      ${pkgs.xdg-utils}/bin/xdg-open "$@"
-    elif [[ "$action" == "dir" ]]; then
-      ${pkgs.xdg-utils}/bin/xdg-open "$(${pkgs.coreutils}/bin/dirname "$@")"
-    fi
-  '';
 in
 {
   environment.systemPackages = with pkgs; [
@@ -36,7 +23,6 @@ in
     pkgs-unstable.hyprlock
     hyprpolkitagent
     hypridle
-    hyprshot
 
     rofi-wayland
     swaynotificationcenter
@@ -57,75 +43,13 @@ in
     # libinput-gestures
   ];
 
-  programs.foot = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    settings = {
-      main = {
-        dpi-aware = true;
-      };
-
-      bell = {
-        urgent = "yes";
-      };
-
-      # dracula theme
-      colors = {
-        # alpha=1.0
-        background = "282a36";
-        foreground = "f8f8f2";
-
-        ## Normal/regular colors (color palette 0-7)
-        regular0 = "21222c"; # black
-        regular1 = "ff5555"; # red
-        regular2 = "50fa7b"; # green
-        regular3 = "f1fa8c"; # yellow
-        regular4 = "bd93f9"; # blue
-        regular5 = "ff79c6"; # magenta
-        regular6 = "8be9fd"; # cyan
-        regular7 = "f8f8f2"; # white
-
-        ## Bright colors (color palette 8-15)
-        bright0 = "6272a4"; # bright black
-        bright1 = "ff6e6e"; # bright red
-        bright2 = "69ff94"; # bright green
-        bright3 = "ffffa5"; # bright yellow
-        bright4 = "d6acff"; # bright blue
-        bright5 = "ff92df"; # bright magenta
-        bright6 = "a4ffff"; # bright cyan
-        bright7 = "ffffff"; # bright white
-
-        selection-foreground = "ffffff";
-        selection-background = "44475a";
-
-        urls = "8be9fd";
-      };
-    };
-  };
-
   home-manager.users.seattle = {
-    home.packages = with pkgs; [
-      pavucontrol
-      gnome-calendar
-      qalculate-gtk
-      nwg-look
-      hyprshot_notification
-    ];
 
     wayland.windowManager.hyprland = {
       enable = true;
       package = config.programs.hyprland.package;
       xwayland.enable = true;
       systemd.enable = false;
-    };
-
-    services.wlsunset = {
-      enable = true;
-      latitude = 28.74;
-      longitude = 77.11;
-      temperature.day = 5600;
-      temperature.night = 5000;
     };
   };
 
@@ -134,14 +58,6 @@ in
     withUWSM = true;
     package = hyprland_pkg;
     portalPackage = xdg_portal_pkg;
-  };
-
-  programs.thunar-with-flags = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-    ];
-    configureFlags = [ "--disable-wallpaper-plugin" ];
   };
 
   # enabled by programs.thunar
@@ -156,9 +72,6 @@ in
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
 
-  services.gvfs.enable = true; # trash service
-  services.tumbler.enable = true; # img thumbnail service
-
   services.smartd = {
     enable = true;
     autodetect = true;
@@ -169,11 +82,8 @@ in
     powerKey = "ignore";
   };
 
-  security.polkit.enable = true;
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    HYPRSHOT_DIR = "$HOME/Pictures/Screenshots";
     GDK_BACKEND = "wayland";
     GDK_SCALE = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -181,13 +91,6 @@ in
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland";
     QT_QPA_PLATFORMTHEME = "qt6ct";
-  };
-
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      default = [ "foot.desktop" ];
-    };
   };
 
   xdg.portal = {
