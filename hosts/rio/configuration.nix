@@ -12,7 +12,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./graphics.nix
-    ../../fingerprint.nix
     ../../power_mgmt.nix
     ../../time_locale.nix
     ../../system.nix
@@ -27,6 +26,7 @@
     ../../applications/network.nix
     ../../applications/firewall.nix
     ../../applications/bluetooth.nix
+    ../../applications/fingerprint.nix
 
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
