@@ -18,15 +18,18 @@
     ../../time_locale.nix
     ../../system.nix
     ../../bootloader.nix
-    ../../audio.nix
     ../../users.nix
     ../../hyprland.nix
 
     ./specialisations/gaming.nix
     ./specialisations/nvidia-sync-mode.nix
+
+    ../../applications/audio.nix
+
     ../../applications/btrfs.nix
     ../../applications/thunar.nix
     ../../applications/virtualisation.nix
+
     ../../applications/gnupg.nix
     ../../applications/keyring.nix
     ../../applications/ssh.nix
