@@ -1,8 +1,5 @@
-# Genrates a symlink for each file in the .config directory
+# Genrates a symlink for files in the .config directory
 # Author: @dvishal485
-#
-# This file is auto-generated using the following command:
-# devbox run config
 { lib, config, ... }:
 let
   cfg = config.programs.config-dotfiles;

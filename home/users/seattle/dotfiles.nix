@@ -1,7 +1,7 @@
 { config, ... }:
 {
   imports = [
-    ../../config-dotfiles.nix
+    ../../applications/config-dotfiles.nix
   ];
 
   programs.config-dotfiles.sources = {
