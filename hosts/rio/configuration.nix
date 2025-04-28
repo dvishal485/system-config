@@ -43,6 +43,7 @@
     ../../applications/comma.nix
     ../../applications/foot.nix
     ../../applications/sudo-askpass.nix
+    ../../applications/nh
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
@@ -131,26 +132,6 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # nerd-fonts.jetbrains-mono
   ];
-
-  programs.nh =
-    let
-      nh = inputs.nh.packages.${pkgs.system}.nh;
-      nh-patched = nh.overrideAttrs (
-        finalAttrs: previousAttrs: {
-          patches = previousAttrs.patches ++ [ ./nh-v4.0.2.patch ];
-        }
-      );
-    in
-    {
-      enable = true;
-      package = nh-patched;
-      flake = "/home/seattle/nix";
-      clean = {
-        enable = true;
-        dates = "daily";
-        extraArgs = "--keep-since 3d";
-      };
-    };
 
   programs.nix-ld.enable = true;
 
