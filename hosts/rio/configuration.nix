@@ -19,6 +19,7 @@
 
     ./specialisations/gaming.nix
     ./specialisations/nvidia-sync-mode.nix
+    # ./specialisations/ollama.nix
 
     ../../applications/audio.nix
     ../../applications/network.nix
@@ -66,16 +67,6 @@
 
   # cuda by default
   # nixpkgs.config.cudaSupport = true;
-
-  # specialisation = {
-  #   ollama.configuration = {
-  #     system.nixos.tags = [ "ollama" ];
-  #     services.ollama = {
-  #       enable = true;
-  #       acceleration = "cuda";
-  #     };
-  #   };
-  # };
 
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;
