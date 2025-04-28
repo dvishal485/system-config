@@ -1,4 +1,11 @@
 _: {
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "foot.desktop" ];
+    };
+  };
+
   programs.foot = {
     enable = true;
     enableBashIntegration = true;

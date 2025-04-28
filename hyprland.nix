@@ -89,13 +89,6 @@ in
     QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      default = [ "foot.desktop" ];
-    };
-  };
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
