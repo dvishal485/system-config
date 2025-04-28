@@ -21,7 +21,7 @@
         enable = true;
         lutris.enable = true;
         lutris.package = pkgs-unstable.lutris;
-        gamingModeToggleScript = builtins.readFile ../../../.config/hypr/scripts/perf_mode.sh;
+        gamingModeToggleScript = builtins.readFile ../../../home/users/seattle/.config/hypr/scripts/perf_mode.sh;
         heroic.enable = false;
         libPackages = with pkgs; [
           vkbasalt
