@@ -61,7 +61,7 @@
     gnome-disk-utility
     pkgs-unstable.evil-helix
     wl-clipboard
-    librewolf
+    floorp
     libnotify
     wget
     curl

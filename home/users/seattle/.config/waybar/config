@@ -58,7 +58,7 @@
     "hyprland/window" : {
         "format": "{}",
         "rewrite": {
-            "(.*) — LibreWolf": "🌎 $1",
+            "(.*) — Ablaze Floorp": "🌎 $1",
         },
         "separate-outputs": true,
     },
