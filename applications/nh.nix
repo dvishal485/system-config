@@ -4,18 +4,10 @@
   pkgs,
   ...
 }:
-let
-  nh = inputs.nh.packages.${pkgs.system}.nh;
-  nh-patched = nh.overrideAttrs (
-    finalAttrs: previousAttrs: {
-      patches = previousAttrs.patches ++ [ ./nh-v4.0.2.patch ];
-    }
-  );
-in
 {
   programs.nh = {
     enable = true;
-    package = nh-patched;
+    package = inputs.nh.packages.${pkgs.system}.nh;
     flake = "/home/seattle/nix";
     clean = {
       enable = true;
@@ -26,5 +18,6 @@ in
 
   environment.sessionVariables = {
     NH_FLAKE = config.programs.nh.flake;
+    # NH_SUDO_ASKPASS configured in ./sudo-askpass.nix
   };
 }

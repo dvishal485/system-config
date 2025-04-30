@@ -44,7 +44,7 @@
     ../../applications/comma.nix
     ../../applications/foot.nix
     ../../applications/sudo-askpass.nix
-    ../../applications/nh
+    ../../applications/nh.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
