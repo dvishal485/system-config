@@ -85,6 +85,7 @@
       options = [
         "subvol=home"
         "compress=zstd"
+        "x-gvfs-show"
       ];
     };
 
