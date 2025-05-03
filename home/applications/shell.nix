@@ -19,7 +19,14 @@ _: {
       enable = true;
       plugins = [
         "sudo" # hit Esc twice
+        "zsh-interactive-cd"
+        "zbell" # notification for cmds taking time
+        "safe-paste"
       ];
+      extraConfig = ''
+        zbell_duration=30
+        zbell_ignore=($EDITOR $PAGER g nh)
+      '';
     };
     initExtra = ''
       eval "$(devbox global shellenv --init-hook)"
