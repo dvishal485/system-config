@@ -34,7 +34,7 @@ _: {
   };
 
   programs.bash = {
-    enable = true;
+    enable = false;
     historyControl = [
       "erasedups"
       "ignorespace"
