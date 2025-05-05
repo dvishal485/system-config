@@ -52,6 +52,7 @@
     signal-desktop
     obsidian
     xournalpp
+    rnote
     pdfslicer
     onlyoffice-bin
     whatsapp-for-linux
