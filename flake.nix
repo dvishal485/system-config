@@ -38,6 +38,7 @@
         };
 
         modules = [
+          { networking.hostName = "rio"; }
           ./hosts/rio/configuration.nix
         ];
       };

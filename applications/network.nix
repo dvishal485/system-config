@@ -2,7 +2,6 @@ _: {
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
-  networking.hostName = "rio";
   networking.dhcpcd.wait = "background";
   networking.networkmanager.wifi.backend = "wpa_supplicant";
   networking.networkmanager.logLevel = "OFF";
