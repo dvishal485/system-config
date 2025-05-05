@@ -10,6 +10,10 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
   "vim_mode": true,
   "confirm_quit": true,
   "relative_line_numbers": true,
