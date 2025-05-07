@@ -19,7 +19,7 @@
     ../../applications/network.nix
     ../../applications/firewall.nix
     ../../applications/bluetooth.nix
-    ../../applications/fingerprint.nix
+    # ../../applications/fingerprint.nix
     ../../applications/greetd.nix
     ../../applications/bootloader.nix
     ../../applications/polkit.nix
