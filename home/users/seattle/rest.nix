@@ -59,6 +59,7 @@
     telegram-desktop
     mpv
     transmission_4-gtk
+    rclone
     mongodb-compass
     # wayvnc
 
