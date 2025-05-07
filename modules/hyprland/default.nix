@@ -87,6 +87,17 @@ in
       powerKey = "ignore";
     };
 
+    environment.sessionVariables = lib.mkIf cfg.setEnvironment {
+      NIXOS_OZONE_WL = "1";
+      GDK_BACKEND = "wayland";
+      GDK_SCALE = "1";
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      QT_SCALE_FACTOR = "1";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+    };
+
     home-manager.users = lib.genAttrs cfg.users (user: {
       wayland.windowManager.hyprland = {
         enable = true;
@@ -134,17 +145,6 @@ in
           else
             [ ]
         );
-
-      home.sessionVariables = lib.mkIf cfg.setEnvironment {
-        NIXOS_OZONE_WL = "1";
-        GDK_BACKEND = "wayland";
-        GDK_SCALE = "1";
-        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-        QT_SCALE_FACTOR = "1";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        QT_QPA_PLATFORM = "wayland";
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-      };
     });
   };
 }
