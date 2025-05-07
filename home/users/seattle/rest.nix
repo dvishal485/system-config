@@ -17,6 +17,7 @@
     ../../applications/hyprshot.nix
     ../../applications/dictionary.nix
     ../../applications/wlsunset.nix
+    ../../applications/google-chrome.nix
   ];
 
   home.sessionVariables = {
@@ -48,7 +49,6 @@
     stremio
     pkgs-unstable.zed-editor
     localsend
-    google-chrome
     signal-desktop
     obsidian
     xournalpp
