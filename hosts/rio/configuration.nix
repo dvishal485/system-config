@@ -12,7 +12,7 @@
     ./users.nix
 
     ./specialisations/gaming.nix
-    ./specialisations/nvidia-sync-mode.nix
+    # ./specialisations/nvidia-sync-mode.nix
     # ./specialisations/ollama.nix
 
     ../../applications/audio.nix
