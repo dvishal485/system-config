@@ -70,6 +70,7 @@
     fd
     jq
     htop
+    tealdeer
     # dotool
     # uutils-coreutils-noprefix still a wip
   ];
