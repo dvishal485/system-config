@@ -98,7 +98,7 @@
                 "󰕾"
             ]
         },
-        "on-click": "pkill pavucontrol || pavucontrol",
+        "on-click": "pkill pwvucontrol || pwvucontrol",
         "scroll-step": 1
     },
     "battery": {

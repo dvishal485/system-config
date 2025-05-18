@@ -19,6 +19,6 @@
   };
 
   environment.systemPackages = [
-    pkgs.pavucontrol
+    pkgs.pwvucontrol
   ];
 }
