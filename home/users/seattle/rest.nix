@@ -45,6 +45,7 @@
     gnome-text-editor
     pkgs-unstable.spotube
     viewnior
+    stirling-pdf
     kdePackages.okular
     stremio
     pkgs-unstable.zed-editor
