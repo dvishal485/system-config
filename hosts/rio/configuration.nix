@@ -69,6 +69,7 @@
     ripgrep
     fd
     jq
+    sd
     htop
     tealdeer
     # dotool
