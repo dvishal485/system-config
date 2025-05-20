@@ -15,7 +15,7 @@
       enableGnomeKeyring = true;
       kwallet = {
         enable = true;
-        package = pkgs.kwallet-pam;
+        package = pkgs.kdePackages.kwallet-pam;
         forceRun = true;
       };
     };

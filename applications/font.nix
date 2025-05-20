@@ -3,8 +3,7 @@
   fonts.packages = with pkgs; [
     corefonts
     stix-two
-    # https://github.com/NixOS/nixpkgs/blob/nixos-24.11/pkgs/data/fonts/nerdfonts/shas.nix
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    # nerd-fonts.jetbrains-mono
+    # https://github.com/NixOS/nixpkgs/tree/nixos-25.05/pkgs/data/fonts/nerd-fonts
+    nerd-fonts.jetbrains-mono
   ];
 }

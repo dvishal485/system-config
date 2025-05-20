@@ -9,7 +9,5 @@ _: {
         error_symbol = "[\\$](bold red)";
       };
     };
-    enableBashIntegration = true;
-    enableZshIntegration = true;
   };
 }

@@ -6,6 +6,8 @@ _: {
     z = "zeditor";
   };
 
+  home.shell.enableZshIntegration = true;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -28,7 +30,7 @@ _: {
         zbell_ignore=($EDITOR $PAGER g nh)
       '';
     };
-    initExtra = ''
+    initContent = ''
       eval "$(devbox global shellenv --init-hook)"
     '';
   };
