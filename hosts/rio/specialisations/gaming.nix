@@ -16,7 +16,10 @@
 
         # xanmod kernel
         boot.kernelPackages = lib.mkForce kernel;
-        hardware.nvidia.package = kernel.nvidiaPackages.production;
+        hardware.nvidia = {
+          package = kernel.nvidiaPackages.production;
+          dynamicBoost.enable = lib.mkForce true;
+        };
 
         imports = [
           ../modules/gaming.nix

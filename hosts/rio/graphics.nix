@@ -32,7 +32,7 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    dynamicBoost.enable = true;
+    dynamicBoost.enable = false;
 
     nvidiaSettings = true;
     nvidiaPersistenced = true;
