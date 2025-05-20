@@ -56,7 +56,7 @@
     rnote
     pdfslicer
     onlyoffice-bin
-    whatsapp-for-linux
+    wasistlos
     telegram-desktop
     mpv
     transmission_4-gtk

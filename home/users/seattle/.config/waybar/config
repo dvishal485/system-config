@@ -26,7 +26,7 @@
         "on-click-right": "fullscreen",
         "icon-size": 25,
         "tooltip-format": "{title}",
-        "ignore-list": [ "WhatsApp for Linux" ]
+        "ignore-list": [ "WasIstLos" ]
     },
     "idle_inhibitor": {
         "format": "{icon}",
