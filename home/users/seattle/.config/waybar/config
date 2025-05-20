@@ -15,7 +15,6 @@
         "hyprland/submap",
         "tray",
         "custom/notification",
-        "keyboard-state",
         "idle_inhibitor",
         "wireplumber",
         "battery",
@@ -28,14 +27,6 @@
         "icon-size": 25,
         "tooltip-format": "{title}",
         "ignore-list": [ "WhatsApp for Linux" ]
-    },
-    "keyboard-state": {
-        "format": "{icon}",
-        "format-icons": {
-            "locked": " 󰪛 " ,
-            "unlocked": ""
-        },
-        "capslock": true,
     },
     "idle_inhibitor": {
         "format": "{icon}",
