@@ -12,7 +12,7 @@
     clean = {
       enable = true;
       dates = "daily";
-      extraArgs = "--keep-since 3d";
+      extraArgs = "--keep-since 3d --nogcroots";
     };
   };
 
