@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -14,14 +19,17 @@
     isNormalUser = true;
     description = "seattle";
 
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "render"
-      "input"
-      "kvm"
-    ];
+    extraGroups =
+      [
+        "networkmanager"
+        "wheel"
+        "video"
+        "render"
+        "input"
+        "kvm"
+      ]
+      ++ lib.optionals config.virtualisation.docker.enable [ "docker" ]
+      ++ lib.optionals config.virtualisation.podman.enable [ "podman" ];
 
     useDefaultShell = true;
 
