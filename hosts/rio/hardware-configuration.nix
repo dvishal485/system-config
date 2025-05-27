@@ -28,6 +28,7 @@
   boot.kernel.sysctl = {
     "kernel.nmi_watchdog" = 0;
     "kernel.panic" = 10;
+    "vm.overcommit_memory" = 1;
   };
 
   boot.supportedFilesystems = [
