@@ -24,7 +24,7 @@ let
 
     export -f hyprshot_notification
 
-    HYPRSHOT_DIR=${hyprshot-dir} ${hyprshot-package}/bin/hyprshot "$@" -- "hyprshot_notification"
+    HYPRSHOT_DIR=${hyprshot-dir} ${hyprshot-package}/bin/hyprshot -s "$@" -- "hyprshot_notification"
   '';
 in
 {
