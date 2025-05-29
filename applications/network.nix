@@ -10,13 +10,13 @@ _: {
   # NextDNS
   services.resolved = {
     enable = true;
+    dnsovertls = "true";
     extraConfig = ''
       [Resolve]
       DNS=45.90.28.0#nixos-73c4d4.dns.nextdns.io
       DNS=2a07:a8c0::#nixos-73c4d4.dns.nextdns.io
       DNS=45.90.30.0#nixos-73c4d4.dns.nextdns.io
       DNS=2a07:a8c1::#nixos-73c4d4.dns.nextdns.io
-      DNSOverTLS=yes
     '';
   };
 }
