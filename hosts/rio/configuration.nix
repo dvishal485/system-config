@@ -14,6 +14,7 @@
     ./specialisations/gaming.nix
     # ./specialisations/nvidia-sync-mode.nix
     # ./specialisations/ollama.nix
+    ./specialisations/remote-access.nix
 
     ../../applications/audio.nix
     ../../applications/network.nix
