@@ -14,7 +14,7 @@
     "udiskie".enable = true;
     "waybar".enable = true;
     "zed".enable = true;
-    ".gitignore".enable = false;
+    ".gitignore".enable = true;
     "devbox.json" = {
       enable = true;
       sourcePath = "devbox/devbox-global.json";

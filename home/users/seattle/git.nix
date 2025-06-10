@@ -1,5 +1,11 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -13,6 +19,9 @@
         "ssh://git@github.com/".insteadOf = "https://github.com/";
       };
       core.editor = "hx";
+      core.excludesFile =
+        lib.mkIf config.programs.config-dotfiles.sources.".gitignore".enable
+          "${config.xdg.configHome}/.gitignore";
     };
 
     signing = {
