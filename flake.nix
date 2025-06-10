@@ -3,6 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     # nixpkgs.follows = "hyprland/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    pinned-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+
     btrfs-simple-snapshot.url = "github:dvishal485/btrfs-simple-snapshot/v0.1.6";
 
     nh.url = "github:nix-community/nh/v4.0.3";
@@ -30,6 +32,10 @@
 
         specialArgs = {
           pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          pinned-pkgs = import inputs.pinned-pkgs {
             inherit system;
             config.allowUnfree = true;
           };

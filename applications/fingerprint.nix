@@ -1,11 +1,12 @@
 {
+  pinned-pkgs,
   pkgs,
   lib,
   config,
   ...
 }:
 let
-  patched-fprintd = pkgs.fprintd.override {
+  patched-fprintd = pinned-pkgs.fprintd.override {
     libfprint = pkgs.libfprint-focaltech-2808-a658;
   };
 in
