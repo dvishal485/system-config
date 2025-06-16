@@ -47,7 +47,20 @@
     viewnior
     stirling-pdf
     kdePackages.okular
-    stremio
+    (pkgs.symlinkJoin {
+      name = "stremio";
+      paths = [ pkgs.stremio ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/stremio \
+          --set LIBVA_DRIVER_NAME nvidia \
+          --set NVD_BACKEND direct \
+          --set DRI_PRIME 1
+        mv $out/share/applications/smartcode-stremio.desktop{,.orig}
+        substitute $out/share/applications/smartcode-stremio.desktop{.orig,} \
+          --replace-fail Exec=stremio Exec=$out/bin/stremio
+      '';
+    })
     pkgs-unstable.zed-editor
     localsend
     signal-desktop
