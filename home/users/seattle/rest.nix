@@ -72,6 +72,20 @@
     wasistlos
     telegram-desktop
     mpv
+    (pkgs.symlinkJoin {
+      name = "vlc";
+      paths = [ pkgs.vlc ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/vlc \
+          --set LIBVA_DRIVER_NAME nvidia \
+          --set NVD_BACKEND direct \
+          --set DRI_PRIME 1
+        mv $out/share/applications/vlc.desktop{,.orig}
+        substitute $out/share/applications/vlc.desktop{.orig,} \
+          --replace-fail Exec=${pkgs.vlc}/bin/vlc Exec=$out/bin/vlc
+      '';
+    })
     transmission_4-gtk
     rclone
     mongodb-compass
