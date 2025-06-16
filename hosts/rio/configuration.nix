@@ -46,6 +46,7 @@
     ../../applications/foot.nix
     ../../applications/sudo-askpass.nix
     ../../applications/nh.nix
+    ../../applications/browser.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
@@ -62,7 +63,6 @@
     gnome-disk-utility
     pkgs-unstable.evil-helix
     wl-clipboard
-    floorp
     libnotify
     wget
     curl
