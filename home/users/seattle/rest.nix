@@ -45,8 +45,21 @@
     gnome-text-editor
     spotube
     viewnior
-    stirling-pdf
-    kdePackages.okular
+    (pkgs.symlinkJoin {
+      name = "document-tools";
+      paths = with pkgs; [
+        stirling-pdf
+        ocrmypdf
+        tesseract
+        unoconv
+        libreoffice
+        ghostscript_headless
+        python313Packages.weasyprint
+        poppler-utils
+        kdePackages.okular
+        onlyoffice-bin
+      ];
+    })
     (pkgs.symlinkJoin {
       name = "stremio";
       paths = [ pkgs.stremio ];
@@ -68,7 +81,6 @@
     xournalpp
     rnote
     pdfslicer
-    onlyoffice-bin
     wasistlos
     telegram-desktop
     mpv
