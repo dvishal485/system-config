@@ -40,10 +40,10 @@
     qalculate-gtk
     nwg-look
     android-tools
-    pkgs-unstable.devbox
-    pkgs-unstable.d2
+    devbox
+    d2
     gnome-text-editor
-    pkgs-unstable.spotube
+    spotube
     viewnior
     stirling-pdf
     kdePackages.okular
@@ -61,7 +61,7 @@
           --replace-fail Exec=stremio Exec=$out/bin/stremio
       '';
     })
-    pkgs-unstable.zed-editor
+    zed-editor
     localsend
     signal-desktop
     obsidian
@@ -91,7 +91,6 @@
     mongodb-compass
     # wayvnc
 
-    # no worky on 24.11 as unstable branch got a breaking change w gbm driver path
-    pkgs-unstable.neohtop
+    neohtop
   ];
 }

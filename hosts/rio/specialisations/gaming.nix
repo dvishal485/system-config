@@ -28,7 +28,7 @@
         programs.gaming = {
           enable = true;
           lutris.enable = true;
-          lutris.package = pkgs-unstable.lutris;
+          lutris.package = pkgs.lutris;
           gamingModeToggleScript = builtins.readFile ../../../home/users/seattle/.config/hypr/scripts/perf_mode.sh;
           heroic.enable = false;
           libPackages = with pkgs; [
@@ -38,7 +38,7 @@
             enable = true;
             # nix flake show github:fufexan/nix-gaming
             # package = inputs.nix-gaming.packages.${pkgs.system}.wine-ge;
-            package = pkgs-unstable.wineWowPackages.waylandFull;
+            package = pkgs.wineWowPackages.waylandFull;
           };
           gamemode.enable = true;
           gamescope.enable = false; # doesn't work, also not required

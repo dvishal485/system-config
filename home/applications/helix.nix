@@ -1,8 +1,8 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   programs.helix = {
     enable = true;
-    package = pkgs-unstable.evil-helix;
+    package = pkgs.evil-helix;
     defaultEditor = true;
     settings = {
       editor = {

@@ -111,8 +111,8 @@ in
         (
           if cfg.enableHyprTools then
             [
-              pkgs-unstable.hyprland-qtutils
-              pkgs-unstable.hyprlock
+              hyprland-qtutils
+              hyprlock
               hyprpolkitagent
               hypridle
             ]

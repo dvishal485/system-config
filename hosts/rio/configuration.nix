@@ -61,7 +61,7 @@
     pciutils
     gnupg
     gnome-disk-utility
-    pkgs-unstable.evil-helix
+    evil-helix
     wl-clipboard
     libnotify
     wget
