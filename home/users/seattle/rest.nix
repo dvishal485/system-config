@@ -18,6 +18,7 @@
     ../../applications/dictionary.nix
     ../../applications/wlsunset.nix
     ../../applications/google-chrome.nix
+    ../../applications/document-tools.nix
   ];
 
   home.sessionVariables = {
@@ -45,21 +46,6 @@
     gnome-text-editor
     spotube
     viewnior
-    (pkgs.symlinkJoin {
-      name = "document-tools";
-      paths = with pkgs; [
-        stirling-pdf
-        ocrmypdf
-        tesseract
-        unoconv
-        libreoffice
-        ghostscript_headless
-        python313Packages.weasyprint
-        poppler-utils
-        kdePackages.okular
-        onlyoffice-bin
-      ];
-    })
     (pkgs.symlinkJoin {
       name = "stremio";
       paths = [ pkgs.stremio ];
