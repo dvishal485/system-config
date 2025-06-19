@@ -1,5 +1,16 @@
 { pkgs, config, ... }:
+let
+  yamlFormat = pkgs.formats.yaml { };
+in
 {
+  xdg.configFile."stirling-pdf/configs/custom_settings.yml" = {
+    source = yamlFormat.generate "stirling-pdf-config" {
+      system = {
+        tessdataDir = "${pkgs.tesseract}/share/tessdata";
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     (pkgs.symlinkJoin {
       name = "document-tools";
