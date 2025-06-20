@@ -27,6 +27,7 @@
   };
 
   home.packages = with pkgs; [
+    just
     ouch
     rmtrash
     vscode-fhs
