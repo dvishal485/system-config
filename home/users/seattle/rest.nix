@@ -45,7 +45,6 @@
     devbox
     d2
     gnome-text-editor
-    spotube
     viewnior
     (pkgs.symlinkJoin {
       name = "stremio";
