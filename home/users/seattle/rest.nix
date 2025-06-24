@@ -28,6 +28,7 @@
 
   home.packages = with pkgs; [
     just
+    swayosd
     ouch
     rmtrash
     vscode-fhs
