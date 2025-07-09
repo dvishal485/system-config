@@ -46,7 +46,7 @@
     devbox
     d2
     gnome-text-editor
-    viewnior
+    eog
     (pkgs.symlinkJoin {
       name = "stremio";
       paths = [ pkgs.stremio ];
