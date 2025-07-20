@@ -17,4 +17,7 @@
   };
 
   hardware.nvidia-container-toolkit.enable = true;
+
+  # https://discourse.nixos.org/t/nvidia-ctk-shows-gpu-but-podman-doesnt-find-it-for-passthrough/65869
+  environment.etc."cdi/nvidia-container-toolkit.json".source = "/run/cdi/nvidia-container-toolkit.json";
 }
