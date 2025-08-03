@@ -93,6 +93,7 @@
   services.fwupd.enable = true;
 
   services.journald.extraConfig = "SystemMaxUse=32M";
+  systemd.extraConfig = "DefaultTimeoutStopSec=18s";
 
   security.sudo.extraConfig = ''
     Defaults insults
