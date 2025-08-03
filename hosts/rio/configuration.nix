@@ -66,6 +66,7 @@
     libnotify
     wget
     curl
+    httpie
     tree
     ripgrep
     fd
