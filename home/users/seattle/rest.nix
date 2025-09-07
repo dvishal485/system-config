@@ -18,6 +18,7 @@
     ../../applications/dictionary.nix
     ../../applications/wlsunset.nix
     ../../applications/google-chrome.nix
+    ../../applications/signal.nix
     ../../applications/document-tools.nix
   ];
 
@@ -63,7 +64,6 @@
     })
     zed-editor
     localsend
-    signal-desktop
     obsidian
     xournalpp
     rnote
