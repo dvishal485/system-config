@@ -49,7 +49,7 @@
     ../../applications/browser.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_16;
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
