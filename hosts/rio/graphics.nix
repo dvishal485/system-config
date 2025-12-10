@@ -10,12 +10,20 @@
     "amdgpu"
   ];
 
-  # this is what powerManagement does
-  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  # Kernel parameters for NVIDIA stability
+  # NVreg_PreserveVideoMemoryAllocations: Preserves video memory across suspend/resume
+  # NVreg_EnableGpuFirmware=0: Disables GSP firmware which can cause system freezes
+  # NVreg_TemporaryFilePath: Use /tmp for temporary files to avoid filesystem issues
+  boot.kernelParams = [
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "nvidia.NVreg_EnableGpuFirmware=0"
+    "nvidia.NVreg_TemporaryFilePath=/tmp"
+  ];
 
-  # environment.sessionVariables.VDPAU_DRIVER = "nvidia";
-  # environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
-  # environment.sessionVariables.NVD_BACKEND = "direct";
+  # Enable hardware video acceleration
+  environment.sessionVariables.VDPAU_DRIVER = "nvidia";
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
+  environment.sessionVariables.NVD_BACKEND = "direct";
 
   environment.systemPackages = [ pkgs.libva-utils ];
   hardware.graphics = {
