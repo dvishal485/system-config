@@ -76,6 +76,14 @@
     # };
   };
 
+  # Fix nvidia-persistenced hanging during shutdown
+  systemd.services.nvidia-persistenced = {
+    serviceConfig = {
+      TimeoutStopSec = "10s";
+      KillMode = "process";
+    };
+  };
+
   nix.settings = {
     substituters = [ "https://cuda-maintainers.cachix.org" ];
     trusted-public-keys = [
