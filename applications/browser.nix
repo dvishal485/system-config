@@ -19,7 +19,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    (lib.mkIf config.hardware.nvidia.prime.offload.enable (GPUOffloadApp floorp "floorp"))
+    # (lib.mkIf config.hardware.nvidia.prime.offload.enable (GPUOffloadApp floorp "floorp"))
     floorp
   ];
 }
