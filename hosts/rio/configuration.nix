@@ -94,6 +94,11 @@
 
   services.journald.extraConfig = "SystemMaxUse=32M";
 
+  boot.initrd.systemd.enable = true;
+  system.etc.overlay.enable = true;
+  system.nixos-init.enable = true;
+  services.userborn.enable = true;
+
   security.sudo.extraConfig = ''
     Defaults insults
   '';
