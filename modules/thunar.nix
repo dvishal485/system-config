@@ -10,14 +10,7 @@ let
   thunarWithFlags = cfg.package.overrideAttrs (o: {
     configureFlags = o.configureFlags ++ cfg.configureFlags;
   });
-  finalPackage =
-    if cfg.plugins == [ ] then
-      thunarWithFlags
-    else
-      pkgs.callPackage "${builtins.dirOf pkgs.xfce.thunar.meta.position}/wrapper.nix" {
-        thunarPlugins = cfg.plugins;
-        thunar = thunarWithFlags;
-      };
+  finalPackage = thunarWithFlags;
 in
 {
   meta = {
