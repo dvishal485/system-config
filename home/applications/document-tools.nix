@@ -28,7 +28,7 @@ in
         python313Packages.weasyprint
         poppler-utils
         kdePackages.okular
-        onlyoffice-bin
+        onlyoffice-desktopeditors
       ];
     })
   ];

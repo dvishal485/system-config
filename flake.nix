@@ -1,13 +1,13 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     # nixpkgs.follows = "hyprland/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # pinned-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     btrfs-simple-snapshot.url = "github:dvishal485/btrfs-simple-snapshot/v0.1.6";
 
-    nh.url = "github:nix-community/nh/v4.0.3";
+    nh.url = "github:nix-community/nh/v4.2.0";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     # nix-gaming.url = "github:fufexan/nix-gaming";
@@ -15,7 +15,7 @@
     hyprland.url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.46.2&submodules=1";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -125,7 +125,6 @@ in
               kdePackages.qtwayland
               libcanberra-gtk3
               kdePackages.qt6ct
-              libsForQt5.qt5ct
             ]
           else
             [ ]
@@ -133,7 +132,7 @@ in
         ++ (
           if cfg.enableDesktopManagerTools then
             [
-              rofi-wayland
+              rofi
               swaynotificationcenter
               networkmanagerapplet
               udiskie
