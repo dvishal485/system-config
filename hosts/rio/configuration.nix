@@ -94,7 +94,6 @@
 
   services.journald.extraConfig = "SystemMaxUse=32M";
 
-
   security.sudo.extraConfig = ''
     Defaults insults
   '';
