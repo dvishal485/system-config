@@ -7,6 +7,7 @@
 
 with pkgs;
 let
+  # Helper function to create a desktop entry that runs the app with nvidia-offload
   patchDesktop =
     pkg: appName: from: to:
     lib.hiPrio (
@@ -19,7 +20,8 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    # (lib.mkIf config.hardware.nvidia.prime.offload.enable (GPUOffloadApp floorp "floorp"))
     floorp-bin
+    # Offload floorp to NVIDIA GPU for better video playback
+    (lib.mkIf config.hardware.nvidia.prime.offload.enable (GPUOffloadApp floorp-bin "floorp"))
   ];
 }

@@ -21,14 +21,18 @@ in
       package = lib.mkOption {
         type = lib.types.package;
         description = "Hyprland package";
-        default = if cfg.useFlake then hyprland.packages.${pkgs.system}.default else pkgs.hyprland;
+        default =
+          if cfg.useFlake then
+            hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
+          else
+            pkgs.hyprland;
       };
       portalPackage = lib.mkOption {
         type = lib.types.package;
         description = "Hyprland portal package";
         default =
           if cfg.useFlake then
-            hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+            hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
           else
             pkgs.xdg-desktop-portal-hyprland;
       };
@@ -82,20 +86,31 @@ in
       ];
     };
 
-    services.logind = lib.mkIf cfg.logindMask {
-      lidSwitch = "ignore";
-      powerKey = "ignore";
+    services.logind.settings.Login = lib.mkIf cfg.logindMask {
+      HandleLidSwitch = "ignore";
+      HandlePowerKey = "ignore";
     };
 
     environment.sessionVariables = lib.mkIf cfg.setEnvironment {
+      # Wayland/Electron support
       NIXOS_OZONE_WL = "1";
-      GDK_BACKEND = "wayland";
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+
+      # GTK settings
+      GDK_BACKEND = "wayland,x11"; # Prefer wayland but fallback to X11
       GDK_SCALE = "1";
+
+      # Qt settings
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_SCALE_FACTOR = "1";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORM = "wayland;xcb"; # Prefer wayland but fallback to XCB
       QT_QPA_PLATFORMTHEME = "qt6ct";
+
+      # Hyprland runs on AMD iGPU by default (better battery)
+      # Applications can use nvidia-offload for dGPU rendering
+      # This is the recommended setup for hybrid graphics laptops
+      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0"; # Prefer AMD for compositor
     };
 
     home-manager.users = lib.genAttrs cfg.users (user: {

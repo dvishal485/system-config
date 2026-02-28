@@ -7,7 +7,7 @@
 
     btrfs-simple-snapshot.url = "github:dvishal485/btrfs-simple-snapshot/v0.1.6";
 
-    nh.url = "github:nix-community/nh/v4.2.0";
+    nh.url = "github:nix-community/nh/v4.3.0";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     # nix-gaming.url = "github:fufexan/nix-gaming";

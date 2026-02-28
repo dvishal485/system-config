@@ -22,10 +22,8 @@
     ../../applications/document-tools.nix
   ];
 
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
-    GNOME_KEYRING_CONTROL = "/run/user/1000/keyring";
-  };
+  # GNOME_KEYRING_CONTROL is set by gnome-keyring-daemon at startup
+  # SSH_AUTH_SOCK is set system-wide in applications/ssh.nix
 
   home.packages = with pkgs; [
     just
@@ -56,21 +54,29 @@
     pdfslicer
     wasistlos
     telegram-desktop
+
+    # MPV - configured in ~/.config/mpv/mpv.conf to use NVDEC
     mpv
+
+    # VLC wrapped to use NVIDIA GPU for hardware decoding
     (pkgs.symlinkJoin {
       name = "vlc";
       paths = [ pkgs.vlc ];
       buildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/vlc \
+          --set __NV_PRIME_RENDER_OFFLOAD 1 \
+          --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER NVIDIA-G0 \
+          --set __GLX_VENDOR_LIBRARY_NAME nvidia \
+          --set __VK_LAYER_NV_optimus NVIDIA_only \
           --set LIBVA_DRIVER_NAME nvidia \
-          --set NVD_BACKEND direct \
-          --set DRI_PRIME 1
+          --set NVD_BACKEND direct
         mv $out/share/applications/vlc.desktop{,.orig}
         substitute $out/share/applications/vlc.desktop{.orig,} \
           --replace-fail Exec=${pkgs.vlc}/bin/vlc Exec=$out/bin/vlc
       '';
     })
+
     transmission_4-gtk
     rclone
     mongodb-compass

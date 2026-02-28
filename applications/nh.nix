@@ -7,7 +7,7 @@
 {
   programs.nh = {
     enable = true;
-    package = inputs.nh.packages.${pkgs.system}.nh;
+    package = inputs.nh.packages.${pkgs.stdenv.hostPlatform.system}.nh;
     flake = "/home/seattle/nix";
     clean = {
       enable = true;
