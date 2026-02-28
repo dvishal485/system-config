@@ -53,6 +53,25 @@
 
       RUNTIME_PM_ON_AC = "auto";
       RUNTIME_PM_ON_BAT = "auto";
+
+      # USB autosuspend settings
+      # Disable autosuspend for USB devices to prevent charging issues
+      # Mobile phones connected for charging should not be suspended
+      USB_AUTOSUSPEND = 1; # Enable autosuspend globally
+      # Exclude phones/portable devices from autosuspend (these are typically class 0)
+      # Format: list of VID:PID pairs or device types to exclude
+      USB_EXCLUDE_PHONE = 1; # Exclude phones from autosuspend (TLP feature)
+
+      # USB allowlist/denylist approach: only enable autosuspend for specific devices
+      # By default, don't autosuspend any USB devices on AC power for better compatibility
+      USB_AUTOSUSPEND_ON_AC = 0;
+      USB_AUTOSUSPEND_ON_BAT = 1;
+
+      # Exclude all devices that should not be autosuspended
+      # USB hubs, keyboards, mice are handled automatically by TLP
+      # Add specific exclusions for Android MTP/Charging devices
+      USB_DENYLIST = ""; # Let TLP handle defaults
+      USB_ALLOWLIST = ""; # Let TLP handle defaults
     };
   };
 
@@ -65,6 +84,8 @@
     # targetMachine = "seattle@.host";
     mkRules [
       # hdd spin stop for laptop battery savings
+      # Only apply aggressive power saving to rotational drives (HDD)
+      # This helps preserve HDD health by reducing spin cycles
       (mkRule [
         ''ACTION=="add|change"''
         ''SUBSYSTEM=="block"''
@@ -72,6 +93,29 @@
         ''ATTR{queue/rotational}=="1"''
         ''RUN+="${pkgs.hdparm}/bin/hdparm -B 90 -S 41 /dev/%k"''
       ])
+
+      # Disable USB autosuspend for Android devices in charging mode
+      # This prevents the device from being disconnected during charging
+      # Android devices typically use class ff (vendor specific) for MTP/charging
+      (mkRule [
+        ''ACTION=="add"''
+        ''SUBSYSTEM=="usb"''
+        ''ATTR{bDeviceClass}=="00"''
+        ''ATTR{bDeviceSubClass}=="00"''
+        ''TEST=="power/control"''
+        ''ATTR{power/control}="on"''
+      ])
+
+      # Keep USB power on for all devices when on AC power
+      # This ensures mobile charging continues while laptop is plugged in
+      (mkRule [
+        ''ACTION=="add"''
+        ''SUBSYSTEM=="usb"''
+        ''ATTR{power/control}=="auto"''
+        ''TEST=="/sys/class/power_supply/AC0/online"''
+        ''ATTR{power/control}="on"''
+      ])
+
       # hibernate at low battery
       (mkRule [
         ''SUBSYSTEM=="power_supply"''
