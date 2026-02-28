@@ -97,6 +97,7 @@
       # Disable USB autosuspend for Android devices in charging mode
       # This prevents the device from being disconnected during charging
       # Android devices typically use class ff (vendor specific) for MTP/charging
+      # Class 00 is composite devices (common for phones)
       (mkRule [
         ''ACTION=="add"''
         ''SUBSYSTEM=="usb"''
@@ -106,12 +107,14 @@
         ''ATTR{power/control}="on"''
       ])
 
-      # Keep USB power on for all devices when on AC power
+      # Keep USB power on for all USB devices when on AC power
       # This ensures mobile charging continues while laptop is plugged in
+      # Note: AC0 is the power supply name on ASUS Vivobook Pro 15 M6500QF
+      # Run: ls /sys/class/power_supply/ to find your AC adapter name
       (mkRule [
         ''ACTION=="add"''
         ''SUBSYSTEM=="usb"''
-        ''ATTR{power/control}=="auto"''
+        ''TEST=="power/control"''
         ''TEST=="/sys/class/power_supply/AC0/online"''
         ''ATTR{power/control}="on"''
       ])

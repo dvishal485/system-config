@@ -10,7 +10,11 @@
   # but won't require it. This works with gnome-keyring SSH agent integration.
   environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
 
-  # Ensure gnome-keyring SSH agent socket is used system-wide
-  # This socket is created by gnome-keyring-daemon --start --components=ssh
-  environment.sessionVariables.SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";
+  # Set SSH_AUTH_SOCK to gnome-keyring's SSH socket at session startup
+  # This runs during shell initialization and properly expands $UID
+  environment.extraInit = ''
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+      export SSH_AUTH_SOCK="/run/user/$UID/keyring/ssh"
+    fi
+  '';
 }
