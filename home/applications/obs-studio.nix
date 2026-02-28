@@ -1,12 +1,6 @@
 { pkgs, ... }:
 {
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      # Enable NVIDIA hardware encoding support (NVENC)
-      obs-nvfbc  # NVIDIA Frame Buffer Capture (better performance than X11 capture)
-    ];
-  };
+  programs.obs-studio.enable = true;
 
   # Create a wrapper to run OBS with NVIDIA GPU for better encoding performance
   home.packages = [
