@@ -53,23 +53,6 @@
 
       RUNTIME_PM_ON_AC = "auto";
       RUNTIME_PM_ON_BAT = "auto";
-
-      # USB autosuspend settings
-      # USB_AUTOSUSPEND = 1 enables the autosuspend feature globally
-      # However, actual behavior is controlled by USB_AUTOSUSPEND_ON_AC/BAT below
-      USB_AUTOSUSPEND = 1;
-      # Exclude phones from autosuspend to prevent charging interruption
-      USB_EXCLUDE_PHONE = 1;
-
-      # Control autosuspend behavior based on power state:
-      # - On AC power: disabled (0) to ensure mobile devices charge properly
-      # - On battery: enabled (1) to save power
-      USB_AUTOSUSPEND_ON_AC = 0;
-      USB_AUTOSUSPEND_ON_BAT = 1;
-
-      # Let TLP handle default device exclusions (hubs, keyboards, mice)
-      USB_DENYLIST = "";
-      USB_ALLOWLIST = "";
     };
   };
 
@@ -82,8 +65,6 @@
     # targetMachine = "seattle@.host";
     mkRules [
       # hdd spin stop for laptop battery savings
-      # Only apply aggressive power saving to rotational drives (HDD)
-      # This helps preserve HDD health by reducing spin cycles
       (mkRule [
         ''ACTION=="add|change"''
         ''SUBSYSTEM=="block"''
@@ -91,31 +72,6 @@
         ''ATTR{queue/rotational}=="1"''
         ''RUN+="${pkgs.hdparm}/bin/hdparm -B 90 -S 41 /dev/%k"''
       ])
-
-      # Disable USB autosuspend for Android devices in charging mode
-      # This prevents the device from being disconnected during charging
-      # Android devices typically use class ff (vendor specific) for MTP/charging
-      # Class 00 is composite devices (common for phones)
-      (mkRule [
-        ''ACTION=="add"''
-        ''SUBSYSTEM=="usb"''
-        ''ATTR{bDeviceClass}=="00"''
-        ''ATTR{bDeviceSubClass}=="00"''
-        ''TEST=="power/control"''
-        ''ATTR{power/control}="on"''
-      ])
-
-      # Keep USB power on for all USB devices when on AC power
-      # This ensures mobile charging continues while laptop is plugged in
-      # Hardware-specific: AC0 is the power supply name on ASUS Vivobook Pro 15 M6500QF
-      # To find your AC adapter name: ls /sys/class/power_supply/
-      (mkRule [
-        ''ACTION=="add"''
-        ''SUBSYSTEM=="usb"''
-        ''TEST=="power/control"''
-        ''RUN+="${pkgs.bash}/bin/bash -c 'test \"$(cat /sys/class/power_supply/AC0/online 2>/dev/null)\" = \"1\" && echo on > /sys%p/power/control || true'"''
-      ])
-
       # hibernate at low battery
       (mkRule [
         ''SUBSYSTEM=="power_supply"''
