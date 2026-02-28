@@ -55,23 +55,21 @@
       RUNTIME_PM_ON_BAT = "auto";
 
       # USB autosuspend settings
-      # Disable autosuspend for USB devices to prevent charging issues
-      # Mobile phones connected for charging should not be suspended
-      USB_AUTOSUSPEND = 1; # Enable autosuspend globally
-      # Exclude phones/portable devices from autosuspend (these are typically class 0)
-      # Format: list of VID:PID pairs or device types to exclude
-      USB_EXCLUDE_PHONE = 1; # Exclude phones from autosuspend (TLP feature)
+      # USB_AUTOSUSPEND = 1 enables the autosuspend feature globally
+      # However, actual behavior is controlled by USB_AUTOSUSPEND_ON_AC/BAT below
+      USB_AUTOSUSPEND = 1;
+      # Exclude phones from autosuspend to prevent charging interruption
+      USB_EXCLUDE_PHONE = 1;
 
-      # USB allowlist/denylist approach: only enable autosuspend for specific devices
-      # By default, don't autosuspend any USB devices on AC power for better compatibility
+      # Control autosuspend behavior based on power state:
+      # - On AC power: disabled (0) to ensure mobile devices charge properly
+      # - On battery: enabled (1) to save power
       USB_AUTOSUSPEND_ON_AC = 0;
       USB_AUTOSUSPEND_ON_BAT = 1;
 
-      # Exclude all devices that should not be autosuspended
-      # USB hubs, keyboards, mice are handled automatically by TLP
-      # Add specific exclusions for Android MTP/Charging devices
-      USB_DENYLIST = ""; # Let TLP handle defaults
-      USB_ALLOWLIST = ""; # Let TLP handle defaults
+      # Let TLP handle default device exclusions (hubs, keyboards, mice)
+      USB_DENYLIST = "";
+      USB_ALLOWLIST = "";
     };
   };
 
@@ -109,14 +107,13 @@
 
       # Keep USB power on for all USB devices when on AC power
       # This ensures mobile charging continues while laptop is plugged in
-      # Note: AC0 is the power supply name on ASUS Vivobook Pro 15 M6500QF
-      # Run: ls /sys/class/power_supply/ to find your AC adapter name
-      # Uses RUN to execute a script that checks AC online status at runtime
+      # Hardware-specific: AC0 is the power supply name on ASUS Vivobook Pro 15 M6500QF
+      # To find your AC adapter name: ls /sys/class/power_supply/
       (mkRule [
         ''ACTION=="add"''
         ''SUBSYSTEM=="usb"''
         ''TEST=="power/control"''
-        ''RUN+="${pkgs.bash}/bin/bash -c 'if [ -f /sys/class/power_supply/AC0/online ] && [ \"$(cat /sys/class/power_supply/AC0/online)\" = \"1\" ]; then echo on > /sys%p/power/control; fi'"''
+        ''RUN+="${pkgs.bash}/bin/bash -c 'test \"$(cat /sys/class/power_supply/AC0/online 2>/dev/null)\" = \"1\" && echo on > /sys%p/power/control || true'"''
       ])
 
       # hibernate at low battery

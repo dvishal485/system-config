@@ -59,9 +59,7 @@ in
       vkIcd="${nvidiaPkg}/share/vulkan/icd.d/nvidia_icd.x86_64.json"
       ${lib.optionalString (vulkan32Path != "") ''
       # Add 32-bit ICD for 32-bit application support
-      if [ -f "${vulkan32Path}" ]; then
-        vkIcd="$vkIcd:${vulkan32Path}"
-      fi
+      vkIcd="$vkIcd:${vulkan32Path}"
       ''}
       export VK_ICD_FILENAMES="$vkIcd"
       exec "$@"
@@ -134,14 +132,17 @@ in
   };
 
   # Add suspend/hibernate hooks for NVIDIA
+  # Note: PCI path derived from nvidiaBusId "PCI:1:0:0" -> "0000:01:00.0"
   systemd.services.nvidia-resume = {
     description = "NVIDIA Resume Actions";
     after = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
     wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
     script = ''
       # Restore NVIDIA power state after resume
-      if [ -d /sys/bus/pci/devices/0000:01:00.0 ]; then
-        echo "auto" > /sys/bus/pci/devices/0000:01:00.0/power/control 2>/dev/null || true
+      # PCI path corresponds to nvidiaBusId = "PCI:1:0:0"
+      pciPath="/sys/bus/pci/devices/0000:01:00.0"
+      if [ -d "$pciPath" ]; then
+        echo "auto" > "$pciPath/power/control" 2>/dev/null || true
       fi
     '';
     serviceConfig = {
