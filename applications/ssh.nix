@@ -3,7 +3,7 @@
   programs.ssh = {
     startAgent = false;
     enableAskPassword = true;
-    askPassword = "${pkgs.gcr_4}/libexec/gcr-ssh-askpass";
+    askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
   };
 
   # SSH_ASKPASS_REQUIRE=prefer means SSH will try to use askpass when available
