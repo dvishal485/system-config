@@ -111,12 +111,12 @@
       # This ensures mobile charging continues while laptop is plugged in
       # Note: AC0 is the power supply name on ASUS Vivobook Pro 15 M6500QF
       # Run: ls /sys/class/power_supply/ to find your AC adapter name
+      # Uses RUN to execute a script that checks AC online status at runtime
       (mkRule [
         ''ACTION=="add"''
         ''SUBSYSTEM=="usb"''
         ''TEST=="power/control"''
-        ''ATTR{/sys/class/power_supply/AC0/online}=="1"''
-        ''ATTR{power/control}="on"''
+        ''RUN+="${pkgs.bash}/bin/bash -c 'if [ -f /sys/class/power_supply/AC0/online ] && [ \"$(cat /sys/class/power_supply/AC0/online)\" = \"1\" ]; then echo on > /sys%p/power/control; fi'"''
       ])
 
       # hibernate at low battery

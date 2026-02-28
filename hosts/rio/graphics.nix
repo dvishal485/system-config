@@ -4,6 +4,11 @@
   lib,
   ...
 }:
+let
+  nvidiaPkg = config.hardware.nvidia.package;
+  nvidiaPkg32 = nvidiaPkg.lib32 or null;
+  vulkan32Path = if nvidiaPkg32 != null then "${nvidiaPkg32}/share/vulkan/icd.d/nvidia_icd.i686.json" else "";
+in
 {
   # NVIDIA Configuration for ASUS Vivobook Pro 15 M6500QF
   # GPU: NVIDIA GeForce RTX 2050 (Turing architecture)
@@ -51,13 +56,13 @@
       export __VK_LAYER_NV_optimus=NVIDIA_only
       # Vulkan ICD paths for NVIDIA
       # Primary 64-bit ICD file
-      nvPkg="${config.hardware.nvidia.package}"
-      vkIcd="$nvPkg/share/vulkan/icd.d/nvidia_icd.x86_64.json"
-      # Add 32-bit ICD if available (for 32-bit application support)
-      nvPkg32="${config.hardware.nvidia.package.lib32}"
-      if [ -n "$nvPkg32" ] && [ -f "$nvPkg32/share/vulkan/icd.d/nvidia_icd.i686.json" ]; then
-        vkIcd="$vkIcd:$nvPkg32/share/vulkan/icd.d/nvidia_icd.i686.json"
+      vkIcd="${nvidiaPkg}/share/vulkan/icd.d/nvidia_icd.x86_64.json"
+      ${lib.optionalString (vulkan32Path != "") ''
+      # Add 32-bit ICD for 32-bit application support
+      if [ -f "${vulkan32Path}" ]; then
+        vkIcd="$vkIcd:${vulkan32Path}"
       fi
+      ''}
       export VK_ICD_FILENAMES="$vkIcd"
       exec "$@"
     '')
