@@ -115,7 +115,7 @@
         ''ACTION=="add"''
         ''SUBSYSTEM=="usb"''
         ''TEST=="power/control"''
-        ''TEST=="/sys/class/power_supply/AC0/online"''
+        ''ATTR{/sys/class/power_supply/AC0/online}=="1"''
         ''ATTR{power/control}="on"''
       ])
 

@@ -49,10 +49,16 @@
       export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
       export __VK_LAYER_NV_optimus=NVIDIA_only
-      # Vulkan ICD paths for NVIDIA (both 64-bit and 32-bit)
+      # Vulkan ICD paths for NVIDIA
+      # Primary 64-bit ICD file
       nvPkg="${config.hardware.nvidia.package}"
+      vkIcd="$nvPkg/share/vulkan/icd.d/nvidia_icd.x86_64.json"
+      # Add 32-bit ICD if available (for 32-bit application support)
       nvPkg32="${config.hardware.nvidia.package.lib32}"
-      export VK_ICD_FILENAMES="$nvPkg/share/vulkan/icd.d/nvidia_icd.x86_64.json:$nvPkg32/share/vulkan/icd.d/nvidia_icd.i686.json"
+      if [ -n "$nvPkg32" ] && [ -f "$nvPkg32/share/vulkan/icd.d/nvidia_icd.i686.json" ]; then
+        vkIcd="$vkIcd:$nvPkg32/share/vulkan/icd.d/nvidia_icd.i686.json"
+      fi
+      export VK_ICD_FILENAMES="$vkIcd"
       exec "$@"
     '')
   ];
