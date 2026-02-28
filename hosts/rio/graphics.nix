@@ -7,7 +7,8 @@
 let
   nvidiaPkg = config.hardware.nvidia.package;
   nvidiaPkg32 = nvidiaPkg.lib32 or null;
-  vulkan32Path = if nvidiaPkg32 != null then "${nvidiaPkg32}/share/vulkan/icd.d/nvidia_icd.i686.json" else "";
+  vulkan32Path =
+    if nvidiaPkg32 != null then "${nvidiaPkg32}/share/vulkan/icd.d/nvidia_icd.i686.json" else "";
 in
 {
   # NVIDIA Configuration for ASUS Vivobook Pro 15 M6500QF
@@ -58,8 +59,8 @@ in
       # Primary 64-bit ICD file
       vkIcd="${nvidiaPkg}/share/vulkan/icd.d/nvidia_icd.x86_64.json"
       ${lib.optionalString (vulkan32Path != "") ''
-      # Add 32-bit ICD for 32-bit application support
-      vkIcd="$vkIcd:${vulkan32Path}"
+        # Add 32-bit ICD for 32-bit application support
+        vkIcd="$vkIcd:${vulkan32Path}"
       ''}
       export VK_ICD_FILENAMES="$vkIcd"
       exec "$@"

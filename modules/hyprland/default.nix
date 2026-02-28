@@ -21,7 +21,11 @@ in
       package = lib.mkOption {
         type = lib.types.package;
         description = "Hyprland package";
-        default = if cfg.useFlake then hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default else pkgs.hyprland;
+        default =
+          if cfg.useFlake then
+            hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
+          else
+            pkgs.hyprland;
       };
       portalPackage = lib.mkOption {
         type = lib.types.package;
@@ -93,20 +97,20 @@ in
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
       # GTK settings
-      GDK_BACKEND = "wayland,x11";  # Prefer wayland but fallback to X11
+      GDK_BACKEND = "wayland,x11"; # Prefer wayland but fallback to X11
       GDK_SCALE = "1";
 
       # Qt settings
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_SCALE_FACTOR = "1";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      QT_QPA_PLATFORM = "wayland;xcb";  # Prefer wayland but fallback to XCB
+      QT_QPA_PLATFORM = "wayland;xcb"; # Prefer wayland but fallback to XCB
       QT_QPA_PLATFORMTHEME = "qt6ct";
 
       # Hyprland runs on AMD iGPU by default (better battery)
       # Applications can use nvidia-offload for dGPU rendering
       # This is the recommended setup for hybrid graphics laptops
-      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";  # Prefer AMD for compositor
+      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0"; # Prefer AMD for compositor
     };
 
     home-manager.users = lib.genAttrs cfg.users (user: {

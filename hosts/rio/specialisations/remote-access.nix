@@ -16,15 +16,15 @@
         enable = true;
         settings = {
           # Security hardening for SSH
-          PasswordAuthentication = true;  # Allow password auth for convenience, consider disabling for prod
+          PasswordAuthentication = true; # Allow password auth for convenience, consider disabling for prod
           UseDns = true;
-          X11Forwarding = false;  # Disable X11 forwarding for security
-          PermitRootLogin = "no";  # Never allow root login
+          X11Forwarding = false; # Disable X11 forwarding for security
+          PermitRootLogin = "no"; # Never allow root login
           # Additional security settings
-          KbdInteractiveAuthentication = false;  # Disable keyboard-interactive auth
-          PermitEmptyPasswords = false;  # Never allow empty passwords
-          MaxAuthTries = 3;  # Limit auth attempts
-          LoginGraceTime = 30;  # 30 second login timeout
+          KbdInteractiveAuthentication = false; # Disable keyboard-interactive auth
+          PermitEmptyPasswords = false; # Never allow empty passwords
+          MaxAuthTries = 3; # Limit auth attempts
+          LoginGraceTime = 30; # 30 second login timeout
           # Use only strong ciphers and MACs
           Ciphers = [
             "chacha20-poly1305@openssh.com"
