@@ -76,7 +76,7 @@ in
       # EGL Wayland support
       egl-wayland
       # Mesa VA-API driver for AMD iGPU fallback
-      mesa.drivers
+      mesa
     ];
   };
 
@@ -128,25 +128,6 @@ in
     serviceConfig = {
       TimeoutStopSec = "10s";
       KillMode = "process";
-    };
-  };
-
-  # Add suspend/hibernate hooks for NVIDIA
-  # Note: PCI path derived from nvidiaBusId "PCI:1:0:0" -> "0000:01:00.0"
-  systemd.services.nvidia-resume = {
-    description = "NVIDIA Resume Actions";
-    after = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
-    wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
-    script = ''
-      # Restore NVIDIA power state after resume
-      # PCI path corresponds to nvidiaBusId = "PCI:1:0:0"
-      pciPath="/sys/bus/pci/devices/0000:01:00.0"
-      if [ -d "$pciPath" ]; then
-        echo "auto" > "$pciPath/power/control" 2>/dev/null || true
-      fi
-    '';
-    serviceConfig = {
-      Type = "oneshot";
     };
   };
 

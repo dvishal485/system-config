@@ -21,14 +21,14 @@ in
       package = lib.mkOption {
         type = lib.types.package;
         description = "Hyprland package";
-        default = if cfg.useFlake then hyprland.packages.${pkgs.system}.default else pkgs.hyprland;
+        default = if cfg.useFlake then hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default else pkgs.hyprland;
       };
       portalPackage = lib.mkOption {
         type = lib.types.package;
         description = "Hyprland portal package";
         default =
           if cfg.useFlake then
-            hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+            hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
           else
             pkgs.xdg-desktop-portal-hyprland;
       };
@@ -82,9 +82,9 @@ in
       ];
     };
 
-    services.logind = lib.mkIf cfg.logindMask {
-      lidSwitch = "ignore";
-      powerKey = "ignore";
+    services.logind.settings.Login = lib.mkIf cfg.logindMask {
+      HandleLidSwitch = "ignore";
+      HandlePowerKey = "ignore";
     };
 
     environment.sessionVariables = lib.mkIf cfg.setEnvironment {
