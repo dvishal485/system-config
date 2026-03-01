@@ -58,24 +58,9 @@
     # MPV - configured in ~/.config/mpv/mpv.conf to use NVDEC
     mpv
 
-    # VLC wrapped to use NVIDIA GPU for hardware decoding
-    (pkgs.symlinkJoin {
-      name = "vlc";
-      paths = [ pkgs.vlc ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/vlc \
-          --set __NV_PRIME_RENDER_OFFLOAD 1 \
-          --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER NVIDIA-G0 \
-          --set __GLX_VENDOR_LIBRARY_NAME nvidia \
-          --set __VK_LAYER_NV_optimus NVIDIA_only \
-          --set LIBVA_DRIVER_NAME nvidia \
-          --set NVD_BACKEND direct
-        mv $out/share/applications/vlc.desktop{,.orig}
-        substitute $out/share/applications/vlc.desktop{.orig,} \
-          --replace-fail Exec=${pkgs.vlc}/bin/vlc Exec=$out/bin/vlc
-      '';
-    })
+    # VLC runs on AMD iGPU for suspend/resume stability.
+    # Use `nvidia-offload vlc` manually if dGPU rendering is needed.
+    vlc
 
     transmission_4-gtk
     rclone

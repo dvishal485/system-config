@@ -31,19 +31,11 @@ in
   ];
 
   # Video acceleration environment variables
-  # These are set for system-wide hardware video acceleration
-  environment.sessionVariables = {
-    # NVIDIA video acceleration for most applications
-    VDPAU_DRIVER = "nvidia";
-    # VA-API driver for applications that use it (Firefox, Chrome, etc.)
-    LIBVA_DRIVER_NAME = "nvidia";
-    # NVIDIA decoder backend - 'direct' uses NVDEC directly
-    NVD_BACKEND = "direct";
-    # Allow applications to choose between GPUs
-    # DRI_PRIME=1 will select the NVIDIA GPU for specific apps
-    # Note: Hyprland and most desktop apps should use integrated AMD
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
+  # In offload mode, desktop apps and the compositor run on AMD iGPU by default.
+  # NVIDIA-specific variables (VDPAU_DRIVER, LIBVA_DRIVER_NAME, NVD_BACKEND,
+  # __GLX_VENDOR_LIBRARY_NAME) are set only in the nvidia-offload wrapper to avoid
+  # tying all applications to the dGPU — which causes mass crashes on resume from
+  # sleep when the NVIDIA GPU fails to restore state for every process.
 
   # Wrapper script for GPU offloading to NVIDIA
   # This script wraps commands to run them on the NVIDIA GPU
@@ -55,6 +47,10 @@ in
       export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
       export __VK_LAYER_NV_optimus=NVIDIA_only
+      # NVIDIA video acceleration for offloaded applications
+      export VDPAU_DRIVER=nvidia
+      export LIBVA_DRIVER_NAME=nvidia
+      export NVD_BACKEND=direct
       # Vulkan ICD paths for NVIDIA
       # Primary 64-bit ICD file
       vkIcd="${nvidiaPkg}/share/vulkan/icd.d/nvidia_icd.x86_64.json"
