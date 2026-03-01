@@ -88,7 +88,7 @@ in
     powerManagement.enable = true;
     # Fine-grained power management (RTX 2000 series supports this)
     # Allows GPU to completely power down when not in use
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
 
     # Dynamic Boost - enables the GPU to draw more power when plugged in
     # RTX 2050 in this laptop supports 35W base up to 50W with boost
