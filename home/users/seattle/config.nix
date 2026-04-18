@@ -27,6 +27,7 @@
         "render"
         "input"
         "kvm"
+        "adbusers"
       ]
       ++ lib.optionals config.virtualisation.docker.enable [ "docker" ]
       ++ lib.optionals config.virtualisation.podman.enable [ "podman" ];

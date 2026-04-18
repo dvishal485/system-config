@@ -20,6 +20,7 @@
     ../../applications/google-chrome.nix
     ../../applications/signal.nix
     ../../applications/document-tools.nix
+    ../../applications/android-dev.nix
   ];
 
   # GNOME_KEYRING_CONTROL is set by gnome-keyring-daemon at startup
@@ -41,7 +42,6 @@
     gimp
     qalculate-gtk
     nwg-look
-    android-tools
     devbox
     d2
     gnome-text-editor

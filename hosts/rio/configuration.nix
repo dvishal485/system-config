@@ -38,6 +38,7 @@
     ../../applications/gnupg.nix
     ../../applications/keyring.nix
     ../../applications/ssh.nix
+    ../../applications/android.nix
 
     ../../applications/thunar.nix
     ../../applications/file-mngr-utils.nix
