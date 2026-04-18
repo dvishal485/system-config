@@ -6,5 +6,8 @@
   # XDG_CURRENT_DESKTOP=GNOME gnome-control-center
   services.gnome.gnome-online-accounts.enable = true;
 
-  environment.systemPackages = [ pkgs.gnome-calendar ];
+  environment.systemPackages = [
+    pkgs.gnome-calendar
+    pkgs.gnome-control-center
+  ];
 }
