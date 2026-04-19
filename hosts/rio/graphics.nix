@@ -22,27 +22,16 @@ in
 
   # Kernel parameters for NVIDIA stability
   # NVreg_PreserveVideoMemoryAllocations: Preserves video memory across suspend/resume
-  # NVreg_EnableGpuFirmware=0: Disables GSP firmware which can cause system freezes during media playback
   # NVreg_TemporaryFilePath: Use /tmp for temporary files to avoid filesystem issues
   boot.kernelParams = [
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    "nvidia.NVreg_EnableGpuFirmware=0"
     "nvidia.NVreg_TemporaryFilePath=/tmp"
   ];
 
-  # Video acceleration environment variables
-  # These are set for system-wide hardware video acceleration
+  # Avoid forcing global VA-API/GLX paths in hybrid mode.
+  # Per-app wrappers (e.g. nvidia-offload) should control dGPU routing.
   environment.sessionVariables = {
-    # NVIDIA video acceleration for most applications
     VDPAU_DRIVER = "nvidia";
-    # VA-API driver for applications that use it (Firefox, Chrome, etc.)
-    LIBVA_DRIVER_NAME = "nvidia";
-    # NVIDIA decoder backend - 'direct' uses NVDEC directly
-    NVD_BACKEND = "direct";
-    # Allow applications to choose between GPUs
-    # DRI_PRIME=1 will select the NVIDIA GPU for specific apps
-    # Note: Hyprland and most desktop apps should use integrated AMD
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   # Wrapper script for GPU offloading to NVIDIA
@@ -84,10 +73,8 @@ in
   hardware.nvidia = {
     modesetting.enable = true;
 
-    # Power management - enabled for laptop battery savings
-    powerManagement.enable = true;
-    # Fine-grained power management (RTX 2000 series supports this)
-    # Allows GPU to completely power down when not in use
+    # Prefer maximum stability and predictable behavior over battery savings.
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
 
     # Dynamic Boost - enables the GPU to draw more power when plugged in
@@ -101,9 +88,10 @@ in
 
     prime = {
       offload = {
-        enable = true;
-        enableOffloadCmd = true;
+        enable = false;
+        enableOffloadCmd = false;
       };
+      sync.enable = true;
 
       # PCI Bus IDs - obtained from lspci
       nvidiaBusId = "PCI:1:0:0";

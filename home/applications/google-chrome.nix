@@ -1,11 +1,9 @@
 { pkgs, ... }:
 let
   # Chrome command line arguments for better integration
-  # Uses kwallet for password storage and enables Wayland features
+  # Uses kwallet for password storage and stable Wayland defaults
   commandLineArgs = [
     "--password-store=kwallet6"
-    "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder" # Hardware video acceleration
-    "--disable-features=UseChromeOSDirectVideoDecoder" # Don't use ChromeOS decoder
     "--ozone-platform=wayland"
   ];
 in
