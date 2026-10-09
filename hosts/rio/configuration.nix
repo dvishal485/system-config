@@ -109,6 +109,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.enableRedistributableFirmware = true;
+
   system.stateVersion = "24.05";
 
   nix.settings = {
