@@ -35,7 +35,7 @@
     scrcpy
     gnome-system-monitor
     podman-compose
-    pkgs-unstable.podman # fix: use stable branch once electorn gets updated from EOL version
+    podman
     bat
     typst
     tinymist
