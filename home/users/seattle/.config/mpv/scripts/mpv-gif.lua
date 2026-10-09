@@ -52,12 +52,6 @@ function make_gif()
     make_gif_internal(false)
 end    
 
-function table_length(t)
-    local count = 0
-    for _ in pairs(t) do count = count + 1 end
-    return count
-end
-
 
 function make_gif_internal(burn_subtitles)
     local start_time_l = start_time
@@ -94,6 +88,7 @@ function make_gif_internal(burn_subtitles)
         local i = 0
         local tracks_count = mp.get_property_number("track-list/count")
         local subs_array = {}
+        local subs_count = 0
         
         -- check for subtitle tracks
 
@@ -104,13 +99,13 @@ function make_gif_internal(burn_subtitles)
             -- if it's a sub track, save it
 
             if type == "sub" then
-                local length = table_length(subs_array)
-                subs_array[length] = selected == "yes"
+                subs_array[subs_count] = selected == "yes"
+                subs_count = subs_count + 1
             end
             i = i + 1
         end
 
-        if table_length(subs_array) > 0 then
+        if subs_count > 0 then
 
             local correct_track = 0
 
