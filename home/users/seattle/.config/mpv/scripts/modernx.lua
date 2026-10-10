@@ -2663,19 +2663,25 @@ function osc_init()
                         local a=os.getenv("windir")if a~=nil then return true else return false end
                     end
 
-                    local command = "dbus-send --print-reply --dest=org.freedesktop.FileManager1 /org/freedesktop/FileManager1 org.freedesktop.FileManager1.ShowItems array:string:\"file:$path\" string:\"\""
-                    local windowscmd = "start $path\\"
-                    local macoscmd = "open -a Finder -R \"$path\""
+                    local args = {
+                        "dbus-send", "--print-reply", "--dest=org.freedesktop.FileManager1",
+                        "/org/freedesktop/FileManager1", "org.freedesktop.FileManager1.ShowItems",
+                        "array:string:file:" .. localpath, "string:"
+                    }
 
                     if is_windows() then
                         localpath = localpath:gsub("/", "\\")
-                        command = windowscmd
+                        args = {"cmd.exe", "/c", "start", "", localpath .. "\\"}
                     elseif is_macos() then
-                        command = macoscmd
+                        args = {"open", "-a", "Finder", "-R", localpath}
                     end
-                    command = command:gsub("$path", localpath)
 
-                    os.execute(command)
+                    mp.command_native_async({
+                        name = "subprocess",
+                        args = args,
+                        playback_only = false,
+                        detach = true
+                    }, function() end)
                 end
 
                 if state.downloadedOnce then
