@@ -8,7 +8,7 @@ temp="$HOME/.cache/rofi-windows-preview"
 include_special_workspace=false
 
 workspace_overview(){
-    mkdir -p $temp
+    mkdir -p "$temp"
     local animation=$(hyprctl getoption animations:enabled -j | jq -r .int)
     hyprctl keyword animations:enabled 0
     local active_win=$(hyprctl activewindow -j | jq -r ".address")
@@ -29,11 +29,11 @@ workspace_overview(){
 
     hyprctl dispatch focuswindow address:"$active_win"
     hyprctl keyword animations:enabled "$animation"
-	selected=$(echo -en $text | rofi -dmenu -i -theme ${dir}/${theme}.rasi)
+	selected=$(echo -en "$text" | rofi -dmenu -i -theme "${dir}/${theme}.rasi")
 	if [[ $selected != "" ]]; then
-        hyprctl dispatch focuswindow address:$(echo $selected | rg '\-\s([a-z0-9]*)$' -or '$1')
+        hyprctl dispatch focuswindow address:$(echo "$selected" | rg '\-\s([a-z0-9]*)$' -or '$1')
     fi
-    rm -r $temp/*
+    rm -r "$temp"/*
 }
 
 pkill rofi || workspace_overview > /dev/null
