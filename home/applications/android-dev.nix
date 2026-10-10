@@ -2,7 +2,7 @@
 let
   androidComposition = pkgs-unstable.androidenv.composeAndroidPackages {
     cmdLineToolsVersion = "19.0";
-    platformToolsVersion = "36.0.0";
+    platformToolsVersion = "37.0.1";
     toolsVersion = "26.1.1";
     buildToolsVersions = [
       "36.0.0"

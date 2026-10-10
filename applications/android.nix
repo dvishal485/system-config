@@ -1,6 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  programs.adb.enable = true;
+  environment.systemPackages = [ pkgs.android-tools ];
 
   nixpkgs.config.android_sdk.accept_license = true;
 }

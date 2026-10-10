@@ -149,7 +149,7 @@ in
               brightnessctl
               clipse
               waybar
-              swww
+              awww
             ]
           else
             [ ]

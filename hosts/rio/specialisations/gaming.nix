@@ -17,7 +17,7 @@
         # xanmod kernel for better gaming performance
         boot.kernelPackages = lib.mkForce kernel;
         hardware.nvidia = {
-          package = kernel.nvidiaPackages.production;
+          package = lib.mkForce kernel.nvidiaPackages.production;
           # Dynamic boost is already enabled in base config
           # No need to force it here as it inherits from base
         };
