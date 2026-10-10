@@ -9,21 +9,17 @@ _: {
 
   # NextDNS
   services.resolved = {
-    enable = false;
-    dnsovertls = "true";
-    # extraConfig = ''
-    #   [Resolve]
-    #   DNS=45.90.28.0#nixos-73c4d4.dns.nextdns.io
-    #   DNS=2a07:a8c0::#nixos-73c4d4.dns.nextdns.io
-    #   DNS=45.90.30.0#nixos-73c4d4.dns.nextdns.io
-    #   DNS=2a07:a8c1::#nixos-73c4d4.dns.nextdns.io
-    # '';
-    extraConfig = ''
-      [Resolve]
-      DNS=1.1.1.1
-      DNS=1.0.0.1
-      DNS=2606:4700:4700::1111
-      DNS=2606:4700:4700::1001
-    '';
+    enable = true;
+    settings = {
+      Resolve = {
+        DNS = [
+          "45.90.28.0#nixos-73c4d4.dns.nextdns.io"
+          "2a07:a8c0::#nixos-73c4d4.dns.nextdns.io"
+          "45.90.30.0#nixos-73c4d4.dns.nextdns.io"
+          "2a07:a8c1::#nixos-73c4d4.dns.nextdns.io"
+        ];
+        DNSOverTLS = "yes";
+      };
+    };
   };
 }

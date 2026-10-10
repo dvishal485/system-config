@@ -8,7 +8,7 @@ let
 in
 {
   home.packages = [
-    (pkgs.signal-desktop-bin.override {
+    (pkgs.signal-desktop.override {
       commandLineArgs = builtins.toString commandLineArgs;
     })
   ];

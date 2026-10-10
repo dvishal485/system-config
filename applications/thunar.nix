@@ -13,7 +13,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mate.engrampa # alternative to ark
+    engrampa # alternative to ark
     unrar
     zip
     unzip

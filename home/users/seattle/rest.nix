@@ -51,8 +51,7 @@
     obsidian
     xournalpp
     rnote
-    pdfslicer
-    wasistlos
+    karere
     telegram-desktop
 
     # MPV - configured in ~/.config/mpv/mpv.conf to use NVDEC

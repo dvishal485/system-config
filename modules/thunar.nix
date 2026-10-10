@@ -38,7 +38,7 @@ in
       };
 
       package = lib.mkOption {
-        default = pkgs.xfce.thunar;
+        default = pkgs.thunar;
         type = lib.types.package;
         description = "The Thunar package to use.";
       };
